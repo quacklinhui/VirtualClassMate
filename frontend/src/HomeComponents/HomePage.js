@@ -21,7 +21,7 @@ function HomePage() {
           </Button>
         </Container>
         </main>
-      <CreateRoomPopUp trigger = {createPopUp}/>
+      <CreateRoomPopUp trigger = {createPopUp} setTrigger = {setCreatePopUp}/>
       </div>
     );
   }

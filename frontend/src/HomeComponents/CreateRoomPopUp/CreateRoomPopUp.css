@@ -16,6 +16,9 @@
     width: 100%;
     max-width: 640px;
     background-color: #FFF;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .createRoomPopUp-inner .closePopUp{
