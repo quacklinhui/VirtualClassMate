@@ -2,8 +2,12 @@ import NavBar from './NavBar/NavBar';
 import {Button, Typography, Paper, Box, Container} from '@material-ui/core'
 import CreateRoomPopUp from './CreateRoomPopUp/CreateRoomPopUp';
 import {useState} from 'react';
+import {BrowserRouter as Router,  useHistory} from "react-router-dom";
+import RoomPage from '../MainRoomComponents/RoomPage';
+
 // To do: the number of buttons should be dynamically formed based on the database
 function HomePage() {
+  let history = useHistory();
   const [createPopUp, setCreatePopUp] = useState(false); //set the default state to false
     
   return (
@@ -19,7 +23,7 @@ function HomePage() {
           <Button variant="contained" color="primary" onClick={() => { setCreatePopUp(true) }}>
               Temp Create Room
           </Button>
-          <Button variant="contained" color="primary" onClick={() => { setCreatePopUp(true) }}>
+          <Button variant="contained" color="primary" onClick={() => { history.push("/room")}}>
               Temp Enter Room
           </Button>
         </Container>

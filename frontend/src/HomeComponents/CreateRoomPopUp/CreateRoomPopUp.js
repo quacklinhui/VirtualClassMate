@@ -21,4 +21,4 @@ function CreateRoomPopUp(props) {
     ):"";
   }
   
-  export default CreateRoomPopUp;
+export default CreateRoomPopUp;
