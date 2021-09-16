@@ -1,5 +1,5 @@
 import NavBar from './NavBar/NavBar';
-import {Button} from '@material-ui/core'
+import {Button, Typography, Paper, Box, Container} from '@material-ui/core'
 
 function HomePage() {
     return (
@@ -8,9 +8,17 @@ function HomePage() {
         <NavBar />
       </div>
 
-      <Button variant="contained" color="primary">
-        Primary
-      </Button>
+
+      <Container color = "primary.main" maxWidth="lrg">
+      <Typography>
+          Your Rooms
+        </Typography>
+        <Button variant="contained" color="primary">
+          Your Rooms
+        </Button>
+
+      </Container>
+
       </>
     );
   }
