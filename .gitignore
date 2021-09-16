@@ -10,10 +10,11 @@ logs
 *.icloud
 .icloud*
 *.eslintcache
-
+.eslintcache*
+/*.eslintcache.*
 node_modules
 bower_components
-
+.eslintcache
 *.sublime*
 
 psd
