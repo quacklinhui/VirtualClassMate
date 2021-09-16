@@ -20,15 +20,12 @@ function ToDoList() {
           <Typography>
               Your Rooms
           </Typography>
-          <Button variant="contained" color="primary" onClick={() => { setCreatePopUp(true) }}>
-              Temp Create Room
-          </Button>
           <Button variant="contained" color="primary" onClick={() => { history.push("/room")}}>
               Temp Enter Room
           </Button>
         </Container>
         </main>
-      <CreateRoomPopUp trigger = {createPopUp} setTrigger = {setCreatePopUp}/>
+
       </div>
     );
   }
