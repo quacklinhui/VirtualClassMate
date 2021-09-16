@@ -1,5 +1,27 @@
 node_modules/
+# Edit at https://www.toptal.com/developers/gitignore?templates=react
 
+### react ###
+.DS_*
+*.log
+logs
+**/*.backup.*
+**/*.back.*
+*.icloud
+.icloud*
+*.eslintcache
+.eslintcache*
+/*.eslintcache.*
+node_modules
+bower_components
+.eslintcache
+*.sublime*
+
+psd
+thumb
+sketch
+
+# End of https://www.toptal.com/developers/gitignore/api/react
 
 
 
