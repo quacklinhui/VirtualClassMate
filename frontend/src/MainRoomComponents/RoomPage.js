@@ -11,6 +11,14 @@ function RoomPage() {
       <div>
         <NavBar />
       </div>
+      <Container style={{alignItems:"center", alignContent:"center",textAlign: "center",}}>
+          <Typography> You are in:</Typography>
+          <div style ={{display: "flex",flexDirection: 'row',height: 30,paddingTop: 5}}>
+          <Container style={{width:"40%", backgroundColor: "#D8ABEC60"}}>Hello</Container>
+          <Container style={{width:"40%", backgroundColor: "#D8ABEC60"}}>Hello</Container>
+          </div>
+
+      </Container>
       </div>
     );
   }
