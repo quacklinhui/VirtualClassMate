@@ -9,6 +9,7 @@ logs
 **/*.back.*
 *.icloud
 .icloud*
+*.eslintcache
 
 node_modules
 bower_components
