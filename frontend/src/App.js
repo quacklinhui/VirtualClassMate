@@ -4,6 +4,8 @@ import HomePage from './HomeComponents/HomePage';
 import CreateRoomPopUp from './HomeComponents/CreateRoomPopUp/CreateRoomPopUp';
 import {BrowserRouter as Router, Route, Switch, useHistory, Redirect} from "react-router-dom";
 import RoomPage from './MainRoomComponents/RoomPage';
+import Login from './LoginComponents/Login';
+
 function App() {
   return (
     <Router>
@@ -13,12 +15,13 @@ function App() {
                 path="/"
                 render={() => {
                     return (
-                      <Redirect to="/home" /> 
+                      <Redirect to="/login" /> 
                     )
                 }}
               />
         <Route exact path = "/home" component={HomePage}/>
         <Route exact path = "/room" component={RoomPage}/>
+        <Route exact path = "/login" component={Login}/>
       </Switch>
     </Router>
   );
