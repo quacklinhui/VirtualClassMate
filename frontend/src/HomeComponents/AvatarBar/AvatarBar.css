@@ -1,0 +1,30 @@
+.avatarbar {
+    background: #140650;
+    display: flex;
+    position: relative;
+    align-items: center;
+    height: 200px;
+  }
+
+.flexContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 200px;
+    margin-left: 50px;
+    position: relative;
+    color: #fff;
+}
+ 
+.avatar {
+    margin-top: 20px;
+    width: 200px;
+}  
+
+.customizeavatar {
+    color: #000;
+    margin: 10px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    width: 200px;
+}
