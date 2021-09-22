@@ -56,13 +56,13 @@
   }
   
   .loginbutton{
-    top:82%;
-    left:80%;
+    color:white;
+    top:85%;
+    left:50%;
     transform: translate(-50%, -50%);
     position: absolute;
-    display: flex;
+    display: block;
     justify-content: center;
-    color:#FFFFFF;
     width: 393px;
     height: 48px;
     background: #5B1EBE;
@@ -72,6 +72,7 @@
     font-size: 20px;
     line-height: 30px;
   }
+
   
   .emailinput{
     display: block;
@@ -111,13 +112,20 @@
   }
   
   .linktoreg {
-  padding-top: 40px;
+    top:94%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    display: block;
+    width: 393px;
+    justify-content: center;
   text-align:center;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 15px;
   line-height: 25px;
-  
+  display: block;
   color: #1D1A1A;
+  background-color: #E7DFFF;
   }

@@ -1,7 +1,8 @@
 import {BrowserRouter as Router,  Redirect,  useHistory} from "react-router-dom";
 import {useState} from 'react';
 import HomePage from '../HomeComponents/HomePage';
-import {Button, Typography, Paper, Box, Container} from '@material-ui/core'
+import Register from '../LoginComponents/Register';
+// import {Button, Typography, Paper, Box, Container} from '@material-ui/core'
 import './Login.css';
 
 function Login() {
@@ -24,11 +25,16 @@ function Login() {
             Password
           </h2>
           <input className="pwinput"></input>
-            <Button variant="contained" color="primary" onClick={() => { history.push("/home")}}>
+          <h5 className = "loginblock"> 
+            <button  className = "loginbutton" onClick={() => { history.push("/home")}}>
               Login
-          </Button>
-          <h6 className="linktoreg">
-            New to VirtualClassMate? <a>Click here</a> to Register
+          </button>
+          </h5>
+          <h6 >
+              <button className="linktoreg" onClick={() => { history.push("/register")}}>
+                  New to VirtualClassMate? Click here to Register!
+              </button>
+            {/* New to VirtualClassMate? <a href = {history.push("/register")}> Click here</a> to Register */}
           </h6>
 
         </div>
