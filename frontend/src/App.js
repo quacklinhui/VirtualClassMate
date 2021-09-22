@@ -5,6 +5,7 @@ import CreateRoomPopUp from './HomeComponents/CreateRoomPopUp/CreateRoomPopUp';
 import {BrowserRouter as Router, Route, Switch, useHistory, Redirect} from "react-router-dom";
 import RoomPage from './MainRoomComponents/RoomPage';
 import Login from './LoginComponents/Login';
+import Register from './LoginComponents/Register';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route exact path = "/home" component={HomePage}/>
         <Route exact path = "/room" component={RoomPage}/>
         <Route exact path = "/login" component={Login}/>
+        <Route exact path = "/register" component={Register}/>
       </Switch>
     </Router>
   );

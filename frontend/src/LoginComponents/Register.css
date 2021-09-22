@@ -1,0 +1,130 @@
+.App {
+    text-align: center;
+    background-color: blueviolet;}
+
+  .body{
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #3E197A;
+  }
+  
+  .app {
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  width: 580px;
+  height: 714px;
+  background: #E7DFFF;
+  border-radius: 40px;
+  
+  }
+  
+  .virtualClassMate{
+  padding-top: 128px;
+  text-align: center;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 59px;
+  color: #1D1A1A;
+  }
+  
+  .register{
+  text-align: center;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 45px;
+  }
+  
+  .email{
+  padding-top: 30px;
+  padding-left: 92px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 30px;
+  }
+  
+  .registerbutton{
+    color:white;
+    top:85%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    display: block;
+    justify-content: center;
+    width: 393px;
+    height: 48px;
+    background: #5B1EBE;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 30px;
+  }
+  
+  .emailinput{
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+    width: 385px;
+    height: 35px;
+    color:#FFFFFF;
+  font-size: 15px;
+  line-height: 30px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background-color: #3E197A;
+  }
+  
+  .pwinput{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 385px;
+  height: 35px;
+    color:#FFFFFF;
+    font-size: 15px;
+    line-height: 30px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: #3E197A;
+    }
+  
+  .pw{
+  padding-left: 92px;
+  padding-top: 10px;
+  
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 30px;
+  }
+  
+  .linktolog {
+    top:94%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    display: block;
+    width: 393px;
+    justify-content: center;
+  text-align:center;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 25px;
+  display: block;
+  color: #1D1A1A;
+  background-color: #E7DFFF;
+  }

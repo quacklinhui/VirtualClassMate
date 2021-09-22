@@ -2,7 +2,7 @@ import {BrowserRouter as Router,  Redirect,  useHistory} from "react-router-dom"
 import {useState} from 'react';
 import HomePage from '../HomeComponents/HomePage';
 import Login from '../LoginComponents/Login';
-import {Button, Typography, Paper, Box, Container} from '@material-ui/core'
+// import {Button, Typography, Paper, Box, Container} from '@material-ui/core'
 import './Register.css';
 
 function Register() {
@@ -25,9 +25,12 @@ function Register() {
             Password
           </h2>
           <input className="pwinput"></input>
-            <Button variant="contained" color="primary">
+            <button className ="registerbutton" variant="contained" color="primary">
               Register
-          </Button>
+          </button>
+          <button className="linktolog" onClick={() => { history.push("/login")}}>
+                  Been here before? Click here to Login!
+              </button>
 
         </div>
         <body className="body">
