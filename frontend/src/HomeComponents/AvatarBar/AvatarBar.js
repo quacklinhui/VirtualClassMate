@@ -10,6 +10,10 @@ function AvatarBar(){
                 <img className = 'avatar' src = {avatar} alt = "avatar"></img>
                 <Button variant="contained"  style = {{backgroundColor: 'rgb(161, 188, 228)', height: '15px', marginTop: '20px', fontSize: '0.7rem', fontWeight: 'bold', alignSelf: 'center'}}className = "customizeavatar">Customise Avatar</Button>
             </div>
+            <div className = "flexContainer"> 
+                <div>name</div>
+                <div>@username</div>
+            </div>
             
         </div>
     )
