@@ -3,7 +3,13 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 
+// Import routes
+import roomRoutes from './routes/room.js';
+
 const app = express();
+
+// Connect routes
+app.use('/room', roomRoutes);
 
 app.use(express.json({limit: "30mb", extended: true})); // replace bodyParser
 app.use(express.urlencoded({limit: "30mb", extended: true})); // replace bodyParser
