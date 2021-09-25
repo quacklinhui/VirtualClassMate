@@ -22,16 +22,17 @@ let history = useHistory();
           <div style ={{display: "flex",flexDirection: 'row',height: 30,paddingTop: 5, width: "70%"}}>
             <Container style={{width:"45%", backgroundColor: "#D8ABEC60"}}>
                 <Button>Personal</Button>
-                <TextField fullWidth id="personalToDoListInput" />
+                <TextField fullWidth id="personalToDoListInput" variant="outlined" size = 'small' />
 
             </Container>
             <Container style={{width:"45%", backgroundColor: "#D8ABEC60"}}>
               <Button>Group</Button>
-              <TextField fullWidth id="groupToDoListInput" />
+              <TextField fullWidth id="groupToDoListInput" variant="outlined" size = 'small' />
             </Container>
+            
             <Container style={{width:"25%", backgroundColor: "#D8ABEC60", position: "absolute", right: 20}}>
                 <Button>Chat</Button>
-                <TextField fullWidth id="chatInput" />
+                <TextField fullWidth id="chatInput" variant="outlined" size = 'small'  />
             </Container>
           </div>
 
