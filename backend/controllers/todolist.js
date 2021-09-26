@@ -15,7 +15,7 @@ export const getTodo = async(req,res)=>{
 
 export const createTodo = async (req, res) => {
     const body = req.body;
-    const newTodo = new Room(body);
+    const newTodo = new ToDoItem(body);
     try {
         await newTodo.save();
 

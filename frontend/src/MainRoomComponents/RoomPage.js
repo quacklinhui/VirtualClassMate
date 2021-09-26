@@ -3,12 +3,21 @@ import NavBar from '../HomeComponents/NavBar/NavBar';
 import {Button, Typography, Paper, Box, Container, TextField} from '@material-ui/core'
 import {useState} from 'react';
 import {BrowserRouter as Router,  useHistory} from "react-router-dom";
+import {useDispatch} from 'react-redux';
+import { createTodo } from '../actions/todo'
 
 // To do: the number of buttons should be dynamically formed based on the database
 function RoomPage() {
 let history = useHistory();
   const [createPopUp, setCreatePopUp] = useState(false); //set the default state to false
-    
+  const [toDoData, setToDoData]=useState({
+    description:'',deadline:'',
+});
+const dispatch = useDispatch();
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+        dispatch(createTodo(toDoData));
+    }
   return (
       <div>
       <div>
@@ -20,10 +29,14 @@ let history = useHistory();
             <Button style={{position:"absolute", right: 20,alignSelf: "flex-end", backgroundColor: "orange"}} onClick={() => { history.push("/home")}}>Back to HomePage</Button>
           </div>
           <div style ={{display: "flex",flexDirection: 'row',height: 30,paddingTop: 5, width: "70%"}}>
-            <Container style={{width:"45%", backgroundColor: "#D8ABEC60"}}>
+            <Container style={{width:"45%", backgroundColor: "#D8ABEC60"}} >
+            
+             <form autoComplete="off" noValidate  onSubmit={handleSubmit}>
                 <Button>Personal</Button>
-                <TextField fullWidth id="personalToDoListInput" variant="outlined" size = 'small' />
-
+                <TextField  name = 'description' variant = "outlined" label = "Description" fullWidth value={toDoData.description} onChange ={(e)=>setToDoData({...toDoData,description: e.target.value})} />
+                <TextField  name = 'deadline' variant = "outlined" label = "Deadline" fullWidth value={toDoData.deadline} onChange ={(e)=>setToDoData({...toDoData,deadline: e.target.value})} />
+                <button variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</button>
+             </form>
             </Container>
             <Container style={{width:"45%", backgroundColor: "#D8ABEC60"}}>
               <Button>Group</Button>
