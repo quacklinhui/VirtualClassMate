@@ -10,7 +10,8 @@ const toDoItemSchema = mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['inProgress', 'completed', 'overdue']
+        enum: ['inProgress', 'completed', 'overdue'],
+        default: 'inProgress'
     }
 });
 
