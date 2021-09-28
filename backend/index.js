@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 // Import routes
 import roomRoutes from './routes/room.js';
 import toDoRoutes from './routes/todo.js';
+import userRoutes from "./routes/user.route.js";
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(cors());
 // Connect routes
 app.use('/room', roomRoutes);
 app.use('/toDo', toDoRoutes);
+app.use("/user", userRoutes);
 
 const CONNECTION_URL = 'mongodb+srv://virtualclassmate:virtualclassmate@cluster.dnmqc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 const PORT = process.env.PORT || 5000;
