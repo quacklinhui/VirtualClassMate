@@ -24,12 +24,13 @@ export const login = async (req, res) => {
   }
 };
 
+// 2 default avatar IDs are hard coded
 export const register = async (req, res) => {
   const username = req.body.username;
   const email = req.body.email;
   const hashPassword = sha256.update(req.body.password).hex();
-  const avatarID1 = req.body.avatarID1;
-  const avatarID2 = req.body.avatarID2;
+  // const avatarID1 = req.body.avatarID1;
+  // const avatarID2 = req.body.avatarID2;
   //const date = Date.parse(req.body.date);
 
   let is_username_exist = false;
@@ -67,8 +68,8 @@ export const register = async (req, res) => {
       username: username,
       password: hashPassword,
       email: email,
-      avatarID1: avatarID1,
-      avatarID2: avatarID2,
+      avatarID1: "animal1",
+      avatarID2: "hat1",
       // level: 0,
       // experience: 0,
     });
