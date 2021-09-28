@@ -17,6 +17,10 @@ function Register() {
           <h2 className="register">
             Register
           </h2>
+          <h2 className="username">
+            Username
+          </h2>
+          <input className="userinput"></input>
           <h2 className="email">
             Email
           </h2>
