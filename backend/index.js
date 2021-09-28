@@ -6,7 +6,7 @@ import mongoose from 'mongoose';
 // Import routes
 import roomRoutes from './routes/room.js';
 import toDoRoutes from './routes/todo.js';
-import userRoutes from "./routes/user.route.js";
+import userRoutes from "./routes/user.route.js"; 
 
 const app = express();
 
