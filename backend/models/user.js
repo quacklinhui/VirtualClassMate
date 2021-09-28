@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const userSchema = mongoose.Schema({
-  //username: String,
+  username: String,
   password: String,
   email: String,
   toDoList: [{ type: mongoose.Schema.Types.ObjectId, ref: "ToDoItem" }],
