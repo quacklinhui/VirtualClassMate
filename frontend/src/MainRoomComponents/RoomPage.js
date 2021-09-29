@@ -40,14 +40,20 @@ const dispatch = useDispatch();
             
              <form autoComplete="off" noValidate  onSubmit={handleSubmit}>
                 <Button>Personal</Button>
-                <TextField  name = 'name' variant = "outlined" label = "Name" fullWidth value={toDoData.name} onChange ={(e)=>setToDoData({...toDoData,name: e.target.value})} />
-                <TextField  name = 'description' variant = "outlined" label = "Description" fullWidth value={toDoData.description} onChange ={(e)=>setToDoData({...toDoData,description: e.target.value})} />
-                <TextField  name = 'deadline' variant = "outlined" label = "Deadline" fullWidth value={toDoData.deadline} onChange ={(e)=>setToDoData({...toDoData,deadline: e.target.value})} />
+                <ToDoLists/>
+                <Container style = {{backgroundColor: 'white', display: "flex",flexDirection: 'row', height:50, padding:5}}>
+                <TextField style={{padding:5}} name = 'name'  dvariant = "outlined" fullWidth value={toDoData.name} size = 'small' onChange ={(e)=>setToDoData({...toDoData,name: e.target.value})} />
+                <Button style ={{backgroundColor:'grey', margin:5}}>+</Button>
+                </Container>
+                
+                {/* <TextField  name = 'description' variant = "outlined" label = "Description" fullWidth value={toDoData.description} onChange ={(e)=>setToDoData({...toDoData,description: e.target.value})} /> */}
+                {/* <TextField  name = 'deadline' variant = "outlined" label = "Deadline" fullWidth value={toDoData.deadline} onChange ={(e)=>setToDoData({...toDoData,deadline: e.target.value})} /> */}
                 {/* <DatePicker selected={toDoData.deadline} onChange ={(e)=>setToDoData({...toDoData,deadline: e.target.value})} /> */}
-                <button variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</button>
+                {/* <button variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</button> */}
              </form>
-             <ToDoLists/>
+             
             </Container>
+
             <Container style={{width:"45%", backgroundColor: "#D8ABEC60"}}>
               <Button>Group</Button>
               <TextField fullWidth id="groupToDoListInput" variant="outlined" size = 'small' />
