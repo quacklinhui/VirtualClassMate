@@ -7,8 +7,8 @@ import CreateRoomPopUp from './CreateRoomPopUp/CreateRoomPopUp';
 import {useState} from 'react';
 import {BrowserRouter as Router,  useHistory} from "react-router-dom";
 import RoomPage from '../MainRoomComponents/RoomPage';
-
-
+import RoomButton from './RoomSelection/RoomButton';
+import RoomList from './RoomList/RoomList';
 
 // To do: the number of buttons should be dynamically formed based on the database
 function HomePage() {
@@ -19,17 +19,9 @@ function HomePage() {
         <NavBar />
         <AvatarBar />
         <div style = {{display: 'flex', alignItems: 'flex-start', marginLeft: '20px', marginTop: '50px', marginRight: '20px'}}>
-          <Container color = "primary.main" maxWidth="lrg">
-            <Typography>
-                Your Rooms
-            </Typography>
-            <Button variant="contained" color="primary" onClick={() => { history.push("/room")}}>
-              Temp Enter Room
-            </Button>
-          </Container>
-          
-          <FriendList />
 
+          <RoomList/>
+          <FriendList />
           <Container style = {{marginLeft: '100px', marginTop: '5%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
             <Typography>Don't see your friends on the list?</Typography>
             <Typography> Add them here:</Typography>
