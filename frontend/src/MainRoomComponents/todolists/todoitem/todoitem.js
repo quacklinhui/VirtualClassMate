@@ -1,9 +1,9 @@
 import React from "react";
-import {Card,CardActions,CardContent,CardMedia,Button,Typography } from '@material-ui/core';
+import {Card,Paper,CardActions,CardContent,CardMedia,Button,Typography } from '@material-ui/core';
 
 const ToDoItem = ({todo}) => {
     return (
-        <Card style={{width:"100%"}}>
+        <Button style={{width:"90%", alignSelf:"center", backgroundColor: 'rgb(159, 136, 180)', borderRadius: '10px'}}>
             <div>
                 <Typography>TEST</Typography>
                 <Typography variant="body2">{todo.name}</Typography>
@@ -11,7 +11,7 @@ const ToDoItem = ({todo}) => {
                 <Typography variant="body2">{todo.deadline}</Typography>
                 <Typography variant="body2">{todo.status}</Typography>
             </div>
-        </Card>
+        </Button>
     );
 }
 

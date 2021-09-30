@@ -11,13 +11,13 @@ const RoomButton = () => {
     
     return (
         !todolists.length ? <CircularProgress/>: (
-            <Grid container alightItems="stretch" spacing={3} >
+            <Paper alightItems="stretch" spacing={3} style={{width:"100%", backgroundColor: "#D8ABEC60", borderRadius:10, alightItems:"center",textAlign:"center"}} >
                 {todolists.map((todo)=>(
-                    <Button key={todo._id} item xs={12} sm={12}>
+                    <List key={todo._id} style={{width:"100%"}}>
                         <ToDoItem todo={todo} />
-                    </Button>
+                    </List>
                 ))}
-            </Grid>
+            </Paper>
         )
     );
 }

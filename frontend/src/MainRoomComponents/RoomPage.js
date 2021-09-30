@@ -9,7 +9,7 @@ import { getTodo } from '../actions/todo';
 import ToDoLists from "./todolists/todolist";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { AiFillCaretDown, AiOutlinePlus } from 'react-icons/ai';
+import { AiFillCaretDown, AiOutlinePlus,AiFillCaretUp } from 'react-icons/ai';
 import useWindowDimensions from "../useWindowDimensions";
 
 //import { faCoffee } from '@fortawesome/fontawesome-free-solid';
@@ -46,7 +46,10 @@ const dispatch = useDispatch();
           
           <Paper style={{width:"45%", backgroundColor: '#8A2BE290', height:50}} >
              <form autoComplete="off" noValidate  onSubmit={handleSubmit}>
-                <Button style={{width:"100%"}} onClick={()=>{showPersonalToDoList?setShowPersonalToDoList(false): setShowPersonalToDoList(true)}}>Personal<AiFillCaretDown style={{ color:"white", height:"80%", width:"10%"}}/></Button>
+                <Button style={{width:"100%"}} onClick={()=>{showPersonalToDoList?setShowPersonalToDoList(false): setShowPersonalToDoList(true)}}>
+                  Personal
+                  { showPersonalToDoList ? <AiFillCaretDown style={{ color:"black", height:"80%", width:"10%"}}/> : <AiFillCaretDown style={{ color:"white", height:"80%", width:"10%"}}/>  }
+                </Button>
                 { showPersonalToDoList ? <ToDoLists /> : null }
                 <Container style = {{backgroundColor: 'D8ABEC60', display: "flex",flexDirection: 'row', height:50, padding:5}}>
                   <TextField style={{padding:5}} name = 'name'  dvariant = "outlined" fullWidth value={toDoData.name} size = 'small' onChange ={(e)=>setToDoData({...toDoData,name: e.target.value})} />
@@ -62,7 +65,8 @@ const dispatch = useDispatch();
 
         <Paper style={{width:"45%",marginLeft:"5%", backgroundColor: "#8A2BE290", height:50}}>
 
-              <Button style={{width:"100%"}} onClick={()=>{showGroupToDoList?setShowGroupToDoList(false): setShowGroupToDoList(true)}}>GROUP<AiFillCaretDown style={{ color:"white", height:"80%", width:"10%"}}/></Button>
+              <Button style={{width:"100%"}} onClick={()=>{showGroupToDoList?setShowGroupToDoList(false): setShowGroupToDoList(true)}}>GROUP
+              { showGroupToDoList ? <AiFillCaretDown style={{ color:"black", height:"80%", width:"10%"}}/> : <AiFillCaretDown style={{ color:"white", height:"80%", width:"10%"}}/>  }</Button>
               
               { showGroupToDoList ? <ToDoLists /> : null }
               {/* <TextField fullWidth id="groupToDoListInput" variant="outlined" size = 'small' /> */}
