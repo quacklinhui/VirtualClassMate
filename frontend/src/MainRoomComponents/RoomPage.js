@@ -15,6 +15,7 @@ function RoomPage() {
 let history = useHistory();
 const [createPopUp, setCreatePopUp] = useState(false); //set the default state to false
 const [showPersonalToDoList, setShowPersonalToDoList] = React.useState(false)
+const [showGroupToDoList, setShowGroupToDoList] = React.useState(false)
 const [toDoData, setToDoData]=useState({name:'',description:'',deadline:''});
 const [groupToDoData, setGroupToDoData]=useState({groupToDo:''});
 const dispatch = useDispatch();
@@ -55,7 +56,8 @@ const dispatch = useDispatch();
             </Container>
 
             <Container style={{width:"45%", backgroundColor: "#D8ABEC60"}}>
-              <Button>Group</Button>
+              <Button onClick={()=>{showGroupToDoList?setShowGroupToDoList(false): setShowGroupToDoList(true)}}>Group</Button>
+              { showGroupToDoList ? <ToDoLists /> : null }
               {/* <TextField fullWidth id="groupToDoListInput" variant="outlined" size = 'small' /> */}
               <Container style = {{backgroundColor: 'white', display: "flex",flexDirection: 'row', height:50, padding:5}}>
                 <TextField style={{padding:5}} name = 'groupToDoListInput'  dvariant = "outlined" fullWidth value={groupToDoData.groupToDo} size = 'small' onChange ={(e)=>setGroupToDoData({...groupToDoData,groupToDo: e.target.value})}/>
