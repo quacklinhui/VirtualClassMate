@@ -43,7 +43,7 @@ const dispatch = useDispatch();
                 <ToDoLists/>
                 <Container style = {{backgroundColor: 'white', display: "flex",flexDirection: 'row', height:50, padding:5}}>
                 <TextField style={{padding:5}} name = 'name'  dvariant = "outlined" fullWidth value={toDoData.name} size = 'small' onChange ={(e)=>setToDoData({...toDoData,name: e.target.value})} />
-                <Button style ={{backgroundColor:'grey', margin:5}}>+</Button>
+                <Button type = "submit" style ={{backgroundColor:'grey', margin:5}}>+</Button>
                 </Container>
                 
                 {/* <TextField  name = 'description' variant = "outlined" label = "Description" fullWidth value={toDoData.description} onChange ={(e)=>setToDoData({...toDoData,description: e.target.value})} /> */}
