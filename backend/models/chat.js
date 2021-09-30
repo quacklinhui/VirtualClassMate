@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const chatSchema = mongoose.Schema({
-    user: {type: Schema.Types.ObjectId, ref: 'User'},
+    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     message: String,
     createdAt: {
         type: Date,
