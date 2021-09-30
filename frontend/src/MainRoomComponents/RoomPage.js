@@ -9,7 +9,7 @@ import { getTodo } from '../actions/todo';
 import ToDoLists from "./todolists/todolist";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { AiFillCaretDown } from 'react-icons/ai';
+import { AiFillCaretDown, AiOutlinePlus } from 'react-icons/ai';
 import useWindowDimensions from "../useWindowDimensions";
 
 //import { faCoffee } from '@fortawesome/fontawesome-free-solid';
@@ -43,14 +43,14 @@ const dispatch = useDispatch();
             <Button style={{position:"absolute", right: 20,alignSelf: "flex-end", backgroundColor: "orange"}} onClick={() => { history.push("/home")}}>Back to HomePage</Button>
           </div>
           <div style ={{display: "flex",flexDirection: 'row',height: 30,paddingTop: 5, width: "70%"}}>
-            <Container style={{width:"45%", backgroundColor: "#D8ABEC60"}} >
-            
+          
+          <Paper style={{width:"45%", backgroundColor: '#8A2BE290', height:50}} >
              <form autoComplete="off" noValidate  onSubmit={handleSubmit}>
-                <Button onClick={()=>{showPersonalToDoList?setShowPersonalToDoList(false): setShowPersonalToDoList(true)}}>Personal</Button>
+                <Button style={{width:"100%"}} onClick={()=>{showPersonalToDoList?setShowPersonalToDoList(false): setShowPersonalToDoList(true)}}>Personal<AiFillCaretDown style={{ color:"white", height:"80%", width:"10%"}}/></Button>
                 { showPersonalToDoList ? <ToDoLists /> : null }
-                <Container style = {{backgroundColor: 'white', display: "flex",flexDirection: 'row', height:50, padding:5}}>
-                <TextField style={{padding:5}} name = 'name'  dvariant = "outlined" fullWidth value={toDoData.name} size = 'small' onChange ={(e)=>setToDoData({...toDoData,name: e.target.value})} />
-                <Button type = "submit" style ={{backgroundColor:'grey', margin:5}}>+</Button>
+                <Container style = {{backgroundColor: 'D8ABEC60', display: "flex",flexDirection: 'row', height:50, padding:5}}>
+                  <TextField style={{padding:5}} name = 'name'  dvariant = "outlined" fullWidth value={toDoData.name} size = 'small' onChange ={(e)=>setToDoData({...toDoData,name: e.target.value})} />
+                  <Button type = "submit" style ={{backgroundColor:'#DCDCDC', margin:5}}><AiOutlinePlus/></Button>
                 </Container>
                 
                 {/* <TextField  name = 'description' variant = "outlined" label = "Description" fullWidth value={toDoData.description} onChange ={(e)=>setToDoData({...toDoData,description: e.target.value})} /> */}
@@ -58,10 +58,9 @@ const dispatch = useDispatch();
                 {/* <DatePicker selected={toDoData.deadline} onChange ={(e)=>setToDoData({...toDoData,deadline: e.target.value})} /> */}
                 {/* <button variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</button> */}
              </form>
-             
-            </Container>
+          </Paper>
 
-        <Paper style={{width:"45%", backgroundColor: "#D8ABEC60", height:50}}>
+        <Paper style={{width:"45%",marginLeft:"5%", backgroundColor: "#8A2BE290", height:50}}>
 
               <Button style={{width:"100%"}} onClick={()=>{showGroupToDoList?setShowGroupToDoList(false): setShowGroupToDoList(true)}}>GROUP<AiFillCaretDown style={{ color:"white", height:"80%", width:"10%"}}/></Button>
               
@@ -69,7 +68,7 @@ const dispatch = useDispatch();
               {/* <TextField fullWidth id="groupToDoListInput" variant="outlined" size = 'small' /> */}
               <Container style = {{backgroundColor: 'D8ABEC60', display: "flex",flexDirection: 'row', height:50, padding:5}}>
                 <TextField style={{padding:5}} name = 'groupToDoListInput'  dvariant = "outlined" fullWidth value={groupToDoData.groupToDo} size = 'small' onChange ={(e)=>setGroupToDoData({...groupToDoData,groupToDo: e.target.value})}/>
-                <Button type = "submitGrp" style ={{backgroundColor:'grey', margin:5}}>+</Button>
+                <Button type = "submitGrp" style ={{backgroundColor:'#DCDCDC', margin:5}}><AiOutlinePlus/></Button>
               </Container>  
           </Paper>
             
