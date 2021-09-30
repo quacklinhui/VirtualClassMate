@@ -11,7 +11,7 @@ function CreateRoomPopUp(props) {
                 <h1>Create Room</h1>
                 <div>
                 <TextField id="roomName" label="Enter Room Name" variant="outlined" style={{ width: '100%', height:80}}/>
-                <TextField id="roomName" label="Enter Room Description" variant="outlined" style={{ width: '100%', height:80}}/>
+                <TextField id="roomDesc" label="Enter Room Description" variant="outlined" style={{ width: '100%', height:80}}/>
                 </div>
                 <br></br>
                 <Button style={{backgroundColor:'grey', padding: 10, color: 'white'}} onClick={()=>props.setTrigger(false)}>Create Room</Button>

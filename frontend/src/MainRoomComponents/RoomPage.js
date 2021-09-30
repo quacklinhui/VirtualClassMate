@@ -9,9 +9,14 @@ import { getTodo } from '../actions/todo';
 import ToDoLists from "./todolists/todolist";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { AiFillCaretDown } from 'react-icons/ai';
+import useWindowDimensions from "../useWindowDimensions";
+
+//import { faCoffee } from '@fortawesome/fontawesome-free-solid';
 
 // To do: the number of buttons should be dynamically formed based on the database
 function RoomPage() {
+const { windowHeight, windowWidth } = useWindowDimensions();
 let history = useHistory();
 const [createPopUp, setCreatePopUp] = useState(false); //set the default state to false
 const [showPersonalToDoList, setShowPersonalToDoList] = React.useState(false)
@@ -31,6 +36,7 @@ const dispatch = useDispatch();
       <div>
         <NavBar />
       </div>
+      
       <Container style={{alignItems:"center", alignContent:"center",textAlign: "center",}}>
         <div style ={{display: "flex",flexDirection: 'row',height: 30,paddingTop: 20, justifyContent:"center"}}>
             <Typography> You are in: "Insert RoomName"</Typography>
@@ -55,15 +61,17 @@ const dispatch = useDispatch();
              
             </Container>
 
-            <Container style={{width:"45%", backgroundColor: "#D8ABEC60"}}>
-              <Button onClick={()=>{showGroupToDoList?setShowGroupToDoList(false): setShowGroupToDoList(true)}}>Group</Button>
+        <Paper style={{width:"45%", backgroundColor: "#D8ABEC60", height:50}}>
+
+              <Button style={{width:"100%"}} onClick={()=>{showGroupToDoList?setShowGroupToDoList(false): setShowGroupToDoList(true)}}>GROUP<AiFillCaretDown style={{ color:"white", height:"80%", width:"10%"}}/></Button>
+              
               { showGroupToDoList ? <ToDoLists /> : null }
               {/* <TextField fullWidth id="groupToDoListInput" variant="outlined" size = 'small' /> */}
-              <Container style = {{backgroundColor: 'white', display: "flex",flexDirection: 'row', height:50, padding:5}}>
+              <Container style = {{backgroundColor: 'D8ABEC60', display: "flex",flexDirection: 'row', height:50, padding:5}}>
                 <TextField style={{padding:5}} name = 'groupToDoListInput'  dvariant = "outlined" fullWidth value={groupToDoData.groupToDo} size = 'small' onChange ={(e)=>setGroupToDoData({...groupToDoData,groupToDo: e.target.value})}/>
-                <Button type = "submitGrpi[" style ={{backgroundColor:'grey', margin:5}}>+</Button>
+                <Button type = "submitGrp" style ={{backgroundColor:'grey', margin:5}}>+</Button>
               </Container>  
-          </Container>
+          </Paper>
             
             <Container style={{width:"25%", backgroundColor: "#D8ABEC60", position: "absolute", right: 20}}>
                 <Button>Chat</Button>
