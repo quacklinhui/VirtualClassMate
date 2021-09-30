@@ -14,9 +14,9 @@ const ToDoLists = () => {
     
     return (
         !todolists.length ? <CircularProgress/>: (
-            <Grid container alightItems="stretch" >
+            <Grid container alightItems="stretch" style={{maxHeight: 500, backgroundColor: "#E3CDF9", overflow: 'auto'}}>
                 {todolists.map((todo)=>(
-                    <List key={todo._id} style={{width:"100%", backgroundColor: "#D8ABEC60", borderRadius:0}}>
+                    <List key={todo._id} style={{width:"100%", borderRadius:0}}>
                         <ToDoItem todo={todo} />
                     </List>
                 ))}

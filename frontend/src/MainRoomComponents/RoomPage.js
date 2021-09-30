@@ -38,23 +38,27 @@ const dispatch = useDispatch();
       </div>
       
       <Container style={{alignItems:"center", alignContent:"center",textAlign: "center",}}>
-        <div style ={{display: "flex",flexDirection: 'row',height: 30,paddingTop: 20, justifyContent:"center"}}>
+        <div style ={{display: "flex",flexDirection: 'row',height: 30,paddingTop: 20, paddingBottom:20,justifyContent:"center"}}>
+            <div>
             <Typography> You are in: "Insert RoomName"</Typography>
+            <Typography> "Insert Description"</Typography>
+            </div>
+
             <Button style={{position:"absolute", right: 20,alignSelf: "flex-end", backgroundColor: "orange"}} onClick={() => { history.push("/home")}}>Back to HomePage</Button>
           </div>
-          <div style ={{display: "flex",flexDirection: 'row',height: 30,paddingTop: 5, width: "70%"}}>
+          <div style ={{padding:20,display: "flex",flexDirection: 'row',height: 30,paddingTop: 5, width: "70%"}}>
           
-          <Paper style={{width:"45%", backgroundColor: '#8A2BE290', height:50}} >
+          <Paper style={{width:"45%", backgroundColor: '#8A2BE290', height:50, bottomPadding:20}} >
              <form autoComplete="off" noValidate  onSubmit={handleSubmit}>
-                <Button style={{width:"100%"}} onClick={()=>{showPersonalToDoList?setShowPersonalToDoList(false): setShowPersonalToDoList(true)}}>
+                <Button style={{width:"100%",height:50}} onClick={()=>{showPersonalToDoList?setShowPersonalToDoList(false): setShowPersonalToDoList(true)}}>
                   Personal
-                  { showPersonalToDoList ? <AiFillCaretDown style={{ color:"black", height:"80%", width:"10%"}}/> : <AiFillCaretDown style={{ color:"white", height:"80%", width:"10%"}}/>  }
+                  { showPersonalToDoList ? <AiFillCaretDown style={{ color:"black", height:"80%", width:"10%", position:"absolute", right:20}}/> : <AiFillCaretDown style={{ color:"white", height:"90%", width:"10%",position:"absolute", right:20}}/>  }
                 </Button>
                 { showPersonalToDoList ? <ToDoLists /> : null }
-                <Container style = {{backgroundColor: 'D8ABEC60', display: "flex",flexDirection: 'row', height:50, padding:5}}>
+                <Paper style = {{backgroundColor: 'white', display: "flex",flexDirection: 'row', height:50, padding:5}}>
                   <TextField style={{padding:5}} name = 'name'  dvariant = "outlined" fullWidth value={toDoData.name} size = 'small' onChange ={(e)=>setToDoData({...toDoData,name: e.target.value})} />
                   <Button type = "submit" style ={{backgroundColor:'#DCDCDC', margin:5}}><AiOutlinePlus/></Button>
-                </Container>
+                </Paper>
                 
                 {/* <TextField  name = 'description' variant = "outlined" label = "Description" fullWidth value={toDoData.description} onChange ={(e)=>setToDoData({...toDoData,description: e.target.value})} /> */}
                 {/* <TextField  name = 'deadline' variant = "outlined" label = "Deadline" fullWidth value={toDoData.deadline} onChange ={(e)=>setToDoData({...toDoData,deadline: e.target.value})} /> */}
@@ -65,15 +69,15 @@ const dispatch = useDispatch();
 
         <Paper style={{width:"45%",marginLeft:"5%", backgroundColor: "#8A2BE290", height:50}}>
 
-              <Button style={{width:"100%"}} onClick={()=>{showGroupToDoList?setShowGroupToDoList(false): setShowGroupToDoList(true)}}>GROUP
-              { showGroupToDoList ? <AiFillCaretDown style={{ color:"black", height:"80%", width:"10%"}}/> : <AiFillCaretDown style={{ color:"white", height:"80%", width:"10%"}}/>  }</Button>
+              <Button style={{width:"100%",height:50}} onClick={()=>{showGroupToDoList?setShowGroupToDoList(false): setShowGroupToDoList(true)}}>GROUP
+              { showGroupToDoList ? <AiFillCaretDown style={{ color:"black", height:"80%", width:"10%", position:"absolute", right:20}}/> : <AiFillCaretDown style={{ color:"white", height:"80%", width:"10%", position:"absolute", right:20}}/>  }</Button>
               
               { showGroupToDoList ? <ToDoLists /> : null }
               {/* <TextField fullWidth id="groupToDoListInput" variant="outlined" size = 'small' /> */}
-              <Container style = {{backgroundColor: 'D8ABEC60', display: "flex",flexDirection: 'row', height:50, padding:5}}>
+              <Paper style = {{backgroundColor: 'white', display: "flex",flexDirection: 'row', height:50, padding:5}}>
                 <TextField style={{padding:5}} name = 'groupToDoListInput'  dvariant = "outlined" fullWidth value={groupToDoData.groupToDo} size = 'small' onChange ={(e)=>setGroupToDoData({...groupToDoData,groupToDo: e.target.value})}/>
                 <Button type = "submitGrp" style ={{backgroundColor:'#DCDCDC', margin:5}}><AiOutlinePlus/></Button>
-              </Container>  
+              </Paper>  
           </Paper>
             
             <Container style={{width:"25%", backgroundColor: "#D8ABEC60", position: "absolute", right: 20}}>
