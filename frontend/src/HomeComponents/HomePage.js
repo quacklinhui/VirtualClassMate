@@ -7,7 +7,7 @@ import CreateRoomPopUp from './CreateRoomPopUp/CreateRoomPopUp';
 import {useState} from 'react';
 import {BrowserRouter as Router,  useHistory} from "react-router-dom";
 import RoomPage from '../MainRoomComponents/RoomPage';
-
+import RoomButton from './RoomSelection/RoomButton';
 
 
 // To do: the number of buttons should be dynamically formed based on the database
@@ -23,6 +23,7 @@ function HomePage() {
             <Typography>
                 Your Rooms
             </Typography>
+            <RoomButton/>
             <Button variant="contained" color="primary" onClick={() => { history.push("/room")}}>
               Temp Enter Room
             </Button>

@@ -3,7 +3,7 @@ import {Card,CardActions,CardContent,CardMedia,Button,Typography } from '@materi
 
 const ToDoItem = ({todo}) => {
     return (
-        <Card >
+        <Card style={{width:"100%"}}>
             <div>
                 <Typography>TEST</Typography>
                 <Typography variant="body2">{todo.name}</Typography>
