@@ -42,7 +42,7 @@ class CustomAva extends Component {
           <h1 className = "header">Your Avatar</h1>
 
   
-          <div className="App">
+          <div className="main">
             <div className="row">
   
               <Col md={6}>

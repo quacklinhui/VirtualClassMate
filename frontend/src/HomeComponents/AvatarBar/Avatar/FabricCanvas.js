@@ -68,7 +68,7 @@ class FabricCanvas extends React.Component{
 				</canvas>
 
 				<Button bsStyle="success" onClick = {this.saveToCanvas} bsSize="large" block>
-                	Download Avatar
+                	Save avatar
               	</Button>
 			</div>
 		);
