@@ -19,3 +19,12 @@ export const createTodo = (post) => async(dispatch) => {
         console.log(error.message);
     }
 }
+export const deleteTodo = (id) => async(dispatch) => {
+    try {
+        api.deleteTodo(id);
+
+        dispatch({type: 'DELETE', payload:id});
+    } catch (error) {
+        console.log(error.message);
+    }
+}
