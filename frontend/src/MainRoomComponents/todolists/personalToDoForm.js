@@ -5,7 +5,8 @@ import { createTodo, updateTodo } from "../../actions/todo";
 import {useDispatch} from 'react-redux';
 import { useSelector } from "react-redux";
 import ToDoLists from "./todolist";
-
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ControlPointIcon from '@material-ui/icons/ControlPoint';
 
 const PersonalForm = ({currentId, setCurrentId}) => {
 
@@ -38,13 +39,13 @@ const PersonalForm = ({currentId, setCurrentId}) => {
              <form autoComplete="off" noValidate  onSubmit={handleSubmit}>
                 <Button style={{width:"100%",height:50}} onClick={()=>{showPersonalToDoList?setShowPersonalToDoList(false): setShowPersonalToDoList(true)}}>
                   Personal
-                  {/* { showPersonalToDoList ? <AiFillCaretDown style={{ color:"black", height:"80%", width:"10%", position:"absolute", right:20}}/> : <AiFillCaretDown style={{ color:"white", height:"90%", width:"10%",position:"absolute", right:20}}/>  } */}
+                  { showPersonalToDoList ? <ArrowDropDownIcon style={{ color:"black", height:"80%", width:"10%", position:"absolute", right:20}}/> : <ArrowDropDownIcon style={{ color:"white", height:"90%", width:"10%",position:"absolute", right:20}}/>  }
                 </Button>
                 { showPersonalToDoList ? <ToDoLists setCurrentId={setCurrentId}/> : null }
                 <Paper style = {{backgroundColor: 'white', display: "flex",flexDirection: 'row', height:50, padding:5}}>
                   <TextField style={{padding:5}} name = 'name'  dvariant = "outlined" fullWidth value={toDoData.name} size = 'small' onChange ={(e)=>setToDoData({...toDoData,name: e.target.value})} />
                   <Button type = "submit" style ={{backgroundColor:'#DCDCDC', margin:5}}>
-                    {/* <AiOutlinePlus/> */}
+                    <ControlPointIcon/>
                   </Button>
                 </Paper>
                 
