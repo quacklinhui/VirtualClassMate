@@ -4,11 +4,12 @@ import {Box,Paper,CardActions,CardContent,CardMedia,Button,Typography, IconButto
 //import {RiCheckboxBlankLine, RiCheckboxLine} from 'react-icons/ri';
 import {useState} from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 import {useDispatch} from 'react-redux';
 import {deleteTodo} from '../../../actions/todo';
 
 
-function ToDoItem({todo}){
+function ToDoItem({todo, setCurrentId}){
     const [checkBox, setCheckBox] = React.useState(false)
     const dispatch = useDispatch();
     return(
@@ -28,6 +29,9 @@ function ToDoItem({todo}){
                 {/* </IconButton> */}
             <Button size= "small" onClick={()=>dispatch(deleteTodo(todo._id))}>
                 <DeleteIcon/>
+            </Button>
+            <Button size= "small" onClick={()=>setCurrentId(todo._id)}>
+                <EditIcon/>
             </Button>
         </Box>
     )

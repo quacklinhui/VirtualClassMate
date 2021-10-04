@@ -7,7 +7,7 @@ import ToDoItem from "./todoitem/todoitem.js";
 
 
 
-const ToDoLists = () => {
+const ToDoLists = ({setCurrentId}) => {
     const todolists = useSelector((state) => state.toDoList);
     //const classes = useStyles();
     //console.log(todolists);
@@ -17,7 +17,7 @@ const ToDoLists = () => {
             <Grid container alightItems="stretch" style={{maxHeight: 500, backgroundColor: "#E3CDF9", overflow: 'auto'}}>
                 {todolists.map((todo)=>(
                     <List key={todo._id} style={{width:"100%", borderRadius:0}}>
-                        <ToDoItem todo={todo} />
+                        <ToDoItem todo={todo} setCurrentId={setCurrentId}/>
                     </List>
                 ))}
             </Grid>

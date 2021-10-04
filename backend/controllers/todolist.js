@@ -26,6 +26,18 @@ export const createTodo = async (req, res) => {
     }
 }
 
+export const updateTodo = async (req, res) => {
+    const{id: _id} = req.params;
+
+    const toDo = req.body;
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No post with that id');
+    
+    const updatedToDo = await ToDoItem.findByIdAndUpdate(_id, {...toDo, _id}, {new: true} );
+
+    res.json(updatedToDo);
+}
+
 export const deleteTodo = async (req, res) => {
     const{id} = req.params;
 

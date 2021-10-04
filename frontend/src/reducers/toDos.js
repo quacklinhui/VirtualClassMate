@@ -4,6 +4,8 @@ export default (toDoList = [], action) =>{
     switch(action.type){
         case 'DELETE':
             return toDoList.filter((item) => item._id !== action.payload);
+        case 'UPDATE':
+            return toDoList.map((item)=> item._id === action.payload._id? action.payload : item);
         case 'FETCH_ALL':
             return action.payload;
         case 'CREATE':
