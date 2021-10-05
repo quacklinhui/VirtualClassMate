@@ -6,7 +6,7 @@ import {BrowserRouter as Router, Route, Switch, useHistory, Redirect} from "reac
 import RoomPage from './MainRoomComponents/RoomPage';
 import Login from './LoginComponents/Login';
 import Register from './LoginComponents/Register';
-import CustomAva from './HomeComponents/AvatarBar/CustomAva';
+import NewCustom from './HomeComponents/AvatarBar/NewCustom';
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
         <Route exact path = "/room" component={RoomPage}/>
         <Route exact path = "/login" component={Login}/>
         <Route exact path = "/register" component={Register}/>
-        <Route exact path = "/custom" component={CustomAva}/>
+        <Route exact path = "/newcust" component={NewCustom}/>
       </Switch>
     </Router>
   );
