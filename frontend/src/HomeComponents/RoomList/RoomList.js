@@ -4,7 +4,7 @@ import RoomButton from '../RoomSelection/RoomButton';
 import {BrowserRouter as Router,  useHistory} from "react-router-dom";
 // for integrating backend for friends list: https://www.andreasreiterer.at/react-list-component/
 function RoomList(props){
-    let history = useHistory();
+    let history = useHistory(); 
     return(
         <Container color = "primary.main" maxWidth="lrg">
         <Typography style={{fontWeight:"bold"}}>

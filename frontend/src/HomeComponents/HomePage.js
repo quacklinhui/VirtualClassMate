@@ -9,10 +9,12 @@ import {BrowserRouter as Router,  useHistory} from "react-router-dom";
 import RoomPage from '../MainRoomComponents/RoomPage';
 import RoomButton from './RoomSelection/RoomButton';
 import RoomList from './RoomList/RoomList';
+import AddFriend from './AddFriend/AddFriend';
 
 // To do: the number of buttons should be dynamically formed based on the database
 function HomePage() {
   let history = useHistory();
+
   return (
       <div>
       <main>
@@ -22,12 +24,7 @@ function HomePage() {
 
           <RoomList/>
           <FriendList />
-          <Container style = {{marginLeft: '100px', marginTop: '5%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-            <Typography>Don't see your friends on the list?</Typography>
-            <Typography> Add them here:</Typography>
-            <TextField id="addFriend" label="Username" variant="outlined" size = "small" style={{ width: '60%', backgroundColor: '#EBECF0', marginBottom: '10px', radiusBorder: '10px'}}/>
-            <Button variant = "contained" style = {{backgroundColor: '#FFD580'}}>Add Friend</Button>
-          </Container>
+          <AddFriend/>
         </div>
         
         </main>
