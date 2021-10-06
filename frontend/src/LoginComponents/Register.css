@@ -11,6 +11,12 @@
     justify-content: center;
     background-color: #3E197A;
   }
+
+  .logo{
+    height: 80px;
+    width: 80px; 
+    transform: translate(310%, 80%);
+}
   
   .app {
   position:fixed;
@@ -26,7 +32,7 @@
   }
   
   .virtualClassMate{
-  padding-top: 128px;
+  padding-top: 108px;
   text-align: center;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-style: normal;
@@ -73,7 +79,7 @@
     display: block;
     justify-content: center;
     width: 393px;
-    height: 48px;
+    height: 42px;
     background: #5B1EBE;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-style: normal;

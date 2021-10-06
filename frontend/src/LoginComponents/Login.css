@@ -26,7 +26,7 @@
   }
   
   .virtualClassMate{
-  padding-top: 128px;
+  padding-top: 50px;
   text-align: center;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-style: normal;
@@ -55,6 +55,12 @@
   line-height: 30px;
   }
   
+.logo{
+    height: 80px;
+    width: 80px; 
+    transform: translate(310%, 80%);
+}
+
   .loginbutton{
     color:white;
     top:85%;

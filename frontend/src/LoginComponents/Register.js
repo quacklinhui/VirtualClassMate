@@ -3,6 +3,7 @@ import {useState} from 'react';
 import HomePage from '../HomeComponents/HomePage';
 import Login from '../LoginComponents/Login';
 // import {Button, Typography, Paper, Box, Container} from '@material-ui/core'
+import logo from '../images/logoWithoutWords.png';
 import './Register.css';
 
 function Register() {
@@ -11,6 +12,7 @@ function Register() {
     return (
         <div>
         <div className="app">
+        <img className = 'logo' src = {logo} alt = "logo"></img>
           <h1 className="virtualClassMate">
             Virtual ClassMate
           </h1>
