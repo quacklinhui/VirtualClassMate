@@ -24,6 +24,11 @@
   border-radius: 40px;
   
   }
+
+  .picture{
+    width: 100px;
+    height: 100px;
+  }
   
   .Youravatar{
   padding-top: 50px;
@@ -35,6 +40,12 @@
   line-height: 59px;
   color: #1D1A1A;
   }
+
+  .avatardisplay{    
+    transform: translate(40%, -5%);
+    width: 330px;
+    height: 400px;
+}
   
   .login{
   text-align: center;
@@ -55,11 +66,19 @@
   line-height: 30px;
   }
 
+  .backbutton{
+    color:white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background: #5B1EBE;
+    font-size: 15px;
+    transform: translate(1000%, -500%);
+  }
+
   .nextanimal{
     color:white;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background: #5B1EBE;
-    transform: translate(300%, 1300%);
+    transform: translate(360%, 1700%);
     font-size: 15px;
   }
 
@@ -67,11 +86,27 @@
     color:white;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background: #5B1EBE;
-    transform: translate(-50%, 1300%);
+    transform: translate(-53%, 1700%);
     font-size: 15px;
   }
 
   .nexthat{
+    color:white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background: #5B1EBE;
+    transform: translate(230%, -100%);
+    font-size: 15px;
+  }
+
+  .previoushat{
+    color:white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background: #5B1EBE;
+    transform: translate(-300%, -100%);
+    font-size: 15px;
+  }
+
+  /* .nexthat{
     color:white;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background: #5B1EBE;
@@ -87,7 +122,7 @@
 
     transform: translate(-180%, 200%);
     font-size: 15px;
-  }
+  } */
   
   .loginbutton{
     color:white;

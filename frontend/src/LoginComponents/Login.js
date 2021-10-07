@@ -2,6 +2,7 @@ import {BrowserRouter as Router,  Redirect,  useHistory} from "react-router-dom"
 import React, {useState} from 'react';
 import HomePage from '../HomeComponents/HomePage';
 import Register from '../LoginComponents/Register';
+import logo from '../images/logoWithoutWords.png';
 // import {Button, Typography, Paper, Box, Container} from '@material-ui/core'
 import './Login.css';
 
@@ -41,6 +42,8 @@ function Login() {
     return (
         <div>
         <div className="app">
+
+            <img className = 'logo' src = {logo} alt = "logo"></img>
             <h1 className="virtualClassMate">
               Virtual ClassMate
             </h1>
