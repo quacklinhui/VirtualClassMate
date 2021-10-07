@@ -10,14 +10,16 @@ function AddFriend(){
         id: null    
     });
 
+    // must find how to get currentuserid
+    const currentId = 456;
+
     const dispatch = useDispatch();
 
     const addNewFriend = (e) => {
         e.preventDefault();
         // must get id from username
-        dispatch(addFriend(friend.id));
+        dispatch(addFriend(currentId, friend));
 
-        // need to pass in req.body thingy
     }
 
     return (
@@ -32,7 +34,7 @@ function AddFriend(){
                     size = "small" 
                     style={{ width: '60%', backgroundColor: '#EBECF0', marginBottom: '10px', radiusBorder: '10px'}} 
                     value = {friend.username}
-                    // need to get id of user - currently hardcoded
+                    // need to get id of friend - currently hardcoded
                     onChange={(e) => setFriend({ ...addNewFriend, username: e.target.value, id: 123})}/>
                 <Button variant = "contained" style = {{backgroundColor: '#FFD580'}} type="submit">Add Friend</Button>
             </form>
