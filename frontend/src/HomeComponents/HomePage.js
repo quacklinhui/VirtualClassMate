@@ -20,6 +20,7 @@ function HomePage() {
 
   // used to get logged in user id
   const current_user_id = location.state;
+  console.log(current_user_id)
 
 
   return (
