@@ -35,7 +35,7 @@ function AddFriend(){
                     style={{ width: '60%', backgroundColor: '#EBECF0', marginBottom: '10px', radiusBorder: '10px'}} 
                     value = {friend.username}
                     // need to get id of friend - currently hardcoded
-                    onChange={(e) => setFriend({ ...addNewFriend, username: e.target.value, id: 123})}/>
+                    onChange={(e) => setFriend({ ...friend, username: e.target.value, id: 123})}/>
                 <Button variant = "contained" style = {{backgroundColor: '#FFD580'}} type="submit">Add Friend</Button>
             </form>
         </Container>

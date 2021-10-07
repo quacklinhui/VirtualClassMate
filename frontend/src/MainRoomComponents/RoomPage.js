@@ -34,6 +34,7 @@ function RoomPage() {
       dispatch(getTodo());
     },[currentId,dispatch])
 
+    // todo: need to add the avatar bar - to show members of the group
     return (
       <div>
         <div>
