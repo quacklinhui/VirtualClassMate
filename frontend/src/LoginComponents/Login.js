@@ -1,5 +1,5 @@
 import {BrowserRouter as Router,  Redirect,  useHistory} from "react-router-dom";
-import {useState} from 'react';
+import React, {useState} from 'react';
 import HomePage from '../HomeComponents/HomePage';
 import Register from '../LoginComponents/Register';
 import logo from '../images/logoWithoutWords.png';
@@ -9,29 +9,65 @@ import './Login.css';
 function Login() {
 
     let history = useHistory();
+    const checkUser = (e) => {
+      e.preventDefault();
+      if (user.email == email && user.password == password){
+        user.login = true;
+        // get user id
+      }
+      else {
+        console.log("wrong email/password")
+      }
+
+      if (user.login == true){
+        history.push({
+          pathname: "/home",
+          state: {id: user.id}
+        })
+      }
+    }
+
+    //todo: currently hardcoded need to retrieve from database
+    const email = 'hello@gmail.com';
+    const password = '123';
+
+    const [user, setUser] = useState({
+      email: '',
+      password: '',
+      id: 1,
+      login: false
+    });
+
+  
     return (
         <div>
         <div className="app">
-        <img className = 'logo' src = {logo} alt = "logo"></img>
-          <h1 className="virtualClassMate">
-            Virtual ClassMate
-          </h1>
-          <h2 className="login">
-            Login
-          </h2>
-          <h2 className="email">
-            Email
-          </h2>
-          <input className="emailinput"></input>
-          <h2 className="pw">
-            Password
-          </h2>
-          <input className="pwinput"></input>
-          <h5 className = "loginblock"> 
-            <button  className = "loginbutton" onClick={() => { history.push("/home")}}>
+
+            <img className = 'logo' src = {logo} alt = "logo"></img>
+            <h1 className="virtualClassMate">
+              Virtual ClassMate
+            </h1>
+            <h2 className="login">
               Login
-          </button>
-          </h5>
+            </h2>
+            <form id = "login" onSubmit = {checkUser}> 
+              <h2 className="email">
+                Email
+              </h2>
+              <input className="emailinput" type='text' placeholder="Email" value = {user.email}
+              onChange={(e) => setUser({ ...user, email: e.target.value})}></input>
+              <h2 className="pw">
+                Passwords
+              </h2>
+              <input className="pwinput" type='text' placeholder = "Password" 
+              onChange={(e) => setUser({ ...user, password: e.target.value})} ></input>
+              <h5 className = "loginblock"> 
+                <button  className = "loginbutton" type="submit">
+                  Login
+                </button>
+              </h5>
+            </form>
+
           <h6 >
               <button className="linktoreg" onClick={() => { history.push("/register")}}>
                   New to VirtualClassMate? Click here to Register!

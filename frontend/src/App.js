@@ -9,6 +9,7 @@ import Register from './LoginComponents/Register';
 import NewCustom from './HomeComponents/AvatarBar/NewCustom';
 
 function App() {
+  
   return (
     <Router>
       <Switch>
