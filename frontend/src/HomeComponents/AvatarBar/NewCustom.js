@@ -26,7 +26,7 @@ function NewCustom() {
     }
 
     function onClickBackAnimal(){
-        if (avatarNum !== 0){
+        if (avatarNum > 2){
             setavatarNum(avatarNum - 2)
         }
     }
