@@ -18,15 +18,27 @@ function NewCustom() {
     let avatars = [animal1hat1, animal1hat2, animal2hat1, animal2hat2, animal3hat1, animal3hat2]
     const [avatarNum, setavatarNum] = useState(0);
     
-    function onClickForward(){
+    function onClickForwardAnimal(){
         // make sure you dont exceed number of avatars
-        if (avatarNum < avatars.length - 1){
+        if (avatarNum < avatars.length - 2){
+            setavatarNum(avatarNum + 2)
+        }
+    }
+
+    function onClickBackAnimal(){
+        if (avatarNum !== 0){
+            setavatarNum(avatarNum - 2)
+        }
+    }
+
+    function onClickForwardHat(){
+        if (avatarNum%2 == 0){
             setavatarNum(avatarNum + 1)
         }
     }
 
-    function onClickBack(){
-        if (avatarNum !== 0){
+    function onClickBackHat(){
+        if (avatarNum%2 !== 0){
             setavatarNum(avatarNum - 1)
         }
     }
@@ -40,11 +52,17 @@ function NewCustom() {
         <Link to = "/home">
                 <button className = "backbutton">Back</button>
         </Link>  
-        <button className="nextanimal" onClick={onClickForward}>
+        <button className="nextanimal" onClick={onClickForwardAnimal}>
           Next Avatar
         </button>
-        <button className="previousanimal" onClick={onClickBack}>
+        <button className="previousanimal" onClick={onClickBackAnimal}>
           Prev Avatar
+        </button>
+        <button className="nexthat" onClick={onClickForwardHat}>
+          Next Hat
+        </button>
+        <button className="previoushat" onClick={onClickBackHat}>
+          Prev Hat
         </button>
         <img className = "avatardisplay" src={avatars[avatarNum]} alt="" /><br />
 
