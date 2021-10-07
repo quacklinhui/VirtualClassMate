@@ -15,6 +15,9 @@ import AddFriend from './AddFriend/AddFriend';
 function HomePage() {
   let history = useHistory();
 
+  // used to get currentuserid
+  const [currentId, setCurrentId] = useState(null);
+
   return (
       <div>
       <main>
@@ -24,7 +27,7 @@ function HomePage() {
 
           <RoomList/>
           <FriendList />
-          <AddFriend/>
+          <AddFriend />
         </div>
         
         </main>
