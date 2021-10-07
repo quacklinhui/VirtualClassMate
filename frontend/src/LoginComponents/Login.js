@@ -19,14 +19,19 @@ function Login() {
   let history = useHistory();
   const checkUser = (e) => {
     e.preventDefault();
+
     // Hardcoded login method
-    // if (user.email == email && user.password == password) {
-    //   user.login = true;
-    //   console.log("login successfull");
-    //   // get user id
-    // } else {
-    //   console.log("wrong email/password");
-    // }
+    if (user.email == email && user.password == password) {
+      user.login = true;
+      history.push({
+        pathname: "/home",
+        state: { id: user.id },
+      });
+      console.log("login successfull");
+      // get user id
+    } else {
+      console.log("wrong email/password");
+    }
 
     // Real login
     // use this account:
@@ -44,15 +49,15 @@ function Login() {
         });
       }
     });
-    console.log(user);
+    // console.log(user);
 
-    if (user.login == true) {
-      console.log(user);
-      history.push({
-        pathname: "/home",
-        state: { id: user.id },
-      });
-    }
+    // if (user.login == true) {
+    //   console.log(user);
+    //   history.push({
+    //     pathname: "/home",
+    //     state: { id: user.id },
+    //   });
+    // }
   };
 
   //todo: currently hardcoded need to retrieve from database
@@ -62,7 +67,7 @@ function Login() {
   const [user, setUser] = useState({
     email: "",
     password: "",
-    id: "",
+    id: "1",
     login: false,
   });
 
