@@ -67,6 +67,7 @@ export const register = async (req, res) => {
   if (!is_username_exist && !is_email_exist) {
     const newUser = new User({
       username: username,
+      name: name,
       password: hashPassword,
       email: email,
       avatarID1: "animal1",
