@@ -27,6 +27,7 @@ export const login = async (req, res) => {
 // 2 default avatar IDs are hard coded
 export const register = async (req, res) => {
   const username = req.body.username;
+  const name = req.body.name;
   const email = req.body.email;
   const hashPassword = sha256.update(req.body.password).hex();
   // const avatarID1 = req.body.avatarID1;
