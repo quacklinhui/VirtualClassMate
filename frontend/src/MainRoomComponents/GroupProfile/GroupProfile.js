@@ -10,13 +10,15 @@ function GroupProfile(){
 
     const [CreateInviteFriendPopUp, setInviteFriendPopUp] = useState(false); 
     
+    // function to open Join Room PopUp
+    const toggleInviteFriendPopUp = () => {
+        setInviteFriendPopUp(!CreateInviteFriendPopUp)
+    }
+
     return (
         <div className = "friendbar">
             <div className = "flexContainer"> 
-                <img className = 'avatar' src = {avatar} alt = "avatar"></img>
-                <Link to = "/newcust">
-                <Button variant="contained"  style = {{backgroundColor: 'rgb(161, 188, 228)', height: '15px', marginTop: '20px', fontSize: '0.7rem', fontWeight: 'bold', alignSelf: 'center'}} className = "customizeavatar">Customise Avatar</Button>
-                </Link>            
+                <img className = 'avatar' src = {avatar} alt = "avatar"></img>          
             </div>
             <div className = "user-details"> 
                 <div>name</div>
@@ -26,8 +28,8 @@ function GroupProfile(){
                 <Members />
             </div>
             <div style = {{marginLeft: '45px'}}>
-                <Button variant="contained" className = "invite-button" onClick={() => {setInviteFriendPopUp(true)}}>Invite Friends</Button>
-                <InviteFriendsPopUp trigger = {CreateInviteFriendPopUp} setTrigger = {setInviteFriendPopUp}/>
+                <Button variant="contained" className = "invite-button" onClick={toggleInviteFriendPopUp}>Invite Friends</Button>
+                {CreateInviteFriendPopUp && <InviteFriendsPopUp handleClose = {toggleInviteFriendPopUp}></InviteFriendsPopUp>}
             </div>
             
         </div>
