@@ -3,6 +3,7 @@ import express from "express";
 import {
   getUsers,
   getUser,
+  getUserByUsername,
   register,
   login,
   deleteUser,
@@ -18,6 +19,7 @@ const router = express.Router();
 
 router.get("/", getUsers);
 router.get("/:id", getUser);
+router.get("/byUsername/:username", getUserByUsername);
 router.post("/", register);
 router.post("/login", login);
 router.delete("/:id", deleteUser);
