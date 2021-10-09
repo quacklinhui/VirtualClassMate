@@ -171,6 +171,7 @@ export const createMessage = async (req,res) => {
     }
 }
 
+// User make a request to join room
 export const requestToJoinRoom = async (req, res) => {
     try {
         const userID = req.body.userID;
@@ -178,8 +179,36 @@ export const requestToJoinRoom = async (req, res) => {
 
         // Find room
         const room = await Room.findById(id);
-        console.log(room.members);
-        res.status(200).json(room);
+
+        // Get user
+        const user = await User.findById(userID);
+
+        // Check if user is already a member
+        var rooms = user.rooms;
+        for (const index in rooms) {
+            if (rooms[index].equals(room._id)){
+                res.status(409).json({message: "User in already a member of the room"});
+                return;
+            }
+        }
+
+        // Check if user is already in the request list
+        var requestList = room.requestList;
+        for (const index in requestList) {
+            if (requestList[index].equals(user._id)){
+                res.status(409).json({message: "User in already in the request list"});
+                return;
+            }
+        }
+
+        // Add user into the request list
+        const updatedRoom = await Room.findByIdAndUpdate(id, {
+            $push: { requestList: user._id }
+        }, {
+            new: true
+        });
+
+        res.status(200).json(updatedRoom);
     } catch (error) {
         res.status(409).json({message: error.message});
     }

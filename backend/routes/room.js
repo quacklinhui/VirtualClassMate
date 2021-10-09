@@ -15,6 +15,6 @@ router.post('/chat', createMessage);
 
 router.patch('/', );
 router.patch('/add', addMember);
-router.patch('/request/:id', requestToJoinRoom);
+router.patch('/request/:id', requestToJoinRoom); // User request to join room
 
 export default router;
