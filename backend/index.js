@@ -19,7 +19,9 @@ app.use('/room', roomRoutes);
 app.use('/toDo', toDoRoutes);
 app.use("/user", userRoutes);
 
-const CONNECTION_URL = 'mongodb+srv://alwinguo:hello123@cluster0.1fxs7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+// const CONNECTION_URL = 'mongodb+srv://alwinguo:hello123@cluster0.1fxs7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const CONNECTION_URL = 'mongodb+srv://virtualclassmate:virtualclassmate@cluster.dnmqc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+
 const PORT = process.env.PORT || 5000;
 
 

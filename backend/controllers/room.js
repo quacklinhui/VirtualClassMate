@@ -2,19 +2,9 @@ import Room from '../models/room.js'
 import User from '../models/user.js'
 // import Chat from '../models/chat.js'
 import Chat from '../models/chat.js';
+import mongoose from 'mongoose';
 
-export const getRoom = async (req, res) => {
-    const { id } = req.params;
-
-    try {
-        const room = await Room.findById(id);
-        console.log(room);
-        res.status(200).json(room.members);
-    } catch (error) {
-        res.status(404).json({message: error.message});
-    }
-}
-
+// Get all rooms in the database (only for testing)
 export const getRooms = async (req, res) => {
 
     try {
@@ -26,6 +16,17 @@ export const getRooms = async (req, res) => {
     }
 }
 
+// Get data of a particular room
+export const getRoom = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const room = await Room.findById(id);
+        res.status(200).json(room);
+    } catch (error) {
+        res.status(404).json({message: error.message});
+    }
+}
 
 export const manageAccess = async (req, res) => {
     
@@ -90,17 +91,29 @@ export const addMember = async (req, res) => {
 
     }
 
-
     catch {
         res.status(400).send(err)
     }
 }
 
+// Create a room, user who created will be admin
 export const createRoom = async (req, res) => {
-    const body = req.body;
-    const newRoom = new Room(body);
+    const name = req.body.name;
+    const description = req.body.description;
+    const admin = mongoose.Types.ObjectId(req.body.admin);
     try {
+        // Create new room object
+        const newRoom = new Room({ name: name, description: description, admin: admin });
         await newRoom.save();
+
+        // Get the admin user and add the new room to user's room array
+        const user =  await User.findById(req.body.admin);
+        var userRooms = user.rooms;
+        userRooms.push(newRoom._id);
+        await User.updateOne(
+            { _id: user._id },
+            { $set: { rooms: userRooms }}
+        );
 
         res.status(201).json(newRoom);
     } catch (error) {
@@ -153,6 +166,20 @@ export const createMessage = async (req,res) => {
             }
         })
         res.status(201).json(newMessage);
+    } catch (error) {
+        res.status(409).json({message: error.message});
+    }
+}
+
+export const requestToJoinRoom = async (req, res) => {
+    try {
+        const userID = req.body.userID;
+        const { id } = req.params;
+
+        // Find room
+        const room = await Room.findById(id);
+        console.log(room.members);
+        res.status(200).json(room);
     } catch (error) {
         res.status(409).json({message: error.message});
     }
