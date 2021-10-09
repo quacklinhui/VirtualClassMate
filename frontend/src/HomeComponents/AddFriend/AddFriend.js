@@ -13,7 +13,6 @@ function AddFriend({currentId}){
 
     const addNewFriend = (e) => {
         e.preventDefault();
-        
         // todo: find friend_id - currently no other user to add as friend
         setFriend({...friend, newFriendId: 123})
         // currentId = current_user_id
