@@ -3,24 +3,24 @@ import {Button, Typography, Paper, Box, Container, TextField} from '@material-ui
 import { useDispatch } from 'react-redux';
 import { addFriend } from '../../actions/friend';
 
-function AddFriend(){
-
+function AddFriend({currentId}){
     const [friend, setFriend] = useState({
-        username: '',
-        id: null    
+        friend_name: '',
+        newFriendId: null    
     });
-
-    // must find how to get currentuserid
-    const currentId = 456;
 
     const dispatch = useDispatch();
 
     const addNewFriend = (e) => {
         e.preventDefault();
-        // must get id from username
+        
+        // todo: find friend_id - currently no other user to add as friend
+        setFriend({...friend, newFriendId: 123})
+        // currentId = current_user_id
         dispatch(addFriend(currentId, friend));
 
     }
+
 
     return (
         <Container style = {{marginLeft: '100px', marginTop: '5%', display: 'flex', flexDirection: 'column', alignItems: 'center'}} >
@@ -34,8 +34,7 @@ function AddFriend(){
                     size = "small" 
                     style={{ width: '60%', backgroundColor: '#EBECF0', marginBottom: '10px', radiusBorder: '10px'}} 
                     value = {friend.username}
-                    // need to get id of friend - currently hardcoded
-                    onChange={(e) => setFriend({ ...friend, username: e.target.value, id: 123})}/>
+                    onChange={(e) => setFriend({ ...friend, username: e.target.value})}/>
                 <Button variant = "contained" style = {{backgroundColor: '#FFD580'}} type="submit">Add Friend</Button>
             </form>
         </Container>

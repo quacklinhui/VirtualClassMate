@@ -1,4 +1,4 @@
-import {BrowserRouter as Router,  Redirect,  useHistory} from "react-router-dom";
+import {BrowserRouter as Router,  Redirect,  useHistory, useLocation} from "react-router-dom";
 import {useState} from 'react';
 import { Link } from 'react-router-dom';
 // import AvatarBar from '../HomeComponents/AvatarBar/AvatarBar';
@@ -15,33 +15,52 @@ import animal3hat2 from './Images/sampleAvatars/animal3hat2.png'
 
 
 function NewCustom() {
-    let avatars = [animal1hat1, animal1hat2, animal2hat1, animal2hat2, animal3hat1, animal3hat2]
-    const [avatarNum, setavatarNum] = useState(0);
+
+  // used to get logged in user id
+  let location = useLocation();
+  const id = location.state.id;
+  const username = location.state.username;
+  const avatar = location.state.avatar;
+  const hat = location.state.hat;
+  console.log('customize: ' + username)
+  
+  let avatars = [animal1hat1, animal1hat2, animal2hat1, animal2hat2, animal3hat1, animal3hat2]
+  const [avatarNum, setavatarNum] = useState(0);
     
-    function onClickForwardAnimal(){
-        // make sure you dont exceed number of avatars
-        if (avatarNum < avatars.length - 2){
-            setavatarNum(avatarNum + 2)
-        }
+  function onClickForwardAnimal(){
+    // make sure you dont exceed number of avatars
+    if (avatarNum < avatars.length - 2){
+      setavatarNum(avatarNum + 2)
     }
+  }
 
-    function onClickBackAnimal(){
-        if (avatarNum > 2){
-            setavatarNum(avatarNum - 2)
-        }
+  function onClickBackAnimal(){
+    if (avatarNum > 2){
+      setavatarNum(avatarNum - 2)
     }
+  }
 
-    function onClickForwardHat(){
-        if (avatarNum%2 == 0){
-            setavatarNum(avatarNum + 1)
-        }
+  function onClickForwardHat(){
+    if (avatarNum%2 == 0){
+      setavatarNum(avatarNum + 1)
     }
+  }
 
-    function onClickBackHat(){
-        if (avatarNum%2 !== 0){
-            setavatarNum(avatarNum - 1)
-        }
+  function onClickBackHat(){
+    if (avatarNum%2 !== 0){
+      setavatarNum(avatarNum - 1)
     }
+  }
+
+  // to push user variables back to home
+  let history = useHistory();
+
+  function backHome() {
+    history.push({
+      pathname: '/home',
+      state: {id: id, username: username , avatar: avatar, hat: hat}
+  });
+  }
 
   return (
     <div>
@@ -49,9 +68,7 @@ function NewCustom() {
         <h1 className="Youravatar">
           Your Avatar
         </h1>
-        <Link to = "/home">
-                <button className = "backbutton">Back</button>
-        </Link>  
+        <button className = "backbutton" onClick = {()=>backHome()}>Back</button>
         <button className="nextanimal" onClick={onClickForwardAnimal}>
           Next Avatar
         </button>
