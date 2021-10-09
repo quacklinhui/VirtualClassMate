@@ -6,7 +6,7 @@ import {
 import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { login } from "../actions/login";
+//import { login } from "../actions/login";
 import HomePage from "../HomeComponents/HomePage";
 import Register from "../LoginComponents/Register";
 import logo from "../images/logoWithoutWords.png";
@@ -21,7 +21,7 @@ function Login() {
     e.preventDefault();
 
     // Hardcoded login method
-    if (user.email == email && user.password == password) {
+    /*if (user.email == email && user.password == password) {
       user.login = true;
       history.push({
         pathname: "/home",
@@ -32,7 +32,7 @@ function Login() {
     } else {
       console.log("wrong email/password");
     }
-
+*/
     // Real login
     // use this account:
     // email: user1@gmail.com
@@ -42,33 +42,21 @@ function Login() {
         console.log(`Login failed. Wrong ${res.data.source}`);
       } else {
         console.log(res.data);
-        //setUser({ login: true });
         history.push({
           pathname: "/home",
-          state: { id: res.data._id },
+          state: { id: res.data._id, username: res.data.username , avatar: res.data.avatarID1, hat: res.data.avatarID2},
         });
       }
     });
-    // console.log(user);
-
-    // if (user.login == true) {
-    //   console.log(user);
-    //   history.push({
-    //     pathname: "/home",
-    //     state: { id: user.id },
-    //   });
-    // }
   };
 
   //todo: currently hardcoded need to retrieve from database
-  const email = "hello@gmail.com";
-  const password = "123";
+  //const email = "hello@gmail.com";
+  //const password = "123";
 
   const [user, setUser] = useState({
     email: "",
     password: "",
-    id: "1",
-    login: false,
   });
 
   return (

@@ -19,22 +19,24 @@ function HomePage() {
   let location = useLocation();
 
   // used to get logged in user id
-  const current_user_id = location.state;
-  console.log(current_user_id)
+  const current_user_id = location.state.id;
+  const current_username = location.state.username;
+  const body = location.state.avatar;
+  const hat = location.state.hat;
 
+  console.log(current_username)
 
   return (
       <div>
-      <main>
-        <NavBar />
-        <AvatarBar />
-        <div style = {{display: 'flex', alignItems: 'flex-start', marginLeft: '20px', marginTop: '50px', marginRight: '20px'}}>
+        <main>
+          <NavBar />
+          <AvatarBar id={current_user_id} username={current_username} avatar={body} hat={hat}/>
+          <div style = {{display: 'flex', alignItems: 'flex-start', marginLeft: '20px', marginTop: '50px', marginRight: '20px'}}>
 
-          <RoomList/>
-          <FriendList />
-          <AddFriend />
-        </div>
-        
+            <RoomList id={current_user_id} username={current_username} avatar={body} hat={hat}/>
+            <FriendList id={current_user_id}/>
+            <AddFriend currentId={current_user_id}/>
+          </div>       
         </main>
       </div>
     );

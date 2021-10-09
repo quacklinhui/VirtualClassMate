@@ -5,15 +5,14 @@ import './FriendList.css';
 function FriendList(props){
     return(
         <>
-            <div style = {{display: 'flex', flexDirection: 'column'}}>
+            <div style = {{display: 'flex', flexDirection: 'column', marginLeft: '200px'}}>
                 <div style = {{width: '300px', fontWeight: 'bold'}}>Your Friends</div>
                 <div style = {{backgroundColor: 'rgb(203, 184, 221)', borderRadius: '10px', width: '150%', height: '350px', position: 'relative'}}>
                     <div className = "friends">
                         <span>name - status</span>
                     </div> 
                 </div> 
-            </div>
-            
+            </div>     
         </>
     )
 }

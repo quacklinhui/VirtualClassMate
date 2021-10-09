@@ -8,7 +8,7 @@ function NavBar() {
     return (
             <nav className="navbar">
                 <img className="navbar-logo" src={logo} alt = ''></img>
-                <Buttons />
+                <Buttons/>
             </nav>          
     )
 }
