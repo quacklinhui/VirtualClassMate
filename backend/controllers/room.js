@@ -28,9 +28,6 @@ export const getRoom = async (req, res) => {
     }
 }
 
-export const manageAccess = async (req, res) => {
-    
-}
 
 export const checkFriendToAdd = async (req, res) => {
     try {
@@ -69,32 +66,85 @@ export const checkFriendToAdd = async (req, res) => {
     }
 }
 
+// Admin add member to the room
 export const addMember = async (req, res) => {
-    const roomID = req.body.room
-    const userID = req.body.uid
+    const newMemberID = req.body.newMemberID;
+    const roomID = req.params.id;
+    const adderID = req.body.adderID;
 
-    console.log(roomID)
-    console.log(userID)
     try {
-        const roomData = await Room.findByIdAndUpdate(roomID, {
-            $addToSet: {members: userID}          
-        })
+        // Find Room
+        const room = await Room.findById(roomID);
 
-        roomData.save()
+        // Get new member
+        const newMember = await User.findById(newMemberID);
+  
+        // Get admin of room
+        const admin = room.admin;
+        // Check if person adding is the admin
+        if (admin.toString() !== adderID) {
+            res.status(401).json({message: "Unauthorized: No admin privileges"});
+            return;
+        }
 
-        const friendData = await User.findByIdAndUpdate(userID, {
-            $addToSet: {rooms: roomID}          
-        })
+        // Authorized to add member
+        // Check if new member to add is already an existing member
+        var isMember = false;
+        const newMemberRooms = newMember.rooms;
+        for (const index in newMemberRooms) {
+            if (newMemberRooms[index].equals(room._id)) {
+                isMember = true;
+            }
+        }
 
-        friendData.save()
-        res.status(201).json(friendData);
+        
+        if (isMember) {
+            res.status(409).json({message: "User is already a member"});
+        } else {
+            // Update user
+            await User.findByIdAndUpdate(newMemberID, {
+                $push: { rooms: room._id }
+            });
 
-    }
+            // Update room
+            const updatedRoom = await Room.findByIdAndUpdate(roomID, {
+                $push: { members: newMember._id },
+                $pull: { requestList: newMember._id }
+            }, {
+                new: true
+            })
+            res.status(200).json(updatedRoom);
+        }
 
-    catch {
-        res.status(400).send(err)
+    } catch (error) {
+        res.status(409).json({ message: error.message });
     }
 }
+
+// export const addMember = async (req, res) => {
+//     const roomID = req.body.room
+//     const userID = req.body.uid
+
+//     try {
+//         const roomData = await Room.findByIdAndUpdate(roomID, {
+//             $addToSet: {members: userID}          
+//         })
+
+//         roomData.save()
+
+//         const friendData = await User.findByIdAndUpdate(userID, {
+//             $addToSet: {rooms: roomID}          
+//         })
+
+//         friendData.save()
+//         res.status(201).json(friendData);
+
+//     }
+
+//     catch {
+//         res.status(400).send(err)
+//     }
+// }
 
 // Create a room, user who created will be admin
 export const createRoom = async (req, res) => {
@@ -121,6 +171,7 @@ export const createRoom = async (req, res) => {
     }
 }
 
+// May not be needed
 export const checkRoomUsers = async (req, res) => {
     const { id } = req.params;
 
@@ -232,7 +283,7 @@ export const acceptRequest = async (req, res) => {
         const admin = room.admin;
         // If user accepting the request is not the admin, then disallow accepting 
         if (admin.toString() !== accepterID) {
-            res.status(401).json({message: "Unauthorized: You are not the admin of this room"});
+            res.status(401).json({message: "Unauthorized: No admin privileges"});
             return;
         }
 
@@ -259,7 +310,7 @@ export const acceptRequest = async (req, res) => {
             // Update user
             await User.findByIdAndUpdate(requesterID, {
                 $push: { rooms: room._id }
-            })
+            });
 
             res.status(200).json(updatedRoom);
         } else {
