@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { getRoom, createRoom, getRooms, checkFriendToAdd, addMember, checkRoomUsers, createMessage, checkMessage, requestToJoinRoom } from '../controllers/room.js';
+import { getRoom, createRoom, getRooms, checkFriendToAdd, addMember, checkRoomUsers, createMessage, checkMessage, requestToJoinRoom, acceptRequest } from '../controllers/room.js';
 
 const router = express.Router();
 
@@ -16,5 +16,6 @@ router.post('/chat', createMessage);
 router.patch('/', );
 router.patch('/add', addMember);
 router.patch('/request/:id', requestToJoinRoom); // User request to join room
+router.patch('/accept-request/:id', acceptRequest); // Admin accepts request to join room
 
 export default router;

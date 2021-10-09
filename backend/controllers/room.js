@@ -131,7 +131,7 @@ export const checkRoomUsers = async (req, res) => {
         res.status(404).json({message: error.message});
     }
 }
-// 
+
 
 export const checkMessage = async (req,res) => {
     const { id } = req.params;
@@ -209,6 +209,62 @@ export const requestToJoinRoom = async (req, res) => {
         });
 
         res.status(200).json(updatedRoom);
+    } catch (error) {
+        res.status(409).json({message: error.message});
+    }
+}
+
+
+// Admin accepts request to join room
+export const acceptRequest = async (req, res) => {
+    try {
+        const requesterID = req.body.requesterID;
+        const accepterID = req.body.accepterID;
+        const { id } = req.params;
+
+        // Find room
+        const room = await Room.findById(id);
+
+        // Get user
+        const user = await User.findById(requesterID);
+
+        // Get admin of the room
+        const admin = room.admin;
+        // If user accepting the request is not the admin, then disallow accepting 
+        if (admin.toString() !== accepterID) {
+            res.status(401).json({message: "Unauthorized: You are not the admin of this room"});
+            return;
+        }
+
+        // Authorized to accept
+        // Check if user is in the request list and accept if he is
+        var inRequestList = false;
+        var requestList = room.requestList;
+        for (const index in requestList) {
+            if (requestList[index].equals(user._id)) {
+                inRequestList = true;
+            }
+        }
+
+        // Add user if in request list
+        if (inRequestList) {
+            // Update room
+            const updatedRoom = await Room.findByIdAndUpdate(id, {
+                $push: { members: user._id },
+                $pull: { requestList: user._id }
+            }, {
+                new: true
+            })
+
+            // Update user
+            await User.findByIdAndUpdate(requesterID, {
+                $push: { rooms: room._id }
+            })
+
+            res.status(200).json(updatedRoom);
+        } else {
+            res.status(409).json({message: "User not in request list"});
+        }
     } catch (error) {
         res.status(409).json({message: error.message});
     }
