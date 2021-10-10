@@ -6,7 +6,7 @@
     import Members from './Members.js';
     import InviteFriendsPopUp from '../InviteFriends/InviteFriendsPopUp';
 
-function GroupProfile(){
+function GroupProfile({id, username, avatar, hat, name}){
 
     const [CreateInviteFriendPopUp, setInviteFriendPopUp] = useState(false); 
     
@@ -15,14 +15,19 @@ function GroupProfile(){
         setInviteFriendPopUp(!CreateInviteFriendPopUp)
     }
 
+    // importing avatar image
+    const avatar_full = avatar+hat;
+    console.log(avatar_full)
+    let avatar_image = require("../../HomeComponents/AvatarBar/Images/sampleAvatars/" + avatar_full + ".png")
+
     return (
         <div className = "friendbar">
             <div className = "flexContainer"> 
-                <img className = 'avatar' src = {avatar} alt = "avatar"></img>          
+                <img className = 'avatar' src = {avatar_image.default} alt = "avatar"></img>          
             </div>
             <div className = "user-details"> 
-                <div>name</div>
-                <div>@username</div>
+                <div>{name}</div>
+                <div>@{username}</div>
             </div>
             <div>
                 <Members />

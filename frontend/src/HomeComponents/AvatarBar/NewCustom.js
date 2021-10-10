@@ -22,7 +22,7 @@ function NewCustom() {
   const username = location.state.username;
   const avatar = location.state.avatar;
   const hat = location.state.hat;
-  console.log('customize: ' + username)
+  const name = location.state.name;
   
   let avatars = [animal1hat1, animal1hat2, animal2hat1, animal2hat2, animal3hat1, animal3hat2]
   const [avatarNum, setavatarNum] = useState(0);
@@ -58,7 +58,7 @@ function NewCustom() {
   function backHome() {
     history.push({
       pathname: '/home',
-      state: {id: id, username: username , avatar: avatar, hat: hat}
+      state: {id: id, username: username , avatar: avatar, hat: hat, name: name}
   });
   }
 

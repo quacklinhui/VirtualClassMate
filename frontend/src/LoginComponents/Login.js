@@ -20,40 +20,20 @@ function Login() {
   const checkUser = (e) => {
     e.preventDefault();
 
-    // Hardcoded login method
-    /*if (user.email == email && user.password == password) {
-      user.login = true;
-      history.push({
-        pathname: "/home",
-        state: { id: user.id },
-      });
-      console.log("login successfull");
-      // get user id
-    } else {
-      console.log("wrong email/password");
-    }
-*/
-    // Real login
-    // use this account:
-    // email: user1@gmail.com
-    // password: 123
     axios.post("http://localhost:5000/user/login", user).then((res) => {
       if (res.data.status == false) {
         console.log(`Login failed. Wrong ${res.data.source}`);
       } else {
-        console.log(res.data);
         history.push({
           pathname: "/home",
-          state: { id: res.data._id, username: res.data.username , avatar: res.data.avatarID1, hat: res.data.avatarID2},
+          state: { id: res.data._id, username: res.data.username , avatar: res.data.avatarID1, hat: res.data.avatarID2, name: res.data.name},
         });
       }
     });
   };
 
-  //todo: currently hardcoded need to retrieve from database
-  //const email = "hello@gmail.com";
-  //const password = "123";
-
+  // email: student@gmail.com
+  // password: 1234567
   const [user, setUser] = useState({
     email: "",
     password: "",
