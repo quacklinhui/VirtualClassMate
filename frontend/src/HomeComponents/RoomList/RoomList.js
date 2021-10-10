@@ -4,9 +4,8 @@ import RoomButton from '../RoomSelection/RoomButton';
 import {BrowserRouter as Router,  useHistory} from "react-router-dom";
 // for integrating backend for friends list: https://www.andreasreiterer.at/react-list-component/
 
-function RoomList({id, username, avatar, hat}){
+function RoomList({id, username, avatar, hat, name}){
     let history = useHistory(); 
-    console.log("room_username: " + username);
 
     return(
       <>
@@ -17,7 +16,7 @@ function RoomList({id, username, avatar, hat}){
                   <Button variant="contained" style = {{backgroundColor: 'rgb(159, 136, 180)', color: 'white'}} className="roombutton" 
                     onClick={() => { history.push({
                       pathname: "/room",
-                      state: {user_id: id, user_name: username, user_avatar: avatar, user_hat: hat}})}}>
+                      state: {user_id: id, user_name: username, user_avatar: avatar, user_hat: hat, name: name}})}}>
                     Temp Enter Room
                   </Button>
               </div>

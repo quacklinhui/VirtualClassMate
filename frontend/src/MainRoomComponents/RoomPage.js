@@ -36,6 +36,7 @@ function RoomPage(props) {
   const current_username = location.state.user_name;
   const body = location.state.user_avatar;
   const hat = location.state.user_hat;
+  const current_user_name = location.state.name;
 
   useEffect(()=>{
     dispatch(getTodo());
@@ -48,7 +49,7 @@ function RoomPage(props) {
         <NavBar />
       </div>
       <div>
-        <GroupProfile />
+        <GroupProfile id={current_user_id} username={current_username} avatar={body} hat={hat} name = {current_user_name}/>
       </div>
         
       <Container style={{alignItems:"center", alignContent:"center",textAlign: "center"}}>
@@ -61,7 +62,7 @@ function RoomPage(props) {
           <Button style={{position:"absolute", right: 20,alignSelf: "flex-end", backgroundColor: "orange"}} 
             onClick={() => { history.push({
               pathname: "/home",
-              state: { id: current_user_id, username: current_username, avatar: body, hat: hat}})}}>Back to HomePage</Button>
+              state: { id: current_user_id, username: current_username, avatar: body, hat: hat, name: current_user_name}})}}>Back to HomePage</Button>
         </div>
         <div style ={{padding:20,display: "flex",flexDirection: 'row',height: 30,paddingTop: 5, width: "70%"}}>
           <PersonalForm currentId={currentId} setCurrentId={setCurrentId}/>
