@@ -9,7 +9,7 @@ const roomSchema = mongoose.Schema({
     },
     members: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
     toDoList: [{type: mongoose.Schema.Types.ObjectId, ref: 'ToDoItem'}],
-    chat: [{type: mongoose.Schema.Types.ObjectId, ref: 'Chat'}],
+    // chat: [{type: mongoose.Schema.Types.ObjectId, ref: 'Chat'}],
     requestList: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
 });
 
