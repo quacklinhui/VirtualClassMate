@@ -8,10 +8,11 @@ Use `git clone` to clone this repository.
 
 Run `npm install` to install the node modules in both the frontend and the backend folder.
 
-1. Navigate to the /backend folder
+1. `cd backend`
 2. `npm install`
-3. Navigate to the /frontend folder
-4. `npm install`
+3. Open another terminal
+4. `cd frontend`
+5. `npm install`
 
 ## Running the website
 
