@@ -33,7 +33,7 @@ function GroupProfile({id, username, avatar, hat, name}){
                 <Members />
             </div>
             <div style = {{marginLeft: '45px'}}>
-                <Button variant="contained" className = "invite-button" onClick={toggleInviteFriendPopUp}>Invite Friends</Button>
+                <Button variant="contained" className = "invite-button" onClick={toggleInviteFriendPopUp} style={{backgroundColor: 'paleturquoise'}}>Invite Friends</Button>
                 {CreateInviteFriendPopUp && <InviteFriendsPopUp handleClose = {toggleInviteFriendPopUp}></InviteFriendsPopUp>}
             </div>
             
