@@ -195,7 +195,11 @@ export const deleteFriend = async (req, res) => {
     }
     let newFriendArray = friendDic.friends;
     if (newFriendArray.includes(oldFriendId)) {
-      newFriendArray.pop(oldFriendId);
+      for (var i = 0; i < newFriendArray.length; i++) {
+        if (newFriendArray[i] == oldFriendId) {
+          newFriendArray.splice(i, 1);
+        }
+      }
       const updateResponse = await User.updateOne(
         { _id: userId },
         { $set: { friends: newFriendArray } }
