@@ -19,7 +19,7 @@ function NavBar() {
     const current_user_name = location.state.name;
 
     return (
-            <nav className="navbar">
+            <nav className="navbar" >
             <Button disableRipple disableFocusRipple style={{padding:0}}  onClick={() => { history.push({
               pathname: "/home",
               state: { id: current_user_id, username: current_username, avatar: body, hat: hat, name: current_user_name}})}}>
