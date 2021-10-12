@@ -23,5 +23,5 @@ Then, run the frontend and backend separately using `npm start`.
 The documentation for our project can be access via our wiki page.
 
 ## Mock Account
-hello@gmail.com
-123
+Username: hello@gmail.com\
+Password: 123
