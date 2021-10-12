@@ -64,7 +64,7 @@ function RoomPage(props) {
               pathname: "/home",
               state: { id: current_user_id, username: current_username, avatar: body, hat: hat, name: current_user_name}})}}>Back to HomePage</Button>
         </div>
-        <div style ={{padding:20,display: "flex",flexDirection: 'row',height: 30,paddingTop: 5, width: "70%"}}>
+        <div style ={{padding:20,display: "flex",flexDirection: 'row',height: 30,paddingTop: 5, width: "100%"}}>
           <PersonalForm currentId={currentId} setCurrentId={setCurrentId}/>
           <Paper style={{width:"45%",marginLeft:"5%", backgroundColor: "#8A2BE290", height:50}}>
 
