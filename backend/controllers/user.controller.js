@@ -29,6 +29,10 @@ export const register = async (req, res) => {
   const username = req.body.username;
   const name = req.body.name;
   const email = req.body.email;
+
+  console.log(req.body)
+  console.log(username, name, email, req.body.password)
+
   const hashPassword = sha256.update(req.body.password).hex();
   // const avatarID1 = req.body.avatarID1;
   // const avatarID2 = req.body.avatarID2;
