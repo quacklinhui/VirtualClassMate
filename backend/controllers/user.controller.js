@@ -144,34 +144,62 @@ export const updateAvatar = async (req, res) => {
 
 // friend will not be added if it is already in the friend list
 export const addFriend = async (req, res) => {
+  const newFriendId = req.body.newFriendId;
+  const userId = req.params.id;
+  if (userId == newFriendId) {
+    res.status(400).json("Cannot add oneself as a friend");
+    return;
+  }
+  let user = {};
+  let friend = {};
   try {
-    const newFriendId = req.body.newFriendId;
-    const userId = req.params.id;
-    let friendDic = {};
-    try {
-      friendDic = await User.findOne(
-        {
-          _id: userId,
-        },
-        { friends: 1 }
-      );
-    } catch (e) {
-      console.error(`Unable to find the user's Friends: ${e}`);
-      return { error: e };
-    }
-    let newFriendArray = friendDic.friends;
-    if (!newFriendArray.includes(newFriendId)) {
-      newFriendArray.push(newFriendId);
+    user = await User.findOne(
+      {
+        _id: userId,
+      },
+      { friends: 1 }
+    );
+  } catch (e) {
+    console.error(`Unable to find the user: ${e}`);
+    return { error: e };
+  }
+  try {
+    friend = await User.findOne(
+      {
+        _id: newFriendId,
+      },
+      { friends: 1 }
+    );
+  } catch (e) {
+    console.error(`Unable to find the friend: ${e}`);
+    return { error: e };
+  }
+  let userFList = user.friends;
+  let friendFList = friend.friends;
+  try {
+    if (!userFList.includes(newFriendId)) {
+      userFList.push(newFriendId);
       const updateResponse = await User.updateOne(
         { _id: userId },
-        { $set: { friends: newFriendArray } }
+        { $set: { friends: userFList } }
       );
       res.status(200).json(updateResponse);
-    } else {
-      res.status(200).json({ status: false, reason: "Friend already exists" });
     }
   } catch (e) {
-    console.error(`Unable to update Friends: ${e}`);
+    console.error(`Unable to update User Friend List: ${e}`);
+    return { error: e };
+  }
+  try {
+    if (!friendFList.includes(userId)) {
+      friendFList.push(userId);
+      const updateResponse = await User.updateOne(
+        { _id: newFriendId },
+        { $set: { friends: friendFList } }
+      );
+      res.status(200).json(updateResponse);
+    }
+  } catch (e) {
+    console.error(`Unable to update User Friend List: ${e}`);
     return { error: e };
   }
 };
