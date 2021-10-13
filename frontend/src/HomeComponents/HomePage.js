@@ -4,7 +4,7 @@ import FriendList from './FriendList/FriendList';
 import RoomList from './RoomList/RoomList';
 import AddFriend from './AddFriend/AddFriend';
 
-import {BrowserRouter as Router,  useHistory, useLocation} from "react-router-dom";
+import {BrowserRouter as Router, useLocation} from "react-router-dom";
 
 
 

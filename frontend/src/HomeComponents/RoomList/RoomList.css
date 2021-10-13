@@ -1,14 +1,15 @@
 .rooms {
-    padding: 10px;
+    padding: 5px;
     border: 1px solid #bbb;
     background-color: rgb(203, 184, 221);
     border-radius: 10px;
     margin-top: 10px;
     display: flex;
     flex-direction: column;
-    width: 80%;
-    margin-left: 7%;
+    width: 90%;
+    margin-left: 3.5%;
     position: relative;
+    border-color:rgb(203, 184, 221)
 }
 
 .roombutton {

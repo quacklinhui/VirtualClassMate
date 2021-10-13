@@ -20,8 +20,7 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 //import { faCoffee } from '@fortawesome/fontawesome-free-solid';
 
-// To do: the number of buttons should be dynamically formed based on the database
-function RoomPage({user_id, user_name, user_avatar, user_hat, name}) {
+function RoomPage(props) {
   const { windowHeight, windowWidth } = useWindowDimensions();
   const [currentId, setCurrentId] = useState(null); 
   let history = useHistory();
@@ -37,6 +36,7 @@ function RoomPage({user_id, user_name, user_avatar, user_hat, name}) {
   const body = location.state.user_avatar;
   const hat = location.state.user_hat;
   const current_user_name = location.state.name;
+  const roomId = location.state.roomId;
 
   useEffect(()=>{
     dispatch(getTodo());
@@ -49,7 +49,7 @@ function RoomPage({user_id, user_name, user_avatar, user_hat, name}) {
         <NavBar />
       </div>
       <div>
-        <GroupProfile id={current_user_id} username={current_username} avatar={body} hat={hat} name = {current_user_name}/>
+        <GroupProfile id={current_user_id} username={current_username} avatar={body} hat={hat} name = {current_user_name} roomId = {roomId}/>
       </div>
         
       <Container style={{alignItems:"center", alignContent:"center",textAlign: "center"}}>
