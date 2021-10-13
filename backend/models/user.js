@@ -12,6 +12,7 @@ const userSchema = mongoose.Schema({
   avatarID1: String,
   avatarID2: String,
   friends: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+  friendsToAdd: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
 });
 
 userSchema.index({ username: "text" });
