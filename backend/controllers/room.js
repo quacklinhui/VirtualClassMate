@@ -325,3 +325,67 @@ export const acceptRequest = async (req, res) => {
         res.status(409).json({message: error.message});
     }
 }
+
+export const leaveRoom = async (req, res) => {
+    const { id } = req.params;
+    const memberId = req.body.memberID;
+
+    try {
+        // Check if memberId is a valid user in the specified room
+        // Find room and member
+        const room = await Room.findById(id);
+        const member = await User.findById(memberId);
+        var members = room.members;
+        var isMember = false;
+
+        for (const index in members) {
+            if (members[index].equals(member._id)) {
+                isMember = true;
+                break;
+            }
+        }
+
+        if (isMember) {
+            // Update room members
+            const updatedRoom = await Room.findByIdAndUpdate(id, {
+                $pull: { members: member._id }
+            }, {
+                new: true
+            })
+
+            // Update user
+            await User.findByIdAndUpdate(memberId, {
+                $pull: { rooms: room._id }
+            });
+            res.status(200).json(updatedRoom);
+
+        } else if (room.admin.equals(member._id)) { // Check if the member is the admin
+            await User.findByIdAndUpdate(memberId, {
+                $pull: { rooms: room._id }
+            });
+
+            if (members.length == 0) { // Admin is the only member in the room
+                // Disband/delete the group
+                const deletedRoom = await Room.findByIdAndDelete(id);
+                res.status(200).json(deletedRoom);
+
+            } else { // There are other members in the room
+                // Give admin status to next member
+                const newAdminID = room.members[0];
+                const updatedRoom = await Room.findByIdAndUpdate(id, {
+                    admin: newAdminID,
+                    $pull: { members: newAdminID }
+                }, {
+                    new: true
+                })
+
+                res.status(200).json(updatedRoom);
+            }
+        } else {
+            res.status(409).json({message: "User is not a member of the room"})
+        }
+
+    } catch (error) {
+        res.status(409).json({message: error.message});
+    }
+}
