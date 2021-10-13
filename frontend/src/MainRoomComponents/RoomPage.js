@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import {Button, Typography, Paper, Box, Container, TextField} from '@material-ui/core'
+import {IconButton,Button, Typography, Paper, Box, Container, TextField} from '@material-ui/core'
 import {useState} from 'react';
 import {BrowserRouter as Router,  useHistory, useLocation} from "react-router-dom";
 import {useDispatch} from 'react-redux';
@@ -7,7 +7,8 @@ import {useDispatch} from 'react-redux';
 import { getTodo } from '../actions/todo';
 import ToDoLists from "./todolists/todolist";
 import NavBar from '../HomeComponents/NavBar/NavBar';
-import Chat from './chat/chat';
+import ChatButton from './chat/chat';
+import ChatBox from "./chat/chatBox";
 import GroupProfile from './GroupProfile/GroupProfile';
 
 import DatePicker from "react-datepicker";
@@ -17,6 +18,7 @@ import useWindowDimensions from "../useWindowDimensions";
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
 import PersonalForm from "./todolists/personalToDoForm"
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 
 //import { faCoffee } from '@fortawesome/fontawesome-free-solid';
 
@@ -27,6 +29,7 @@ function RoomPage(props) {
   let history = useHistory();
   const [createPopUp, setCreatePopUp] = useState(false); //set the default state to false
   const [showGroupToDoList, setShowGroupToDoList] = React.useState(false)
+  const [showChatBox, setShowChatBox] = React.useState(false)
   const [groupToDoData, setGroupToDoData]=useState({groupToDo:''});
   const dispatch = useDispatch();
   let location = useLocation();
@@ -67,7 +70,6 @@ function RoomPage(props) {
         <div style ={{padding:20,display: "flex",flexDirection: 'row',height: 30,paddingTop: 5, width: "100%"}}>
           <PersonalForm currentId={currentId} setCurrentId={setCurrentId}/>
           <Paper style={{width:"45%",marginLeft:"5%", backgroundColor: "#8A2BE290", height:50}}>
-
             <Button style={{width:"100%",height:50}} onClick={()=>{showGroupToDoList?setShowGroupToDoList(false): setShowGroupToDoList(true)}}>GROUP
               { showGroupToDoList ? <ArrowDropDownIcon style={{ color:"black", height:"80%", width:"10%", position:"absolute", right:20}}/> : <ArrowDropDownIcon style={{ color:"white", height:"80%", width:"10%", position:"absolute", right:20}}/>  }
             </Button>
@@ -82,7 +84,11 @@ function RoomPage(props) {
             </Paper>  
           </Paper>
               
-          <Chat />
+          <IconButton style={{width:"3vw", height: "3vw", borderRadius: 100, backgroundColor: "#D8ABEC60", position: "absolute", right: "2vw", bottom: "2vw", textAlign:"center"}} onClick={()=>{setShowChatBox(true)}}>
+                <ChatBubbleOutlineIcon/>
+          </IconButton>
+          {showChatBox?<ChatBox />:null}
+          
         </div>
 
         </Container>
