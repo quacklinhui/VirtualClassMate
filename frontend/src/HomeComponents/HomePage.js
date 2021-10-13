@@ -22,7 +22,7 @@ function HomePage() {
   return (
       <div>
         <main>
-          <NavBar />
+          <NavBar id={current_user_id} username={current_username} avatar={body} hat={hat} name = {current_user_name}/>
           <AvatarBar id={current_user_id} username={current_username} avatar={body} hat={hat} name = {current_user_name}/>
           <div style = {{display: 'flex', alignItems: 'flex-start', marginLeft: '20px', marginTop: '50px', marginRight: '20px'}}>
 

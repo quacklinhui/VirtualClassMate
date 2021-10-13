@@ -49,7 +49,7 @@ function RoomPage(props) {
   return (
     <div>
       <div>
-        <NavBar />
+        <NavBar id={current_user_id} username={current_username} avatar={body} hat={hat} name = {current_user_name}/>
       </div>
       <div>
         <GroupProfile id={current_user_id} username={current_username} avatar={body} hat={hat} name = {current_user_name}/>
