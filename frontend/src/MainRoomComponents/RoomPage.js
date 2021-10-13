@@ -84,7 +84,7 @@ function RoomPage(props) {
             </Paper>  
           </Paper>
               
-          <IconButton style={{width:"3vw", height: "3vw", borderRadius: 100, backgroundColor: "#D8ABEC60", position: "absolute", right: "2vw", bottom: "2vw", textAlign:"center"}} onClick={()=>{setShowChatBox(true)}}>
+          <IconButton style={{width:"3vw", height: "3vw", borderRadius: 100, backgroundColor: "#D8ABEC60", position: "absolute", right: "2vw", bottom: "2vw", textAlign:"center"}} onClick={()=>{showChatBox?setShowChatBox(false):setShowChatBox(true)}}>
                 <ChatBubbleOutlineIcon/>
           </IconButton>
           {showChatBox?<ChatBox />:null}
