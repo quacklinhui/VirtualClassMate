@@ -2,7 +2,7 @@
     background: #140650;
     display: flex;
     position: relative;
-
+    align-items: center;
     height: 210px;
 
   }

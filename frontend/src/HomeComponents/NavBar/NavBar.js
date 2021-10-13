@@ -5,6 +5,7 @@ import Buttons from './Button.js';
 import logo from './../../images/VirtualClassMate_FullLogo.png';
 import {Button} from '@material-ui/core';
 import {BrowserRouter as Router,  useHistory, useLocation} from "react-router-dom";
+import HomePage from '../HomePage';
 
 
 
@@ -20,7 +21,7 @@ function NavBar() {
 
     return (
             <nav className="navbar" >
-            <Button disableRipple disableFocusRipple style={{padding:0}}  onClick={() => { history.push({
+            <Button disableRipple disableFocusRipple style={{padding:0}}  onClick={() => {history.push({
               pathname: "/home",
               state: { id: current_user_id, username: current_username, avatar: body, hat: hat, name: current_user_name}})}}>
                 <img className="navbar-logo" src={logo} alt = ''></img>
