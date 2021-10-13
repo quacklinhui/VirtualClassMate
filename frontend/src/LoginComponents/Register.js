@@ -9,23 +9,11 @@ import './Register.css';
 import { useDispatch } from "react-redux";
 import { ResponsiveEmbed } from "react-bootstrap";
 
-// calling /user with POST request and no body results in unhandled promise error killing server
-// let response = await fetch('localhost:5000', {
-//   method: 'POST',
-//   body: {
-//     'username': 'QianZZZ',
-//     'password': 'aihosd'
-//   }
-// })
-// 
-// javascript fetch to call backend APIs
-// GET or POST requests
-// send data through body of POST requests or however for get requests
-// recieve a response which you can access the data or status of
-// response.status
-// response.data
 
 function Register() {
+  let history = useHistory();
+
+  const dispatch = useDispatch();
 
   // TODO add name as field
   const [user, setUser] = useState({
@@ -35,47 +23,45 @@ function Register() {
     password: "",
   });
 
-  async function register(e){
+    const register = (e) => {
     e.preventDefault();
-    let userdata = JSON.stringify(user)
-    console.log(userdata)
-
-    // put below fetch function into try catch
-    // try{
-
-    // }
-    // catch{
-
-    // }
-    let response = await fetch('http://localhost:5000/user', {
-      method: 'POST',
-      body: userdata
-    })
-    // let content = response.json()
-
-    if (response.data.status != 200){
-      console.log(`There is already an existing account ${response.data.source}`)
-    }
-    else{
-      console.log(e)
-    }
-
-    // axios.post("http://localhost:5000/", user).then((res) => {
-    //   if (res.data.status == false) {
-    //     console.log(`Existing account' ${res.data.source}`);
-    //   } else {
-    //     history.push({
-    //       pathname: "/login",
-    //       // state: { id: res.data._id, username: res.data.username , avatar: res.data.avatarID1, hat: res.data.avatarID2, name: res.data.name},
-    //     });
-    //   }
-    // });
+    // let userdata = JSON.stringify(user)
+    console.log(user)
+    axios.post("http://localhost:5000/user/", user).then((res) => {
+      if (res.data.status == false) {
+        console.log(`Existing ${res.data.source}`);
+      } else {
+        history.push({
+          pathname: "/login",
+          // state: { id: res.data._id, username: res.data.username , avatar: res.data.avatarID1, hat: res.data.avatarID2, name: res.data.name},
+        });
+      }
+    });
   }
 
 
-  let history = useHistory();
+
+    // put below fetch function into try catch
+    // try{
+    // }
+    // catch{
+    // }
 
 
+  //   let response = await fetch('http://localhost:5000/user', {
+  //     method: 'POST',
+  //     body: userdata
+  //   })
+  //   // let content = response.json()
+
+  //   if (response.data.status != 200){
+  //     console.log(`There is already an existing account ${response.data.source}`)
+  //   }
+  //   else{
+  //     console.log(e)
+  //   }
+
+  // }
   return (
     <div>
       <div className="app">
