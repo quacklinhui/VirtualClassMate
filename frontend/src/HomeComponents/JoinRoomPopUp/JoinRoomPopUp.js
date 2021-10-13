@@ -10,6 +10,7 @@ function JoinRoomPopUp(props) {
             <div className = "joinRoomPopUp-inner">   
                 <button className = "closePopUp" onClick={props.handleClose}>x</button>
                 <h1>Join a Room</h1>
+                
             </div>
         </div>
     );      

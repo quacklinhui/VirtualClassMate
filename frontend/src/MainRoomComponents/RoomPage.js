@@ -23,7 +23,7 @@ import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 //import { faCoffee } from '@fortawesome/fontawesome-free-solid';
 
 // To do: the number of buttons should be dynamically formed based on the database
-function RoomPage(props) {
+function RoomPage({user_id, user_name, user_avatar, user_hat, name}) {
   const { windowHeight, windowWidth } = useWindowDimensions();
   const [currentId, setCurrentId] = useState(null); 
   let history = useHistory();
