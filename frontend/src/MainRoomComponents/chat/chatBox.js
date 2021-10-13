@@ -9,8 +9,8 @@ const ChatBox = () => {
     const [showChatBox, setShowChatBox] = React.useState(false)
     const [minimiseChatBox, setMinimiseChatBox] = React.useState(false)
     return(
-        <Paper style={{position:"absolute", right:"2vw",bottom:"0",width:"12vw",  bottomPadding:20}} >
-                    <Paper style={{backgroundColor: '#8A2BE290',}}>
+        <Paper style={{position:"absolute", right:"2vw",bottom:"0",width:"18vw",  bottomPadding:20}} >
+                    <Paper style={{backgroundColor: '#8A2BE290'}}>
                         CHAT
                     <IconButton disableRipple disableFocusRipple onClick={()=>{minimiseChatBox?setMinimiseChatBox(false): setMinimiseChatBox(true)}} style={{backgroundColor:"transparent", position: "relative"}}>
                         { minimiseChatBox ? <ArrowDropDownIcon  style={{ color:"black"}}/> : <ArrowDropUpIcon disableRipple disableFocusRipple style={{ color:"white"}}/>  }
@@ -22,7 +22,10 @@ const ChatBox = () => {
                 { minimiseChatBox ? 
                              <Paper>
                                 <Paper style = {{backgroundColor: 'white', display: "flex",flexDirection: 'row', height:200, padding:5}}>
-                                to input the chat here
+                                
+                                    <Paper style={{backgroundColor:'grey',padding: 12, borderRadius:30, alignSelf: 'flex-end'}}>
+                                        to input the chat here
+                                    </Paper>
                                 </Paper>
                                 <Paper style = {{backgroundColor: 'white', display: "flex",flexDirection: 'row', height:50, padding:5}}>
                                     <TextField fullWidth id="chatInput" variant="outlined" size = 'small'  /> 
