@@ -389,3 +389,37 @@ export const leaveRoom = async (req, res) => {
         res.status(409).json({message: error.message});
     }
 }
+
+
+// Admin deletes room
+export const deleteRoom = async (req, res) => {
+    const { id } = req.params;
+    const deleterId = req.body.deleterID;
+
+    try {
+        const room = await Room.findById(id);
+        const deleter = await User.findById(deleterId);
+
+        console.log(room);
+        console.log(deleter);
+
+        // Delete room only if request made by admin
+        if (room.admin.equals(deleter._id)) {
+            // Remove room from all the members
+            await User.updateMany({
+                $all: { rooms: room._id }
+            }, {
+                $pull: { rooms: room._id }
+            })
+            
+            // Delete room
+            const deletedRoom = await Room.findByIdAndDelete(id);
+
+            res.status(200).json(deletedRoom);
+        } else {
+            res.status(401).json({message: "Unauthorized: No admin privileges"});
+        }
+    } catch(error) {
+        res.status(409).json({message: error.message});
+    }
+}
