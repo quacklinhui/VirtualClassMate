@@ -151,12 +151,18 @@ export const createRoom = async (req, res) => {
     const description = req.body.description;
     const admin = mongoose.Types.ObjectId(req.body.admin);
     try {
+        // Check if adminID given is a valid user
+        const user = await User.findById(req.body.admin);
+        if (user == null) {
+            res.status(409).json({message: 'Admin is not a valid user'});
+            return;
+        }
+
         // Create new room object
         const newRoom = new Room({ name: name, description: description, admin: admin });
         await newRoom.save();
 
         // Get the admin user and add the new room to user's room array
-        const user =  await User.findById(req.body.admin);
         var userRooms = user.rooms;
         userRooms.push(newRoom._id);
         await User.updateOne(
