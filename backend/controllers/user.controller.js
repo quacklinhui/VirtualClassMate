@@ -142,16 +142,12 @@ export const updateAvatar = async (req, res) => {
   }
 };
 
-// friend will not be added if it is already in the friend list
-export const addFriend = async (req, res) => {
+export const addFriendRequest = async (req, res) => {
   const newFriendId = req.body.newFriendId;
   const userId = req.params.id;
-  if (userId == newFriendId) {
-    res.status(400).json("Cannot add oneself as a friend");
-    return;
-  }
   let user = {};
   let friend = {};
+  // Check if the friend has been added
   try {
     user = await User.findOne(
       {
@@ -163,6 +159,65 @@ export const addFriend = async (req, res) => {
     console.error(`Unable to find the user: ${e}`);
     return { error: e };
   }
+  if (user.friends.includes(newFriendId)) {
+    res.status(400).json("Friend already added");
+    return;
+  }
+  // Check if the friend account exists
+  try {
+    friend = await User.findOne(
+      {
+        _id: newFriendId,
+      },
+      { friendsToAdd: 1 }
+    );
+  } catch (e) {
+    console.error(`Unable to find the friend: ${e}`);
+    return { error: e };
+  }
+  // Send request
+  let reqList = friend.friendsToAdd;
+  try {
+    if (!reqList.includes(userId)) {
+      reqList.push(userId);
+      const updateResponse = await User.updateOne(
+        { _id: newFriendId },
+        { $set: { friendsToAdd: reqList } }
+      );
+      res.status(200).json(updateResponse);
+    } else {
+      res.status(400).json("You have sent the request before!");
+      return;
+    }
+  } catch (e) {
+    console.error(`Unable to update newFriend's request list: ${e}`);
+    return { error: e };
+  }
+};
+
+// friend will not be added if it is already in the friend list
+export const addFriend = async (req, res) => {
+  const newFriendId = req.body.newFriendId;
+  const userId = req.params.id;
+  if (userId == newFriendId) {
+    res.status(400).json("Cannot add oneself as a friend");
+    return;
+  }
+  let user = {};
+  let friend = {};
+  // Check if user account exists
+  try {
+    user = await User.findOne(
+      {
+        _id: userId,
+      },
+      { friends: 1, friendsToAdd: 1 }
+    );
+  } catch (e) {
+    console.error(`Unable to find the user: ${e}`);
+    return { error: e };
+  }
+  // Check if friend account exists
   try {
     friend = await User.findOne(
       {
@@ -174,21 +229,31 @@ export const addFriend = async (req, res) => {
     console.error(`Unable to find the friend: ${e}`);
     return { error: e };
   }
+  // Update user's friend list and friend request list
   let userFList = user.friends;
-  let friendFList = friend.friends;
+  let newReqList = user.friendsToAdd;
+  for (var i = 0; i < newReqList.length; i++) {
+    if (newReqList[i] == newFriendId) {
+      newReqList.splice(i, 1);
+    }
+  }
   try {
     if (!userFList.includes(newFriendId)) {
       userFList.push(newFriendId);
       const updateResponse = await User.updateOne(
         { _id: userId },
-        { $set: { friends: userFList } }
+        { $set: { friends: userFList, friendsToAdd: newReqList } }
       );
       res.status(200).json(updateResponse);
     }
   } catch (e) {
-    console.error(`Unable to update User Friend List: ${e}`);
+    console.error(
+      `Unable to update User's Friend List and friendsToAdd List: ${e}`
+    );
     return { error: e };
   }
+  // Update friend's friend list
+  let friendFList = friend.friends;
   try {
     if (!friendFList.includes(userId)) {
       friendFList.push(userId);
@@ -199,7 +264,7 @@ export const addFriend = async (req, res) => {
       res.status(200).json(updateResponse);
     }
   } catch (e) {
-    console.error(`Unable to update User Friend List: ${e}`);
+    console.error(`Unable to update Friend's Friend List: ${e}`);
     return { error: e };
   }
 };
