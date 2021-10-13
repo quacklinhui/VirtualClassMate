@@ -1,6 +1,6 @@
 import React from 'react';
-import {Button, CircularProgress} from '@material-ui/core';
-import {useHistory, Link} from 'react-router-dom';
+import {Button} from '@material-ui/core';
+import {Link} from 'react-router-dom';
 import './RoomList.css';
 
 class RoomButtons extends React.Component {
