@@ -400,9 +400,6 @@ export const deleteRoom = async (req, res) => {
         const room = await Room.findById(id);
         const deleter = await User.findById(deleterId);
 
-        console.log(room);
-        console.log(deleter);
-
         // Delete room only if request made by admin
         if (room.admin.equals(deleter._id)) {
             // Remove room from all the members
@@ -420,6 +417,52 @@ export const deleteRoom = async (req, res) => {
             res.status(401).json({message: "Unauthorized: No admin privileges"});
         }
     } catch(error) {
+        res.status(409).json({message: error.message});
+    }
+}
+
+export const removeMember = async (req, res) => {
+    const { id } = req.params;
+    const adminId = req.body.adminID;
+    const memberId = req.body.memberID;
+
+    try {
+        const room = await Room.findById(id);
+        const admin = await User.findById(adminId);
+        const member = await User.findById(memberId);
+
+        // Check if admin is indeed admin of the room
+        if (room.admin.equals(admin._id)) { // Is admin of room
+            // Check if member is indeed member of the room
+            var isMember = false;
+            for (const index in member.rooms) {
+                if (member.rooms[index].equals(room._id)) {
+                    isMember = true;
+                    break;
+                }
+            }
+            if (isMember) {
+                // Remove room from user
+                await User.findByIdAndUpdate(memberId, {
+                    $pull: { rooms: room._id }
+                });
+
+                // Remove user from room
+                const updatedRoom = await Room.findByIdAndUpdate(id, {
+                    $pull: { members: member._id }
+                }, {
+                    new: true
+                })
+
+                res.status(200).json(updatedRoom);
+            } else {
+                res.status(409).json({message: "User is not a member of the room"});
+            }
+        } else {
+            res.status(401).json({message: "Unauthorized: No admin privileges"});
+        }
+
+    } catch (error) {
         res.status(409).json({message: error.message});
     }
 }
