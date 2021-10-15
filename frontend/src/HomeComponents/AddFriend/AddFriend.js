@@ -61,7 +61,6 @@ function AddFriend({currentId}){
                     <Button variant = "contained" style = {{backgroundColor: '#FFD580'}} type="submit">Add Friend</Button>
                 </form>
                 <div style = {{position: 'relative', width: '300px', textAlign: 'center', marginTop: '10px'}}>
-                    You have added a new friend successfully!
                 </div>
             </Container>
             
