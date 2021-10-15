@@ -54,7 +54,7 @@ function Login() {
             value={user.email}
             onChange={(e) => setUser({ ...user, email: e.target.value })}
           ></input>
-          <h2 className="pw">Passwords</h2>
+          <h2 className="pw">Password</h2>
           <input
             className="pwinput"
             type="text"

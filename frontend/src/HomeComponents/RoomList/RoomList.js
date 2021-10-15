@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import {BrowserRouter as Router,  useHistory} from "react-router-dom";
 import axios from 'axios'
 import RoomButtons from './RoomButton';
-import { useScrollTrigger } from '@material-ui/core';
-// for integrating backend for friends list: https://www.andreasreiterer.at/react-list-component/
+import {CircularProgress} from '@material-ui/core'
+
 
 function RoomList({id, username, avatar, hat, name}){
   let history = useHistory(); 
@@ -28,18 +28,19 @@ function RoomList({id, username, avatar, hat, name}){
     })
   }, [user])
 
-  let list = [
-    {'_id': '123', 'name': 'ase'},
-    {'_id': '345', 'name': 'mdp'}
-  ]
-
-  //console.log(list)
-
   const [roomList, setRoomList] = useState([]);
-
+  const [loading, setLoading] = useState(false);
 
   const roomId = user.rooms;
   var rooms_list = []
+
+  function checkLoaded() {
+    if (roomList.length != 0) {
+        setLoading(true)
+    } else if (rooms_list.length == 0) {
+        setLoading(true)
+    }
+}
 
   useEffect( async () => {
 
@@ -50,6 +51,7 @@ function RoomList({id, username, avatar, hat, name}){
       })
     }
     setRoomList(rooms_list)
+    setTimeout(checkLoaded, 3000)
   },[roomList])
   
   return(
@@ -58,7 +60,8 @@ function RoomList({id, username, avatar, hat, name}){
         <div style = {{width: '300px', fontWeight: 'bold'}}>Your Rooms</div>
           <div style = {{backgroundColor: 'rgb(203, 184, 221)', borderRadius: '10px', width: '150%', height: '350px', position: 'relative'}}>
             <div className = "rooms">
-              {roomList.map((room) => <RoomButtons id = {id} username = {username} avatar = {avatar} hat = {hat} name = {name} room = {room.name}/>)}
+              {loading? (!roomList.length && setTimeout(1000)? <RoomButtons isRoom = 'false'/> : roomList.map((room) => <RoomButtons key={room._id} id = {id} username = {username} avatar = {avatar} hat = {hat} name = {name} room = {room.name} roomId = {room._id} isRoom = 'true'/>)) : 
+                <CircularProgress style = {{'color': 'lavender', 'marginLeft': '45%', 'marginTop': '5%'}}/>}
             </div>
         </div> 
       </div>

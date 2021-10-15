@@ -28,5 +28,6 @@
     top: 16px;
     right: 16px;
     background-color: rgb(229, 212, 243);
-    border-radius: 15px;
+    border-radius: 30px;
+    border-color:rgb(187, 172, 241);
 }

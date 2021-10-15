@@ -21,11 +21,11 @@ app.use('/toDo', toDoRoutes);
 app.use("/user", userRoutes);
 app.use("/chat", chatRoutes)
 
+
 //const CONNECTION_URL = 'mongodb+srv://alwinguo:hello123@cluster0.1fxs7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 const CONNECTION_URL = 'mongodb+srv://virtualclassmate:virtualclassmate@cluster.dnmqc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 const PORT = process.env.PORT || 5000;
-
 
 // Connect Mongoose to DB
 mongoose.connect(CONNECTION_URL)

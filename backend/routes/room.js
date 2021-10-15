@@ -5,10 +5,10 @@ import { getRoom, createRoom, getRooms, checkFriendToAdd, addMember, checkRoomUs
 const router = express.Router();
 
 router.get('/', getRooms); // Get all rooms in the DB
+router.get('/check', checkFriendToAdd)
 router.get('/:id', getRoom); // Get room
-router.get('/check', checkFriendToAdd);
-router.get('/getmembers/:id', checkRoomUsers); // Route may not be necessary
-router.get('/chat/:id', checkMessage);
+router.get('/getmembers/:id', checkRoomUsers) // Route may not be necessary
+router.get('/chat/:id', checkMessage)
 
 router.post('/', createRoom); // User create a room
 router.post('/chat', createMessage);
