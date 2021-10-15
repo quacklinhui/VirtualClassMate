@@ -8,8 +8,8 @@ const roomSchema = mongoose.Schema({
         ref: 'User'
     },
     members: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
-    toDoList: [{type: mongoose.Schema.Types.ObjectId, ref: 'ToDoItem'}],
-    chat: [{type: mongoose.Schema.Types.ObjectId, ref: 'Chat'}],
+    // toDoList: [{type: mongoose.Schema.Types.ObjectId, ref: 'ToDoItem'}],
+    // chat: [{type: mongoose.Schema.Types.ObjectId, ref: 'Chat'}],
     requestList: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
 });
 

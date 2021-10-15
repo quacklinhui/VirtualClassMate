@@ -9,6 +9,7 @@ import {
   deleteUser,
   updateAvatar,
   searchUsers,
+  addFriendRequest,
   addFriend,
   deleteFriend,
   createRoom,
@@ -28,6 +29,7 @@ router.patch("/avatar/:id", updateAvatar);
 
 router.get("/friend/:friend_name", searchUsers);
 router.patch("/addFriend/:id", addFriend);
+router.patch("/addFriendRequest/:id", addFriendRequest);
 router.patch("/deleteFriend/:id", deleteFriend);
 
 router.patch("/createRoom/:id", createRoom);

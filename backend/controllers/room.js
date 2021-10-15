@@ -1,6 +1,5 @@
 import Room from '../models/room.js'
 import User from '../models/user.js'
-// import Chat from '../models/chat.js'
 import Chat from '../models/chat.js';
 import mongoose from 'mongoose';
 
@@ -152,12 +151,18 @@ export const createRoom = async (req, res) => {
     const description = req.body.description;
     const admin = mongoose.Types.ObjectId(req.body.admin);
     try {
+        // Check if adminID given is a valid user
+        const user = await User.findById(req.body.admin);
+        if (user == null) {
+            res.status(409).json({message: 'Admin is not a valid user'});
+            return;
+        }
+
         // Create new room object
         const newRoom = new Room({ name: name, description: description, admin: admin });
         await newRoom.save();
 
         // Get the admin user and add the new room to user's room array
-        const user =  await User.findById(req.body.admin);
         var userRooms = user.rooms;
         userRooms.push(newRoom._id);
         await User.updateOne(
@@ -316,6 +321,147 @@ export const acceptRequest = async (req, res) => {
         } else {
             res.status(409).json({message: "User not in request list"});
         }
+    } catch (error) {
+        res.status(409).json({message: error.message});
+    }
+}
+
+export const leaveRoom = async (req, res) => {
+    const { id } = req.params;
+    const memberId = req.body.memberID;
+
+    try {
+        // Check if memberId is a valid user in the specified room
+        // Find room and member
+        const room = await Room.findById(id);
+        const member = await User.findById(memberId);
+        var members = room.members;
+        var isMember = false;
+
+        for (const index in members) {
+            if (members[index].equals(member._id)) {
+                isMember = true;
+                break;
+            }
+        }
+
+        if (isMember) {
+            // Update room members
+            const updatedRoom = await Room.findByIdAndUpdate(id, {
+                $pull: { members: member._id }
+            }, {
+                new: true
+            })
+
+            // Update user
+            await User.findByIdAndUpdate(memberId, {
+                $pull: { rooms: room._id }
+            });
+            res.status(200).json(updatedRoom);
+
+        } else if (room.admin.equals(member._id)) { // Check if the member is the admin
+            await User.findByIdAndUpdate(memberId, {
+                $pull: { rooms: room._id }
+            });
+
+            if (members.length == 0) { // Admin is the only member in the room
+                // Disband/delete the group
+                const deletedRoom = await Room.findByIdAndDelete(id);
+                res.status(200).json(deletedRoom);
+
+            } else { // There are other members in the room
+                // Give admin status to next member
+                const newAdminID = room.members[0];
+                const updatedRoom = await Room.findByIdAndUpdate(id, {
+                    admin: newAdminID,
+                    $pull: { members: newAdminID }
+                }, {
+                    new: true
+                })
+
+                res.status(200).json(updatedRoom);
+            }
+        } else {
+            res.status(409).json({message: "User is not a member of the room"})
+        }
+
+    } catch (error) {
+        res.status(409).json({message: error.message});
+    }
+}
+
+
+// Admin deletes room
+export const deleteRoom = async (req, res) => {
+    const { id } = req.params;
+    const deleterId = req.body.deleterID;
+
+    try {
+        const room = await Room.findById(id);
+        const deleter = await User.findById(deleterId);
+
+        // Delete room only if request made by admin
+        if (room.admin.equals(deleter._id)) {
+            // Remove room from all the members
+            await User.updateMany({
+                $all: { rooms: room._id }
+            }, {
+                $pull: { rooms: room._id }
+            })
+            
+            // Delete room
+            const deletedRoom = await Room.findByIdAndDelete(id);
+
+            res.status(200).json(deletedRoom);
+        } else {
+            res.status(401).json({message: "Unauthorized: No admin privileges"});
+        }
+    } catch(error) {
+        res.status(409).json({message: error.message});
+    }
+}
+
+export const removeMember = async (req, res) => {
+    const { id } = req.params;
+    const adminId = req.body.adminID;
+    const memberId = req.body.memberID;
+
+    try {
+        const room = await Room.findById(id);
+        const admin = await User.findById(adminId);
+        const member = await User.findById(memberId);
+
+        // Check if admin is indeed admin of the room
+        if (room.admin.equals(admin._id)) { // Is admin of room
+            // Check if member is indeed member of the room
+            var isMember = false;
+            for (const index in member.rooms) {
+                if (member.rooms[index].equals(room._id)) {
+                    isMember = true;
+                    break;
+                }
+            }
+            if (isMember) {
+                // Remove room from user
+                await User.findByIdAndUpdate(memberId, {
+                    $pull: { rooms: room._id }
+                });
+
+                // Remove user from room
+                const updatedRoom = await Room.findByIdAndUpdate(id, {
+                    $pull: { members: member._id }
+                }, {
+                    new: true
+                })
+
+                res.status(200).json(updatedRoom);
+            } else {
+                res.status(409).json({message: "User is not a member of the room"});
+            }
+        } else {
+            res.status(401).json({message: "Unauthorized: No admin privileges"});
+        }
+
     } catch (error) {
         res.status(409).json({message: error.message});
     }

@@ -21,7 +21,7 @@ function ToDoItem({todo, setCurrentId}){
                 { checkBox ? <CheckBoxIcon/>: <CheckBoxOutlineBlankIcon/> } 
                 </IconButton>
             <div>
-                <Typography style={{color:"white"}}> {todo.name}</Typography>
+                <Typography style={{color:"white", margin: 50}}> {todo.name}</Typography>
                 {/* <Typography style={{color:"white"}}> {todo.description}</Typography> */}
                 {/* <Typography style={{color:"white"}}>{todo.deadline}</Typography> */}
                 {/* <Typography style={{color:"white"}}>{todo.status}</Typography> */}
