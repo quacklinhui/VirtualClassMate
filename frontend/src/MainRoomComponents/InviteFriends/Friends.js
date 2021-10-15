@@ -37,7 +37,7 @@ class Friends extends React.Component {
         }
         else {
             return (
-                <h4 style = {{color: 'black'}}>you have no friends</h4>
+                <h4 style = {{color: 'black', lineHeight: '50px', verticalAlign: 'middle'}}>There are no more friends to add!</h4>
             )
         }
     }
