@@ -1,19 +1,45 @@
-import React from 'react';
-import {Button, CircularProgress} from '@material-ui/core';
-import {useHistory, Link} from 'react-router-dom';
+import React, { useEffect } from 'react';
+import {Button, IconButton} from '@material-ui/core';
+import './InviteFriendsPopUp.css';
+import AddCircle from '@material-ui/icons/AddCircle';
+import axios from 'axios';
+
 
 class Friends extends React.Component {
     
     constructor(props) {
         super(props);
         this.state = {
-            roomId: props.roomId
+            friendId: props.friendId,
+            roomId: props.roomId, 
+            name: props.name,
+            isFriend: props.isFriend,
+            userId: props.userId
         };
     }
+    addUserToRoom () {
+        axios.patch(`http://localhost:5000/room/add/${this.state.roomId}`, {
+            newMemberID: this.state.friendId,
+            adderID: this.state.userId
+        })
+    }
+
     render () {  
-        return (
-            <div>hello</div>
-        )
+        if (this.state.isFriend == 'true'){
+            return (
+                <div className = "frienddiv">
+                    <h1 style = {{marginLeft: '30px'}}>{this.state.name}</h1>                    
+                    <IconButton className = 'addButton' onClick = {() => {this.addUserToRoom()}}>
+                        <AddCircle className = "addIcon"/>
+                    </IconButton>
+                </div>
+            )
+        }
+        else {
+            return (
+                <h4 style = {{color: 'black'}}>you have no friends</h4>
+            )
+        }
     }
 }
 

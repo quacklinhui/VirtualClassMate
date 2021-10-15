@@ -14,7 +14,7 @@
     position: relative;
     padding: 32px;
     width: 100%;
-    max-width: 640px;
+    max-width: 400px;
     background-color: rgb(187, 172, 241);
     justify-content: center;
     align-items: center;
@@ -31,3 +31,54 @@
     border-radius: 30px;
     border-color:rgb(187, 172, 241);
 }
+
+.friendsToAdd {
+    background-color: white;
+    position: relative;
+    border-radius: 10px;
+    display:flex;
+    flex-direction: column;
+    min-height: 70px;
+}
+
+.friendsToAdd :first-child {
+    margin-top: 10px
+}
+
+.frienddiv {
+    background-color: rgb(159, 136, 180); 
+    color: white;
+    margin-left: 2.5%;
+    height: 50px;
+    font-size: 10px;
+    width: 95%;
+    border-radius: 5px;
+    vertical-align: middle;
+    line-height: 25px;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    flex-direction: row;
+}
+
+.addButton {
+    position: relative;
+    left: 57%;
+    top: 15%;
+    display: flex;
+    align-content: center;
+}
+
+.addButton :hover {
+    background-color: rgb(159, 136, 180);
+}
+
+.addButton.MuiButtonBase-root {
+    width: 10px;
+    height: 10px;
+}
+
+.addIcon.MuiSvgIcon-root{
+    margin: 0px;
+}
+
