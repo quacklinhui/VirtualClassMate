@@ -41,12 +41,13 @@ class FriendRooms extends React.Component {
         
         for (let x=0; x < this.state.friendRooms.length; x++) {
             await axios.get(`http://localhost:5000/room/${this.state.friendRooms[x]}`).then((res) => {
-                this.state.friendRoomsNames = this.state.friendRoomsNames.concat(res.data.name)
+                this.state.friendRoomsNames = this.state.friendRoomsNames.concat(res.data)
             })
         }
 
         // filtering
         this.state.friendRoomsNames = this.state.friendRoomsNames.filter((item, index) => this.state.friendRoomsNames.indexOf(item) == index);
+        console.log(this.state.friendRoomsNames)
         this.setState({loading: true});
     }
 
@@ -58,7 +59,7 @@ class FriendRooms extends React.Component {
                         { this.state.friendName }
                         { this.state.showFriendRooms ? <ArrowDropDown className = 'joinRoomPopUp-arrow' style={{ color:"black", height:"40px", width:"10%",position:"absolute", right:20, marginTop: '0px'}}/> : <ArrowDropDown className = 'joinRoomPopUp-arrow' style={{ color:"white", height:"40px", width:"10%",position:"absolute", right:20, marginTop: '0px'}}/> }
                     </Button>
-                    {this.state.showFriendRooms ? (this.state.loading ? (this.state.friendRoomsNames.length ? (this.state.friendRoomsNames.map((room) => <FriendRoom key = {room} roomName = {room} loading = {this.state.loading} haveRoom = 'true'/>)): <FriendRoom haveRoom = 'false'/>): <CircularProgress size = {40} style = {{'color': 'lavender', 'marginLeft': '45%', 'padding': '10px'}}/>): null}     
+                    {this.state.showFriendRooms ? (this.state.loading ? (this.state.friendRoomsNames.length ? (this.state.friendRoomsNames.map((room) => <FriendRoom key = {room._id} roomName = {room.name} roomId = {room._id} userId = {this.state.userId} loading = {this.state.loading} haveRoom = 'true'/>)): <FriendRoom haveRoom = 'false'/>): <CircularProgress size = {40} style = {{'color': 'lavender', 'marginLeft': '45%', 'padding': '10px'}}/>): null}     
                 </>
             )
         }
