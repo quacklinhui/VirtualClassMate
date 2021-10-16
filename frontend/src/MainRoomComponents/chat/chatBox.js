@@ -14,7 +14,7 @@ const ChatBox = (props) => {
     const [messages, setMessages] = useState([]);
     return(
         <Paper style={{position:"absolute", right:"2vw",bottom:"0",width:"19vw",  bottomPadding:20}} >
-                    <Paper style={{backgroundColor: '#140650', color: "white"}}>
+                    <Paper style={{backgroundColor: '#140650', color: "white", zIndex: '500', position: 'relative'}}>
                         CHAT
                     <IconButton disableRipple disableFocusRipple onClick={()=>{minimiseChatBox?setMinimiseChatBox(false): setMinimiseChatBox(true)}} style={{backgroundColor:"transparent", position: "relative"}}>
                         { minimiseChatBox ? <ArrowDropDownIcon  style={{ color:"white"}}/> : <ArrowDropUpIcon disableRipple disableFocusRipple style={{ color:"white"}}/>  }
@@ -23,7 +23,7 @@ const ChatBox = (props) => {
 
                 { minimiseChatBox ? 
                              <Paper>
-                                <Paper style = {{backgroundColor: 'white', display: "flex",flexDirection: 'column', height:400, padding:5, overflowY:"scroll"}}>
+                                <Paper style = {{backgroundColor: 'white', display: "flex",flexDirection: 'column', height:400, padding:5, overflowY:"scroll", zIndex: '500', position: 'relative'}}>
                                 
                                     {/* <Paper style={{backgroundColor:'grey',padding: 12, borderRadius:30, alignSelf: 'flex-end'}}>
                                         to input the chat here
