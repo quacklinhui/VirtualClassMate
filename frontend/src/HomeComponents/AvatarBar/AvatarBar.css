@@ -6,12 +6,12 @@
     height: 210px;
   }
 
-.flexContainer {
+.flexContainer-home {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     width: 150px;
-    margin-left: 30px;
+    margin-left: 50px;
     position: relative;
     color: #fff;
 }
@@ -21,7 +21,7 @@
     flex-direction: column;
     text-align: center;
     color: white;
-    margin-left: 20px;
+    margin-left: 30px;
 }
 
 .profile div:first-child {

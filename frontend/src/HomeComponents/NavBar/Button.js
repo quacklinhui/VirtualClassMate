@@ -3,9 +3,8 @@ import CreateRoomPopUp from '../CreateRoomPopUp/CreateRoomPopUp';
 import JoinRoomPopUp from '../JoinRoomPopUp/JoinRoomPopUp';
 import {useState} from 'react';
 import {Button} from '@material-ui/core'
-import {useHistory} from "react-router-dom";
 
-function Buttons(){
+function Buttons(props){
     const [createPopUp, setCreatePopUp] = useState(false); //set the default state to false
     const [createJoinRoomPopUp, setJoinRoomCreatePopUp] = useState(false); 
 
@@ -26,7 +25,7 @@ function Buttons(){
                 <Button variant="contained" style = {{backgroundColor: '#689f38', color: '#fff', marginLeft: '20px'}} className = "navbar-button-green" onClick={toggleJoinRoomPopUp}>Join a Room</Button>
             </ul>
             {createPopUp && <CreateRoomPopUp handleClose = {toggleCreateRoomPopUp}></CreateRoomPopUp>}
-            {createJoinRoomPopUp && <JoinRoomPopUp handleClose = {toggleJoinRoomPopUp}></JoinRoomPopUp>}
+            {createJoinRoomPopUp && <JoinRoomPopUp userId = {props.userId} handleClose = {toggleJoinRoomPopUp}></JoinRoomPopUp>}
         </>
     )
 }
