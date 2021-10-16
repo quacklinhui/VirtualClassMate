@@ -4,9 +4,7 @@
     position: relative;
     align-items: center;
     height: 210px;
-    z-index: 500;
-
-
+    z-index: 300;
   }
 
 .flexContainer {
@@ -17,7 +15,6 @@
     margin-left: 30px;
     position: relative;
     color: #fff;
-
 }
 
 .user-details {
@@ -27,7 +24,6 @@
     margin-left: 40px;
     margin-right: 80px;
     color: white;
-
 }
 
 .user-details div:first-child {
@@ -39,8 +35,8 @@
 }
 
 .avatar {
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
 
 }  
 

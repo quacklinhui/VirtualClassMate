@@ -4,7 +4,6 @@
     position: relative;
     align-items: center;
     height: 210px;
-
   }
 
 .flexContainer {
@@ -33,9 +32,9 @@
     margin-top: 5px;
 }
  
-.avatar{
-    max-width: 150px;
-    max-height: 150px;
+.avatar-home{
+    width: 150px;
+    height: 150px;
     margin-left: -10px;
 }
 

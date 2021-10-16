@@ -46,7 +46,7 @@ function AddFriend({currentId}){
 
     return (
         <div>
-            <Container style = {{marginLeft: '100px', marginTop: '5%', display: 'flex', flexDirection: 'column', alignItems: 'center'}} >
+            <Container style = {{marginLeft: '100px', marginTop: '15%', display: 'flex', flexDirection: 'column', alignItems: 'center'}} >
                 <form id = "addFriend" style = {{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '500px'}} onSubmit={AddNewFriend}>
                     <Typography>Don't see your friends on the list?</Typography>
                     <Typography> Add them here:</Typography>
