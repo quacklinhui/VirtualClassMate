@@ -7,6 +7,7 @@ import SendIcon from '@material-ui/icons/Send';
 import CloseIcon from '@material-ui/icons/Close';
 import ChatMessage from "./ChatMessage";
 import axios from "axios";
+import { io } from "socket.io-client";
 
 const ChatBox = (props) => {
     const [showChatBox, setShowChatBox] = React.useState(false)
@@ -14,6 +15,44 @@ const ChatBox = (props) => {
     const [messages, setMessages] = useState([]);
     const [newChatMessage, setNewChatMessage] = useState("");
     const scrollRef = useRef();
+
+    // Socket
+    // const [socket, setSocket] = useState(null);
+    // const socket = useRef(io("ws://localhost:8900"));
+    const socket = useRef();
+    const [arrivalMessage, setArrivalMessage] = useState(null);
+    // useEffect(() => {
+    //     setSocket(io("ws://localhost:8900"))
+    // }, []);
+
+    useEffect(() => {
+        socket.current = io("ws://localhost:8900");
+        socket.current.on("getMessage", async (data) => {
+            try{
+                const res = await axios.get(`http://localhost:5000/user/${data.user}`);
+                setArrivalMessage({
+                    user: data.user,
+                    room: data.room,
+                    message: data.message,
+                    createdAt: new Date(),
+                    username: res.data.name
+                })
+            } catch (err) {
+                console.log(err);
+            }
+        });
+    }, []);
+
+    useEffect(() => {
+        arrivalMessage &&
+            arrivalMessage.room === props.roomId &&
+            setMessages((prev) => [...prev, arrivalMessage]);
+    }, [arrivalMessage, props.roomId]);
+
+    useEffect(() => {
+        socket.current.emit("joinRoom", { userId: props.id, roomId: props.roomId });
+        
+      }, [props.id, props.roomId]);
 
     useEffect(() => {
         const getMessages = async () => {
@@ -46,6 +85,8 @@ const ChatBox = (props) => {
             userID: props.id,
             message: newChatMessage
         };
+
+        socket.current.emit("sendMessage", newChatMessage);
 
         try {
             // Create message
