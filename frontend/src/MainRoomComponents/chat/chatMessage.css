@@ -7,7 +7,7 @@
 
 .messageText {
     border-radius: 20px;
-    background-color: #8A2BE290;
+    background-color: lightgray;
     max-width: 250px;
     padding: 10px;
     margin: 0;
@@ -28,7 +28,7 @@
 }
 
 .message.own .messageText {
-    background-color: lightgray;
+    background-color: #8A2BE290;
 }
 
 .message.own .userName {

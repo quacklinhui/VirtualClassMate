@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import "./chatMessage.css";
 
-export default function ChatMessage({own}) {
+export default function ChatMessage({message, own}) {
 
-
+    const datetime = (new Date(message.createdAt)).toLocaleString();
 
     return (
         <div className={own ? "message own" : "message"}>
             <div className="messageTop">
-                <div className="userName">Tom</div>
-                <p className="messageText">Hello how are ysdgrsdgregr hertherwergervy retybtby etrb rtb hrtybv45 5uh 5e 56e6ub 56bu56yt u56 u5 6u56ub 56jt you?</p>
+                <div className="userName">{message.username}</div>
+                <p className="messageText">{message.message}</p>
             </div>
             <div className="messageBottom">
-                1 hour ago
+                {datetime}
             </div>
         </div>
     );
