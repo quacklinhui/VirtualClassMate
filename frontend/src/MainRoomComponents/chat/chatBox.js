@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import {useState} from 'react';
+import {useState, useRef } from 'react';
 import {IconButton,Button, Typography, Paper, Box, Container, TextField} from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
@@ -12,13 +12,18 @@ const ChatBox = (props) => {
     const [showChatBox, setShowChatBox] = React.useState(false)
     const [minimiseChatBox, setMinimiseChatBox] = React.useState(false)
     const [messages, setMessages] = useState([]);
+    const [newChatMessage, setNewChatMessage] = useState("");
+    const scrollRef = useRef();
 
     useEffect(() => {
         const getMessages = async () => {
             try {
+                // Get all the chat messages for this room
                 const res = await axios.get(`http://localhost:5000/chat/${props.roomId}`);
 
                 var messagesData = res.data;
+
+                // Find the username of each chat message
                 for (const index in messagesData) {
                     const userRes = await axios.get(`http://localhost:5000/user/${messagesData[index].user}`);
                     messagesData[index] = { ...messagesData[index], username: userRes.data.name };
@@ -30,6 +35,31 @@ const ChatBox = (props) => {
         }
         getMessages();
     }, []);
+
+    useEffect(() => {
+        scrollRef.current?.scrollIntoView({behavior: "smooth"});
+    }, [messages]);
+
+    const handleSubmit = async (e) =>{
+        e.preventDefault();
+        const message = {
+            userID: props.id,
+            message: newChatMessage
+        };
+
+        try {
+            // Create message
+            const res = await axios.post(`http://localhost:5000/chat/${props.roomId}`, message);
+            var newMessage = res.data;
+            // Find username of user
+            const userRes = await axios.get(`http://localhost:5000/user/${newMessage.user}`);
+            newMessage = { ...newMessage, username: userRes.data.name };
+            setMessages([...messages, newMessage]);
+            setNewChatMessage("");
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     return(
         <Paper style={{position:"absolute", right:"2vw",bottom:"0",width:"19vw",  bottomPadding:20}} >
@@ -49,13 +79,24 @@ const ChatBox = (props) => {
                                     </Paper> */}
 
                                     {messages.map((m) => (
-                                        <ChatMessage message={m} own={m.user === props.id}/>
+                                        <div ref={scrollRef}>
+                                            <ChatMessage message={m} own={m.user === props.id}/>
+                                        </div>
                                     ))}
                                     
                                 </Paper>
                                 <Paper style = {{backgroundColor: 'white', display: "flex",flexDirection: 'row', height:50, padding:5}}>
-                                    <TextField fullWidth id="chatInput" variant="outlined" size = 'small' placeholder="Write message" /> 
-                                    <Button type = "submit" style ={{backgroundColor:'#DCDCDC', margin:5}}>
+                                    <TextField
+                                        fullWidth id="chatInput" 
+                                        variant="outlined" 
+                                        size = 'small' 
+                                        placeholder="Write message" 
+                                        onChange={(e) => setNewChatMessage(e.target.value)} 
+                                        value={newChatMessage} />
+                                    <Button 
+                                        type = "submit" 
+                                        onClick={handleSubmit}
+                                        style ={{backgroundColor:'#DCDCDC', margin:5}}>
                                         <SendIcon/>
                                     </Button>
                                 </Paper>
