@@ -41,14 +41,22 @@ export const checkFriendToAdd = async (req, res) => {
              var currentUserData = await User.findById(userData);
             //  res.status(200).json(currentUserData);
              var friendData = currentUserData.friends // not implement yet but will call from user to get friend list of current user.
-
+             var roomAdmin = roomData.admin
+             var allRoomUsers = []
+             if (roomAdmin != null) {
+                  for (const key in roomData.members) {
+                    allRoomUsers.push(roomData.members[key])
+                 }
+                 allRoomUsers.push(roomAdmin)
+             }
+             
             //get list of userid that is not in the room and is the friend of the current user
             var listofObjects = [];
 
             for (const key in friendData) {
                 var inRoom = false
-                for (const key1 in roomData.members) {
-                    if (JSON.stringify(friendData[key]) === JSON.stringify(roomData.members[key1])) {
+                for (const key1 in allRoomUsers) {
+                    if (JSON.stringify(friendData[key]) === JSON.stringify(allRoomUsers[key1])) {
                         inRoom = true
                     }
                 }
