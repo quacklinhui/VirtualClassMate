@@ -19,7 +19,7 @@ function NavBar({id, username, avatar, hat, name}) {
               state: { id: id, username: username, avatar: avatar, hat: hat, name: name}})}}>
                 <img className="navbar-logo" src={logo} alt = ''></img>
             </Button>
-            <Buttons/>
+            <Buttons userId = {id} />
             </nav>          
     )
 }

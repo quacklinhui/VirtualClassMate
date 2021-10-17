@@ -21,8 +21,8 @@ function AvatarBar({id, username, avatar, hat, name}) {
     
     return (
         <div className = "avatarbar">
-            <div className = "flexContainer">
-                <img className = 'avatar' src = {avatar_image.default} alt = "avatar"></img>
+            <div className = "flexContainer-home">
+                <img className = 'avatar-home' src = {avatar_image.default} alt = "avatar"></img>
                 <Button variant="contained"  style = {{backgroundColor: 'rgb(161, 188, 228)', height: '15px', fontSize: '0.7rem', fontWeight: 'bold', alignSelf: 'center', width: '170px'}}className = "customizeavatar" onClick={()=>customizeAvatar()}>Customise Avatar</Button>           
             </div>
             <div className = "profile"> 

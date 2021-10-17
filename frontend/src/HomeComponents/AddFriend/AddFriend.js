@@ -31,7 +31,7 @@ function AddFriend({currentId}){
 
     const AddNewFriend = async (e) => {
         e.preventDefault();
-        // getting friend id - not working
+        // getting friend id
         axios.get(`http://localhost:5000/user/byUsername/${friend.friend_name}`).then( (res) => {
             if (res.data.status == 404) {
                 console.log("User does not exist.");
