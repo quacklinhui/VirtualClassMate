@@ -19,7 +19,15 @@ function NavBar({id, username, avatar, hat, name}) {
               state: { id: id, username: username, avatar: avatar, hat: hat, name: name}})}}>
                 <img className="navbar-logo" src={logo} alt = ''></img>
             </Button>
+            <Button className = 'logoutbutton' variant="contained" style = {{backgroundColor: '#555555', color: '#fff'}}
+            onClick={() => {history.push({
+              pathname: "/login",
+              state: { id: "", username: "", avatar: "", hat: "", name: ""}})}}>
+              Logout
+            </Button>
             <Buttons userId = {id} />
+
+
             </nav>          
     )
 }
