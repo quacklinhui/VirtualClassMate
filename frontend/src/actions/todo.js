@@ -1,18 +1,18 @@
 import * as api from '../api';
 
 //Action Creators
-export const getTodo = () => async(dispatch) => {
+export const getTodo = (referenceID) => async(dispatch) => {
     try {
-        const {data} = await api.fetchTodo();
+        const {data} = await api.fetchTodo((referenceID));
 
         dispatch({type: 'FETCH_ALL', payload:data});
     } catch (error) {
         console.log(error.message);
     }
 }
-export const createTodo = (post) => async(dispatch) => {
+export const createTodo = (referenceID,post) => async(dispatch) => {
     try {
-        const {data} = await api.createTodo(post);
+        const {data} = await api.createTodo(referenceID,post);
 
         dispatch({type: 'CREATE', payload:data});
     } catch (error) {

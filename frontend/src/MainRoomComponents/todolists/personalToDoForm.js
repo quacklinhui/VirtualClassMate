@@ -7,13 +7,17 @@ import { useSelector } from "react-redux";
 import ToDoLists from "./todolist";
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
+import { getTodo } from '../../actions/todo';
 
-const PersonalForm = ({currentId, setCurrentId}) => {
+const PersonalForm = ({currentId, setCurrentId, type, referenceID}) => {
 
-    const [toDoData, setToDoData]=useState({name:'',description:'',deadline:''});
+    const [toDoData, setToDoData]=useState({name:'',description:'',deadline:'',type:type, referenceID:referenceID});
     const [showPersonalToDoList, setShowPersonalToDoList] = React.useState(false)
     const todoitem = useSelector((state) => currentId? state.toDoList.find((p)=>p._id === currentId) : null);
     const dispatch = useDispatch();
+    useEffect(()=>{
+      dispatch(getTodo(referenceID));
+    },[referenceID,currentId,dispatch])
     useEffect(()=>{
         if(todoitem) setToDoData(todoitem);
     },[todoitem])
@@ -28,7 +32,7 @@ const PersonalForm = ({currentId, setCurrentId}) => {
           dispatch(updateTodo(currentId, toDoData))
         }
         else{
-          dispatch(createTodo(toDoData));
+          dispatch(createTodo(referenceID,toDoData));
         }
         clear();
     

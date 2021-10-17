@@ -4,8 +4,8 @@ import { getTodo, createTodo, updateTodo, deleteTodo } from '../controllers/todo
 
 const router = express.Router();
 
-router.get('/', getTodo);
-router.post('/', createTodo);
+router.get('/:referenceID', getTodo);
+router.post('/:referenceID', createTodo);
 router.patch('/:id', updateTodo);
 router.delete('/:id', deleteTodo);
 
