@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import {useState} from 'react';
 import {Button, Typography, Paper, Box, Container, TextField} from '@material-ui/core';
-import { createTodo, updateTodo } from "../../actions/todo";
+import { createTodo, updateTodo } from "../../../actions/todo";
 import {useDispatch} from 'react-redux';
 import { useSelector } from "react-redux";
 import ToDoLists from "./todolist";
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
-import { getTodo } from '../../actions/todo';
+import { getTodo } from '../../../actions/todo';
 
 const PersonalForm = ({currentId, setCurrentId, type, referenceID}) => {
 

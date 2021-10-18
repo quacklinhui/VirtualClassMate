@@ -2,7 +2,7 @@ import React from "react";
 import { Grid,CircularProgress, Paper, List, Button } from "@material-ui/core";
 
 import { useSelector } from "react-redux";
-import ToDoItem from "./todoitem/todoitem.js";
+import ToDoItem from "./todoitem.js";
 
 
 

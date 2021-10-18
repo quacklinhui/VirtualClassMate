@@ -5,7 +5,7 @@ import {BrowserRouter as Router,  useHistory, useLocation} from "react-router-do
 import {useDispatch} from 'react-redux';
 
 // import { getTodo } from '../actions/todo';
-import ToDoLists from "./todolists/todolist";
+import ToDoLists from "./todolists/personal/todolist";
 import NavBar from '../HomeComponents/NavBar/NavBar';
 import ChatButton from './chat/chat';
 import ChatBox from "./chat/chatBox";
@@ -16,10 +16,10 @@ import "react-datepicker/dist/react-datepicker.css";
 //import { AiFillCaretDown, AiOutlinePlus,AiFillCaretUp } from 'react-icons/ai';
 import useWindowDimensions from "../useWindowDimensions";
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
-import PersonalForm from "./todolists/personalToDoForm"
+import PersonalForm from "./todolists/personal/personalToDoForm"
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
-import GroupForm from "./todolists/groupToDoForm";
+import GroupForm from "./todolists/group/groupToDoForm";
 
 //import { faCoffee } from '@fortawesome/fontawesome-free-solid';
 
