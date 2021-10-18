@@ -1,11 +1,13 @@
 import express from 'express';
 
-import { getTodo, createTodo, updateTodo, deleteTodo } from '../controllers/todolist.js';
+import { getPersonalTodo, getGroupTodo, createPersonalTodo, createGroupTodo, updateTodo, deleteTodo } from '../controllers/todolist.js';
 
 const router = express.Router();
 
-router.get('/:referenceID', getTodo);
-router.post('/:referenceID', createTodo);
+router.get('/user/:referenceID', getPersonalTodo);
+router.get('/room/:referenceID', getGroupTodo);
+router.post('/user/:referenceID', createPersonalTodo);
+router.post('/room/:referenceID', createGroupTodo);
 router.patch('/:id', updateTodo);
 router.delete('/:id', deleteTodo);
 

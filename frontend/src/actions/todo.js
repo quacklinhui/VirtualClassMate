@@ -1,18 +1,36 @@
 import * as api from '../api';
 
 //Action Creators
-export const getTodo = (referenceID) => async(dispatch) => {
+export const getPersonalTodo = (referenceID) => async(dispatch) => {
     try {
-        const {data} = await api.fetchTodo((referenceID));
+        const {data} = await api.fetchPersonalTodo((referenceID));
 
-        dispatch({type: 'FETCH_ALL', payload:data});
+        dispatch({type: 'FETCH_USER', payload:data});
     } catch (error) {
         console.log(error.message);
     }
 }
-export const createTodo = (referenceID,post) => async(dispatch) => {
+export const getGroupTodo = (referenceID) => async(dispatch) => {
     try {
-        const {data} = await api.createTodo(referenceID,post);
+        const {data} = await api.fetchGroupTodo((referenceID));
+
+        dispatch({type: 'FETCH_GROUP', payload:data});
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+export const createPersonalTodo = (referenceID,post) => async(dispatch) => {
+    try {
+        const {data} = await api.createPersonalTodo(referenceID,post);
+
+        dispatch({type: 'CREATE', payload:data});
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+export const createGroupTodo = (referenceID,post) => async(dispatch) => {
+    try {
+        const {data} = await api.createGroupTodo(referenceID,post);
 
         dispatch({type: 'CREATE', payload:data});
     } catch (error) {

@@ -6,8 +6,10 @@ export default (toDoList = [], action) =>{
             return toDoList.filter((item) => item._id !== action.payload);
         case 'UPDATE':
             return toDoList.map((item)=> item._id === action.payload._id? action.payload : item);
-        case 'FETCH_ALL':
+        case 'FETCH_USER':
             return action.payload;
+        case 'FETCH_GROUP':
+            return action.payload;    
         case 'CREATE':
             return [...toDoList,action.payload];
         default:

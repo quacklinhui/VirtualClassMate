@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import {useState} from 'react';
 import {Button, Typography, Paper, Box, Container, TextField} from '@material-ui/core';
-import { createTodo, updateTodo } from "../../../actions/todo";
+import { createGroupTodo, updateTodo } from "../../../actions/todo";
 import {useDispatch} from 'react-redux';
 import { useSelector } from "react-redux";
 import ToDoLists from "../personal/todolist";
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
-import { getTodo } from '../../../actions/todo';
+import { getGroupTodo } from '../../../actions/todo';
 
 const GroupForm = ({currentId, setCurrentId, type, referenceID}) => {
 
@@ -15,9 +15,9 @@ const GroupForm = ({currentId, setCurrentId, type, referenceID}) => {
     const [showGroupToDoList, setShowGroupToDoList] = React.useState(false)
     const todoitem = useSelector((state) => currentId? state.toDoList.find((p)=>p._id === currentId) : null);
     const dispatch = useDispatch();
-    // useEffect(()=>{
-    //     dispatch(getTodo(referenceID));
-    //   },[referenceID,currentId,dispatch])
+    useEffect(()=>{
+        dispatch(getGroupTodo(referenceID));
+      },[referenceID,currentId,dispatch])
     useEffect(()=>{
         if(todoitem) setGroupToDoData(todoitem);
     },[todoitem])
@@ -32,7 +32,7 @@ const GroupForm = ({currentId, setCurrentId, type, referenceID}) => {
           dispatch(updateTodo(currentId, groupToDoData))
         }
         else{
-          dispatch(createTodo(referenceID,groupToDoData));
+          dispatch(createGroupTodo(referenceID,groupToDoData));
         }
         clear();
     

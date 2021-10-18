@@ -1,10 +1,10 @@
 import mongoose  from 'mongoose';
 import ToDoItem from '../models/toDoItem.js';
 
-export const getTodo = async(req,res)=>{
+export const getPersonalTodo = async(req,res)=>{
     const {referenceID} = req.params;
     try{
-        const toDoItem = await ToDoItem.find({referenceID:referenceID});
+        const toDoItem = await ToDoItem.find({type:"user",referenceID:referenceID});
 
         console.log(toDoItem);
 
@@ -15,7 +15,34 @@ export const getTodo = async(req,res)=>{
     }
 }
 
-export const createTodo = async (req, res) => {
+export const getGroupTodo = async(req,res)=>{
+    const {referenceID} = req.params;
+    try{
+        const toDoItem = await ToDoItem.find({type:"room",referenceID:referenceID});
+
+        console.log(toDoItem);
+
+        res.status(200).json(toDoItem);
+
+    } catch(error){
+        res.status(404).json({message: error.message});
+    }
+}
+
+export const createPersonalTodo = async (req, res) => {
+    const body = req.body;
+    const {referenceID} = req.params.referenceID;
+    const newTodo = new ToDoItem(body);
+    try {
+        await newTodo.save(referenceID);
+        
+        res.status(201).json(newTodo);
+    } catch (error) {
+        res.status(409).json({message: error.message});
+    }
+}
+
+export const createGroupTodo = async (req, res) => {
     const body = req.body;
     const {referenceID} = req.params.referenceID;
     const newTodo = new ToDoItem(body);

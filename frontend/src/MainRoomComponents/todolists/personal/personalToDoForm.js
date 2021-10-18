@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import {useState} from 'react';
 import {Button, Typography, Paper, Box, Container, TextField} from '@material-ui/core';
-import { createTodo, updateTodo } from "../../../actions/todo";
+import { createPersonalTodo, updateTodo } from "../../../actions/todo";
 import {useDispatch} from 'react-redux';
 import { useSelector } from "react-redux";
 import ToDoLists from "./todolist";
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
-import { getTodo } from '../../../actions/todo';
+import { getPersonalTodo } from '../../../actions/todo';
 
 const PersonalForm = ({currentId, setCurrentId, type, referenceID}) => {
 
@@ -16,7 +16,7 @@ const PersonalForm = ({currentId, setCurrentId, type, referenceID}) => {
     const todoitem = useSelector((state) => currentId? state.toDoList.find((p)=>p._id === currentId) : null);
     const dispatch = useDispatch();
     useEffect(()=>{
-      dispatch(getTodo(referenceID));
+      dispatch(getPersonalTodo(referenceID));
     },[referenceID,currentId,dispatch])
     useEffect(()=>{
         if(todoitem) setToDoData(todoitem);
@@ -32,7 +32,7 @@ const PersonalForm = ({currentId, setCurrentId, type, referenceID}) => {
           dispatch(updateTodo(currentId, toDoData))
         }
         else{
-          dispatch(createTodo(referenceID,toDoData));
+          dispatch(createPersonalTodo(referenceID,toDoData));
         }
         clear();
     
