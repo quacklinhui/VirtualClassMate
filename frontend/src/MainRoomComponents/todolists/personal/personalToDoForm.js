@@ -4,7 +4,7 @@ import {Button, Typography, Paper, Box, Container, TextField} from '@material-ui
 import { createPersonalTodo, updateTodo } from "../../../actions/todo";
 import {useDispatch} from 'react-redux';
 import { useSelector } from "react-redux";
-import ToDoLists from "./todolist";
+import PersonalToDoLists from "./personaltodolist";
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
 import { getPersonalTodo } from '../../../actions/todo';
@@ -13,7 +13,7 @@ const PersonalForm = ({currentId, setCurrentId, type, referenceID}) => {
 
     const [toDoData, setToDoData]=useState({name:'',description:'',deadline:'',type:type, referenceID:referenceID});
     const [showPersonalToDoList, setShowPersonalToDoList] = React.useState(false)
-    const todoitem = useSelector((state) => currentId? state.toDoList.find((p)=>p._id === currentId) : null);
+    const todoitem = useSelector((state) => currentId? state.PersonalToDoList.find((p)=>p._id === currentId) : null);
     const dispatch = useDispatch();
     useEffect(()=>{
       dispatch(getPersonalTodo(referenceID));
@@ -45,7 +45,7 @@ const PersonalForm = ({currentId, setCurrentId, type, referenceID}) => {
                   Personal
                   { showPersonalToDoList ? <ArrowDropDownIcon style={{ color:"black", height:"80%", width:"10%", position: 'absolute', right:20}}/> : <ArrowDropDownIcon style={{ color:"white", height:"90%", width:"10%",position:"absolute", right:20}}/>  }
                 </Button>
-                { showPersonalToDoList ? <ToDoLists setCurrentId={setCurrentId}/> : null }
+                { showPersonalToDoList ? <PersonalToDoLists setCurrentId={setCurrentId}/> : null }
                 <Paper style = {{backgroundColor: 'white', display: "flex",flexDirection: 'row', height:50, padding:5}}>
                   <TextField style={{padding:5}} name = 'name'  dvariant = "outlined" fullWidth value={toDoData.name} size = 'small' onChange ={(e)=>setToDoData({...toDoData,name: e.target.value})} />
                   <Button type = "submit" style ={{backgroundColor:'#DCDCDC', margin:5}}>

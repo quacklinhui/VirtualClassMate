@@ -5,7 +5,7 @@ import {BrowserRouter as Router,  useHistory, useLocation} from "react-router-do
 import {useDispatch} from 'react-redux';
 
 // import { getTodo } from '../actions/todo';
-import ToDoLists from "./todolists/personal/todolist";
+import ToDoLists from "./todolists/personal/personaltodolist";
 import NavBar from '../HomeComponents/NavBar/NavBar';
 import ChatButton from './chat/chat';
 import ChatBox from "./chat/chatBox";
