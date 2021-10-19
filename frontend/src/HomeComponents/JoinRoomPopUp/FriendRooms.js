@@ -45,8 +45,9 @@ class FriendRooms extends React.Component {
             })
         }
 
-        // filtering
-        this.state.friendRoomsNames = this.state.friendRoomsNames.filter((item, index) => this.state.friendRoomsNames.indexOf(item) == index);
+        // filtering - to remove duplicates
+        this.state.friendRoomsNames = new Set(this.state.friendRoomsNames.map(item => JSON.stringify(item)));
+        this.state.friendRoomsNames = [...this.state.friendRoomsNames].map(item => JSON.parse(item));
         console.log(this.state.friendRoomsNames)
         this.setState({loading: true});
     }
