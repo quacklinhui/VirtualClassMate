@@ -11,7 +11,7 @@ import { getPersonalTodo } from '../../../actions/todo';
 
 const PersonalForm = ({currentId, setCurrentId, type, referenceID}) => {
 
-    const [toDoData, setToDoData]=useState({name:'',description:'',deadline:'',type:type, referenceID:referenceID});
+    const [toDoData, setToDoData]=useState({name:'',type:'', referenceID:''});
     const [showPersonalToDoList, setShowPersonalToDoList] = React.useState(false)
     const todoitem = useSelector((state) => currentId? state.PersonalToDoList.find((p)=>p._id === currentId) : null);
     const dispatch = useDispatch();
@@ -47,7 +47,7 @@ const PersonalForm = ({currentId, setCurrentId, type, referenceID}) => {
                 </Button>
                 { showPersonalToDoList ? <PersonalToDoLists setCurrentId={setCurrentId}/> : null }
                 <Paper style = {{backgroundColor: 'white', display: "flex",flexDirection: 'row', height:50, padding:5}}>
-                  <TextField style={{padding:5}} name = 'name'  dvariant = "outlined" fullWidth value={toDoData.name} size = 'small' onChange ={(e)=>setToDoData({...toDoData,name: e.target.value})} />
+                  <TextField style={{padding:5}} name = 'name'  dvariant = "outlined" fullWidth value={toDoData.name} size = 'small' onChange ={(e)=>setToDoData({...toDoData,name: e.target.value, type:type, referenceID: referenceID})} />
                   <Button type = "submit" style ={{backgroundColor:'#DCDCDC', margin:5}}>
                     <ControlPointIcon/>
                   </Button>

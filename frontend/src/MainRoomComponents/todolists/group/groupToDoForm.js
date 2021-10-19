@@ -11,7 +11,7 @@ import { getGroupTodo } from '../../../actions/todo';
 
 const GroupForm = ({currentId, setCurrentId, type, referenceID}) => {
 
-    const [groupToDoData, setGroupToDoData]=useState({name:'',type:type, referenceID:referenceID});
+    const [groupToDoData, setGroupToDoData]=useState({name:'',type:'', referenceID:''});
     const [showGroupToDoList, setShowGroupToDoList] = React.useState(false)
     const todoitem = useSelector((state) => currentId? state.GroupToDoList.find((p)=>p._id === currentId) : null);
     const dispatch = useDispatch();
@@ -48,7 +48,7 @@ const GroupForm = ({currentId, setCurrentId, type, referenceID}) => {
                 { showGroupToDoList ? <GroupToDoLists setCurrentId={setCurrentId}/> : null }
                 {/* <TextField fullWidth id="groupToDoListInput" variant="outlined" size = 'small' /> */}
                 <Paper style = {{backgroundColor: 'white', display: "flex",flexDirection: 'row', height:50, padding:5}}>
-                <TextField style={{padding:5}} name = 'groupToDoListInput'  dvariant = "outlined" fullWidth value={groupToDoData.name} size = 'small' onChange ={(e)=>setGroupToDoData({...groupToDoData,name: e.target.value})}/>
+                <TextField style={{padding:5}} name = 'groupToDoListInput'  dvariant = "outlined" fullWidth value={groupToDoData.name} size = 'small' onChange ={(e)=>setGroupToDoData({...groupToDoData,name: e.target.value,type:type,referenceID:referenceID})}/>
                     <Button type = "submit" style ={{backgroundColor:'#DCDCDC', margin:5}}>
                     <ControlPointIcon/>
                     </Button>
