@@ -47,13 +47,12 @@
     border-radius: 5px;
     width: 60vw;
     height: 150px;
-    white-space: nowrap;
     text-align: center;
     overflow-x: auto;
     overflow-y: hidden;
 }
 
-.members_container p {
+.member {
     vertical-align: middle;
     display: inline-block;
     color: white;
@@ -62,19 +61,8 @@
     text-decoration: none;
 }
 
-.status-on{
-    color: greenyellow;
-    text-decoration: underline;
-}
-
-.status-off{
-    color: red;
-    text-decoration: underline;
-}
-
 .member_avatar {
-    margin-top: 5px;
-    max-width: 100px;
+    max-width: 60px;
 }
 
 div.invite-button {
