@@ -31,9 +31,10 @@ class FriendRooms extends React.Component {
     // to get friends rooms, filtering out rooms that user is already in
     async getFriendRooms() {
         await this.getUserRooms();
-        for (let i=0; i < this.state.friendRooms.length; i++){
+        for (let i=this.state.friendRooms.length -1; i>=0; i--){
+            console.log(this.state.friendRooms.length)
             for (let j=0; j < this.state.userRooms.length; j++) {
-                if (this.state.userRooms[j] === this.state.friendRooms[i]) {
+                if (this.state.userRooms[j] == this.state.friendRooms[i]) {
                     this.state.friendRooms.splice(i, 1)
                 }
             }
@@ -42,12 +43,12 @@ class FriendRooms extends React.Component {
         for (let x=0; x < this.state.friendRooms.length; x++) {
             await axios.get(`http://localhost:5000/room/${this.state.friendRooms[x]}`).then((res) => {
                 this.state.friendRoomsNames = this.state.friendRoomsNames.concat(res.data)
+                 // filtering - to remove duplicates
+                this.state.friendRoomsNames = new Set(this.state.friendRoomsNames.map(item => JSON.stringify(item)));
+                this.state.friendRoomsNames = [...this.state.friendRoomsNames].map(item => JSON.parse(item));
             })
         }
 
-        // filtering
-        this.state.friendRoomsNames = this.state.friendRoomsNames.filter((item, index) => this.state.friendRoomsNames.indexOf(item) == index);
-        console.log(this.state.friendRoomsNames)
         this.setState({loading: true});
     }
 

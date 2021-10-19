@@ -39,7 +39,7 @@ function InviteFriendsPopUp(props) {
                 })
             }       
         }
-        setFriendNameList(friend_NameList)
+        setFriendNameList(friendNameList => friend_NameList)
         setTimeout(checkLoaded, 5000)
     }, [friendNameList, friendList])
     
