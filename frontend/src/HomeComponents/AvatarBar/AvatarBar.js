@@ -15,7 +15,8 @@ function AvatarBar({id, username, avatar, hat, name}) {
         });
     };
 
-    const avatar_full = avatar+hat;
+    const avatar_full = avatar;
+    console.log(avatar_full)
     let avatar_image = require("./Images/sampleAvatars/" + avatar_full + ".png")
 
     

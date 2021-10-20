@@ -74,7 +74,7 @@ export const register = async (req, res) => {
       name: name,
       password: hashPassword,
       email: email,
-      avatarID1: "animal1",
+      avatarID1: "animal1hat1",
       avatarID2: "hat1",
       // level: 0,
       // experience: 0,
@@ -135,6 +135,7 @@ export const updateAvatar = async (req, res) => {
     const avatarID1 = req.body.avatarID1;
     const avatarID2 = req.body.avatarID2;
     const userId = req.params.id;
+
     const updateResponse = await User.updateOne(
       { _id: userId },
       { $set: { avatarID1: avatarID1, avatarID2: avatarID2 } }
