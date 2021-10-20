@@ -39,9 +39,9 @@ function Members(props) {
                     member_List.push({_id, name, username, password, email, toDoList, rooms, avatarID1, avatarID2, friends, __v})
                 })
             }
-        }
-        if (member_List > 0) {
-            setMemberList(memberList => member_List)
+            if (member_List.length > 0) {
+                setMemberList(memberList => member_List)
+            }
         }
         setTimeout(checkLoaded, 20000)
     }, [memberIdList, memberList])
