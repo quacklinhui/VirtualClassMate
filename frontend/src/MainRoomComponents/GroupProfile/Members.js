@@ -31,6 +31,20 @@ function Members(props) {
         }
     }
 
+    function checkIfMemberIsOnline(memberId) {
+        var online = false;
+        if (memberId === props.id){
+            return true;
+        }
+        for (const index in props.onlineMembers){
+            if (memberId === props.onlineMembers[index].userId){
+                online = true;
+                break;
+            }
+        }
+        return online;
+    }
+
     useEffect( async () => {
         if (memberIdList.length == 1){
             for (let i=0; i < memberIdList[0].length; i++) {
@@ -49,7 +63,7 @@ function Members(props) {
 
     return (
         <div className = "members_container">
-            {loading? (!memberList.length ? <Member hasMember = 'false'/> : memberList.map((member) => <Member hasMember = 'true' key = {member._id} memberAvatar = {member.avatarID1} memberName = {member.name}/>)) : 
+            {loading? (!memberList.length ? <Member hasMember = 'false'/> : memberList.map((member) => <Member hasMember = 'true' key = {member._id} memberAvatar = {member.avatarID1} memberName = {member.name} onlineStatus = {checkIfMemberIsOnline(member._id.toString())}/>)) : 
                 <CircularProgress style = {{'color': 'lavender', 'marginTop': '6%'}}/>            
             }
         </div>

@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import {IconButton,Button, Typography, Paper, Box, Container, TextField} from '@material-ui/core'
 import {useState} from 'react';
 import {BrowserRouter as Router,  useHistory, useLocation} from "react-router-dom";
 import {useDispatch} from 'react-redux';
+import { io } from "socket.io-client";
 
 // import { getTodo } from '../actions/todo';
 import ToDoLists from "./todolists/personal/personaltodolist";
@@ -18,6 +19,7 @@ import GroupForm from "./todolists/group/groupToDoForm";
 import axios from 'axios';
 
 //import { faCoffee } from '@fortawesome/fontawesome-free-solid';
+
 
 function RoomPage(props) {
   const { windowHeight, windowWidth } = useWindowDimensions();
@@ -45,13 +47,32 @@ function RoomPage(props) {
     })
   }, [roomInfo])
 
+  // Socket.io
+  // const socket = useRef();
+  const socket = useRef(io("ws://localhost:8900"));
+
+  useEffect(() => {
+    // socket.current = io("ws://localhost:8900");
+
+    socket.current.on('roomUsers', ( { room, users} ) => {
+      setOnlineMembers(users);
+      console.log(onlineMembers);
+    })
+  }, []);
+
+  useEffect(() => {
+    socket.current.emit("joinRoom", { userId: current_user_id, roomId: roomId });
+  }, [current_user_id, roomId]);
+
+  const [onlineMembers, setOnlineMembers] = useState([]);
+
   return (
     <>
       <div>
         <NavBar id={current_user_id} username={current_username} avatar={body} name = {current_user_name}/>
       </div>
       <div>
-        <GroupProfile id={current_user_id} username={current_username} avatar={body} name = {current_user_name} roomId = {roomId}/>
+        <GroupProfile id={current_user_id} username={current_username} avatar={body} name = {current_user_name} roomId = {roomId} onlineMembers = {onlineMembers}/>
       </div>
         
       <Container style = {{maxWidth: '100%'}}>
@@ -69,7 +90,7 @@ function RoomPage(props) {
         <div style ={{display: "flex", flexDirection: 'row', height:30, paddingTop: 10, width: "80%", alignSelf: 'flex-start'}}>
           <PersonalForm currentId={currentId} setCurrentId={setCurrentId} type="user" referenceID={current_user_id}/>
           <GroupForm currentGroupId={currentGroupId} setCurrentGroupId={setCurrentGroupId} type="room" referenceID={roomId}/>
-          <ChatBox id={current_user_id} roomId={roomId}/>  
+          <ChatBox id={current_user_id} roomId={roomId} socketId={socket}/>  
         </div>
 
       </Container>
