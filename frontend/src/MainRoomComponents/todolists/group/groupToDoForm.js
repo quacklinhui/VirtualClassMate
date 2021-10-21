@@ -4,16 +4,16 @@ import {Button, Typography, Paper, Box, Container, TextField} from '@material-ui
 import { createGroupTodo, updateTodo } from "../../../actions/todo";
 import {useDispatch} from 'react-redux';
 import { useSelector } from "react-redux";
-import ToDoLists from "../personal/todolist";
+import GroupToDoLists from "../group/grouptodolist";
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
 import { getGroupTodo } from '../../../actions/todo';
 
 const GroupForm = ({currentId, setCurrentId, type, referenceID}) => {
 
-    const [groupToDoData, setGroupToDoData]=useState({name:'',type:type, referenceID:referenceID});
+    const [groupToDoData, setGroupToDoData]=useState({name:'',type:'', referenceID:''});
     const [showGroupToDoList, setShowGroupToDoList] = React.useState(false)
-    const todoitem = useSelector((state) => currentId? state.toDoList.find((p)=>p._id === currentId) : null);
+    const todoitem = useSelector((state) => currentId? state.GroupToDoList.find((p)=>p._id === currentId) : null);
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(getGroupTodo(referenceID));
@@ -45,10 +45,10 @@ const GroupForm = ({currentId, setCurrentId, type, referenceID}) => {
                 { showGroupToDoList ? <ArrowDropDownIcon style={{ color:"black", height:"80%", width:"10%", position:"absolute", right:20}}/> : <ArrowDropDownIcon style={{ color:"white", height:"80%", width:"10%", position:"absolute", right:20}}/>  }
                 </Button>
                     
-                { showGroupToDoList ? <ToDoLists setCurrentId={setCurrentId}/> : null }
+                { showGroupToDoList ? <GroupToDoLists setCurrentId={setCurrentId}/> : null }
                 {/* <TextField fullWidth id="groupToDoListInput" variant="outlined" size = 'small' /> */}
                 <Paper style = {{backgroundColor: 'white', display: "flex",flexDirection: 'row', height:50, padding:5}}>
-                <TextField style={{padding:5}} name = 'groupToDoListInput'  dvariant = "outlined" fullWidth value={groupToDoData.name} size = 'small' onChange ={(e)=>setGroupToDoData({...groupToDoData,name: e.target.value})}/>
+                <TextField style={{padding:5}} name = 'groupToDoListInput'  dvariant = "outlined" fullWidth value={groupToDoData.name} size = 'small' onChange ={(e)=>setGroupToDoData({...groupToDoData,name: e.target.value,type:type,referenceID:referenceID})}/>
                     <Button type = "submit" style ={{backgroundColor:'#DCDCDC', margin:5}}>
                     <ControlPointIcon/>
                     </Button>

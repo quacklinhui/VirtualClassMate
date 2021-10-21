@@ -6,12 +6,12 @@ import {useState} from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import {useDispatch} from 'react-redux';
-import {deleteTodo} from '../../../actions/todo';
+import {deleteTodo} from '../../../actions/todo'
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 
 
-function ToDoItem({todo, setCurrentId}){
+function PersonalToDoItem({todo, setCurrentId}){
     const [checkBox, setCheckBox] = React.useState(false)
     const dispatch = useDispatch();
     return(
@@ -40,4 +40,4 @@ function ToDoItem({todo, setCurrentId}){
 }
 
 
-export default ToDoItem;
+export default PersonalToDoItem;

@@ -5,12 +5,14 @@ import { Link } from 'react-router-dom';
 // import Register from '../LoginComponents/Register';
 // import {Button, Typography, Paper, Box, Container} from '@material-ui/core'
 import './NewCustom.css';
+import axios from 'axios'
 import animal1hat1 from './Images/sampleAvatars/animal1hat1.png'
 import animal1hat2 from './Images/sampleAvatars/animal1hat2.png'
 import animal2hat1 from './Images/sampleAvatars/animal2hat1.png'
 import animal2hat2 from './Images/sampleAvatars/animal2hat2.png'
 import animal3hat1 from './Images/sampleAvatars/animal3hat1.png'
 import animal3hat2 from './Images/sampleAvatars/animal3hat2.png'
+// import User from "../../../../backend/models/user";
 
 
 
@@ -20,9 +22,10 @@ function NewCustom() {
   let location = useLocation();
   const id = location.state.id;
   const username = location.state.username;
-  const avatar = location.state.avatar;
+  // const avatar = location.state.avatar;
   const hat = location.state.hat;
   const name = location.state.name;
+  console.log(location)
   
   let avatars = [animal1hat1, animal1hat2, animal2hat1, animal2hat2, animal3hat1, animal3hat2]
   const [avatarNum, setavatarNum] = useState(0);
@@ -58,8 +61,23 @@ function NewCustom() {
   function backHome() {
     history.push({
       pathname: '/home',
-      state: {id: id, username: username , avatar: avatar, hat: hat, name: name}
+      state: {id: id, username: username , avatar: avatars[avatarNum].substr(14, 11), hat: hat, name: name}
   });
+  }
+
+  const [currentAva, setNewAva] = useState({
+    avatarID1: "",
+  });
+
+  const changeAva = (e) => {
+    e.preventDefault();
+    console.log(avatars[avatarNum])
+    const newAvatar = avatars[avatarNum].substr(14, 11)
+    console.log(newAvatar + "wassup")
+    axios.patch(`http://localhost:5000/user/avatar/${id}`,{
+      avatarID1: newAvatar,
+      avatarID2: "",
+    })
   }
 
   return (
@@ -83,7 +101,7 @@ function NewCustom() {
         </button>
         <img className = "avatardisplay" src={avatars[avatarNum]} alt="" /><br />
 
-        <button className="save">Save Avatar</button>
+        <button className="save" onClick={(e) => setNewAva({ ...currentAva, avatarID1: avatars[avatarNum] }), changeAva}>Save Avatar</button>
 
       </div>
       <body className="body">

@@ -25,7 +25,7 @@ class FriendRoom extends React.Component {
         await axios.get(`http://localhost:5000/room/${this.state.roomId}`).then((res) => {
             for (let i=0; i < res.data.requestList.length; i++) {
                 if (this.state.userId == res.data.requestList[i]) {
-                    this.setState({hasAdded: '#aaaaaa', hasAddedText: 'Requested!', hasAddedMargin: '45%'})
+                    this.setState({hasAdded: '#aaaaaa', hasAddedText: 'Requested!', hasAddedMargin: '47%'})
                 }
             }
         })

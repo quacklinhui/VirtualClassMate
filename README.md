@@ -1,6 +1,6 @@
 # VirtualClassMate
 
-This is our project for CZ3002 Advanced Software Engineering. It is an online platform that connects students together and facilitates collaboration between students. It uses React.js as the frontend and Node.js/Express.js as the backend server, with MongoDB as the database.
+This is our project for CZ3002 Advanced Software Engineering module. It is an online platform that connects students together and facilitates collaboration between students. It uses React.js as the frontend and Node.js/Express.js as the backend server, with MongoDB as the database.
 
 ### To run this project,
 
