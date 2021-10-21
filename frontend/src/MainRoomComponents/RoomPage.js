@@ -26,6 +26,7 @@ import GroupForm from "./todolists/group/groupToDoForm";
 function RoomPage(props) {
   const { windowHeight, windowWidth } = useWindowDimensions();
   const [currentId, setCurrentId] = useState(null); 
+  const [currentGroupId, setCurrentGroupId] = useState(null); 
   let history = useHistory();
   const [createPopUp, setCreatePopUp] = useState(false); //set the default state to false
 
@@ -42,7 +43,7 @@ function RoomPage(props) {
   const current_user_name = location.state.name;
   const roomId = location.state.roomId;
 
-  
+  //get the room name and room desc
 
   // todo: need to add the avatar bar - to show members of the group
   return (
@@ -57,7 +58,7 @@ function RoomPage(props) {
       <Container style={{alignItems:"center", alignContent:"center",textAlign: "center"}}>
         <div style ={{display: "flex",flexDirection: 'row',height: 30,paddingTop: 20, paddingBottom:20,justifyContent:"center"}}>
           <div>
-            <Typography> You are in: "Insert RoomName"</Typography>
+            <Typography> You are in: {roomId}</Typography>
             <Typography> "Insert Description"</Typography>
           </div>
 
@@ -68,11 +69,12 @@ function RoomPage(props) {
         </div>
         <div style ={{padding:20,display: "flex",flexDirection: 'row',height: 30,paddingTop: 5, width: "100%"}}>
           <PersonalForm currentId={currentId} setCurrentId={setCurrentId} type="user" referenceID={current_user_id}/>
-          <GroupForm currentId={currentId} setCurrentId={setCurrentId} type="room" referenceID={roomId}/>
+          <GroupForm currentGroupId={currentGroupId} setCurrentGroupId={setCurrentGroupId} type="room" referenceID={roomId}/>
               
           <IconButton style={{width:"3vw", height: "3vw", borderRadius: 100, backgroundColor: "#D8ABEC60", position: "absolute", right: "2vw", bottom: "2vw", textAlign:"center"}} onClick={()=>{showChatBox?setShowChatBox(false):setShowChatBox(true)}}>
                 <ChatBubbleOutlineIcon/>
           </IconButton>
+
           {showChatBox?<ChatBox id={current_user_id} roomId={roomId}/>:null}
           
         </div>
