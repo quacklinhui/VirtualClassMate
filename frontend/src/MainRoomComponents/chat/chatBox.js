@@ -103,46 +103,38 @@ const ChatBox = (props) => {
     };
 
     return(
-        <Paper style={{position:"absolute", right:"2vw",bottom:"0",width:"19vw",  bottomPadding:20}} >
-                    <Paper style={{backgroundColor: '#140650', color: "white", zIndex: '500', position: 'relative'}}>
-                        CHAT
-                    <IconButton disableRipple disableFocusRipple onClick={()=>{minimiseChatBox?setMinimiseChatBox(false): setMinimiseChatBox(true)}} style={{backgroundColor:"transparent", position: "relative"}}>
-                        { minimiseChatBox ? <ArrowDropDownIcon  style={{ color:"white"}}/> : <ArrowDropUpIcon disableRipple disableFocusRipple style={{ color:"white"}}/>  }
-                    </IconButton>
-                    </Paper>
+        <Paper style={{position:"absolute", right:"2vw",width:"19vw", height: "20vw" ,bottomPadding:20}} >
+            <Paper style={{backgroundColor: '#140650', color: "white", position: 'relative', height: '2vw'}}>
+                <div style = {{marginLeft: '1vw', lineHeight: '2vw', verticalAlign: 'middle'}}>CHAT</div>
+            </Paper>
 
-                { minimiseChatBox ? 
-                             <Paper>
-                                <Paper style = {{backgroundColor: 'white', display: "flex",flexDirection: 'column', height:400, padding:5, overflowY:"scroll", zIndex: '500', position: 'relative'}}>
-                                
-                                    {/* <Paper style={{backgroundColor:'grey',padding: 12, borderRadius:30, alignSelf: 'flex-end'}}>
-                                        to input the chat here
-                                    </Paper> */}
+            <Paper>
+                <Paper style = {{backgroundColor: 'white', display: "flex",flexDirection: 'column', height:"18vw", padding:5, overflowY:"scroll", zIndex: '500', position: 'relative'}}>
 
-                                    {messages.map((m) => (
-                                        <div ref={scrollRef}>
-                                            <ChatMessage message={m} own={m.user === props.id}/>
-                                        </div>
-                                    ))}
+                    {messages.map((m) => (
+                        <div ref={scrollRef}>
+                            <ChatMessage message={m} own={m.user === props.id}/>
+                        </div>
+                    ))}
                                     
-                                </Paper>
-                                <Paper style = {{backgroundColor: 'white', display: "flex",flexDirection: 'row', height:50, padding:5}}>
-                                    <TextField
-                                        fullWidth id="chatInput" 
-                                        variant="outlined" 
-                                        size = 'small' 
-                                        placeholder="Write message" 
-                                        onChange={(e) => setNewChatMessage(e.target.value)} 
-                                        value={newChatMessage} />
-                                    <Button 
-                                        type = "submit" 
-                                        onClick={handleSubmit}
-                                        style ={{backgroundColor:'#DCDCDC', margin:5}}>
-                                        <SendIcon/>
-                                    </Button>
-                                </Paper>
-                            </Paper>
-                : null }
+                </Paper>
+                <Paper style = {{backgroundColor: 'white', display: "flex",flexDirection: 'row', height: "3vw", padding:5}}>
+                    <TextField
+                        fullWidth id="chatInput" 
+                        variant="outlined" 
+                        size = 'small' 
+                        placeholder="Write message" 
+                        onChange={(e) => setNewChatMessage(e.target.value)} 
+                        value={newChatMessage} 
+                        style = {{margin: 5}} />
+                    <Button 
+                        type = "submit" 
+                        onClick={handleSubmit}
+                        style ={{backgroundColor:'#DCDCDC', margin:5}}>
+                        <SendIcon/>
+                    </Button>
+                </Paper>
+            </Paper>
 
           </Paper>
     );

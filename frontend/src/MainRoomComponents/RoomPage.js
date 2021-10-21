@@ -13,10 +13,7 @@ import GroupProfile from './GroupProfile/GroupProfile';
 
 import "react-datepicker/dist/react-datepicker.css";
 import useWindowDimensions from "../useWindowDimensions";
-import ControlPointIcon from '@material-ui/icons/ControlPoint';
 import PersonalForm from "./todolists/personal/personalToDoForm"
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import GroupForm from "./todolists/group/groupToDoForm";
 import axios from 'axios';
 
@@ -47,9 +44,9 @@ function RoomPage(props) {
       setRoomInfo(roomInfo => ({...roomInfo, ...res.data}))
     })
   }, [roomInfo])
-  // todo: need to add the avatar bar - to show members of the group
+
   return (
-    <div>
+    <>
       <div>
         <NavBar id={current_user_id} username={current_username} avatar={body} name = {current_user_name}/>
       </div>
@@ -57,8 +54,8 @@ function RoomPage(props) {
         <GroupProfile id={current_user_id} username={current_username} avatar={body} name = {current_user_name} roomId = {roomId}/>
       </div>
         
-      <Container style={{alignItems:"center", alignContent:"center",textAlign: "center"}}>
-        <div style ={{display: "flex",flexDirection: 'row',height: 30,paddingTop: 20, paddingBottom:20,justifyContent:"center"}}>
+      <Container style = {{maxWidth: '100%'}}>
+        <div style ={{display: "flex", flexDirection: 'row', height: 30, paddingTop: 20, paddingBottom:20, justifyContent:"center", textAlign: 'center'}}>
           <div>
             <Typography> You are in: {roomInfo.name}</Typography>
             <Typography>{roomInfo.description}</Typography>
@@ -69,21 +66,15 @@ function RoomPage(props) {
               pathname: "/home",
               state: { id: current_user_id, username: current_username, avatar: body, name: current_user_name}})}}>Back to HomePage</Button>
         </div>
-        <div style ={{padding:20,display: "flex",flexDirection: 'row',height: 30,paddingTop: 5, width: "100%"}}>
+        <div style ={{display: "flex", flexDirection: 'row', height:30, paddingTop: 10, width: "80%", alignSelf: 'flex-start'}}>
           <PersonalForm currentId={currentId} setCurrentId={setCurrentId} type="user" referenceID={current_user_id}/>
-          <GroupForm currentGroupId={currentGroupId} setCurrentGroupId={setCurrentGroupId} type="room" referenceID={roomId}/>
-              
-          <IconButton style={{width:"3vw", height: "3vw", borderRadius: 100, backgroundColor: "#D8ABEC60", position: "absolute", right: "2vw", bottom: "2vw", textAlign:"center"}} onClick={()=>{showChatBox?setShowChatBox(false):setShowChatBox(true)}}>
-                <ChatBubbleOutlineIcon/>
-          </IconButton>
-
-          {showChatBox?<ChatBox id={current_user_id} roomId={roomId}/>:null}
-          
+          <GroupForm currentId={currentId} setCurrentId={setCurrentId} type="room" referenceID={roomId}/>
+          <ChatBox id={current_user_id} roomId={roomId}/>  
         </div>
 
-        </Container>
-      </div>
-      );
+      </Container>
+    </>
+    );
   }
   
   export default RoomPage;
