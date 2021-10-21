@@ -22,6 +22,7 @@ import axios from 'axios';
 function RoomPage(props) {
   const { windowHeight, windowWidth } = useWindowDimensions();
   const [currentId, setCurrentId] = useState(null); 
+  const [currentGroupId, setCurrentGroupId] = useState(null); 
   let history = useHistory();
   const [createPopUp, setCreatePopUp] = useState(false); //set the default state to false
 
@@ -43,7 +44,7 @@ function RoomPage(props) {
       setRoomInfo(roomInfo => ({...roomInfo, ...res.data}))
     })
   }, [roomInfo])
-  
+
   return (
     <>
       <div>
@@ -68,8 +69,7 @@ function RoomPage(props) {
         <div style ={{display: "flex", flexDirection: 'row', height:30, paddingTop: 10, width: "80%", alignSelf: 'flex-start'}}>
           <PersonalForm currentId={currentId} setCurrentId={setCurrentId} type="user" referenceID={current_user_id}/>
           <GroupForm currentId={currentId} setCurrentId={setCurrentId} type="room" referenceID={roomId}/>
-          <ChatBox id={current_user_id} roomId={roomId}/>
-          
+          <ChatBox id={current_user_id} roomId={roomId}/>  
         </div>
 
       </Container>
