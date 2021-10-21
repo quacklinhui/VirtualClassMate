@@ -49,8 +49,8 @@ function Members(props) {
 
     return (
         <div className = "members_container">
-            {loading? (!memberList.length ? <Member hasMember = 'false'/> : memberList.map((member) => <Member hasMember = 'true' key = {member._id} memberAvatar = {member.avatarID1} memberHat = {member.avatarID2} memberName = {member.name}/>)) : 
-                <CircularProgress style = {{'color': 'lavender', 'marginLeft': '45%', 'marginTop': '5%'}}/>            
+            {loading? (!memberList.length ? <Member hasMember = 'false'/> : memberList.map((member) => <Member hasMember = 'true' key = {member._id} memberAvatar = {member.avatarID1} memberName = {member.name}/>)) : 
+                <CircularProgress style = {{'color': 'lavender', 'marginTop': '6%'}}/>            
             }
         </div>
     )

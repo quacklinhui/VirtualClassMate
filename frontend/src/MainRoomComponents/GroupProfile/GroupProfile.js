@@ -5,7 +5,7 @@
     import InviteFriendsPopUp from '../InviteFriends/InviteFriendsPopUp';
     import RoomJoinRequestPopUp from '../RoomJoinRequest/RoomJoinRequestPopUp';
 
-function GroupProfile({id, username, avatar, hat, name, roomId}){
+function GroupProfile({id, username, avatar, name, roomId}){
 
     const [CreateInviteFriendPopUp, setInviteFriendPopUp] = useState(false); 
     const [CreateAddFriendPopUp, setAddFriendPopUp] = useState(false); 
@@ -21,8 +21,7 @@ function GroupProfile({id, username, avatar, hat, name, roomId}){
     }
 
     // importing avatar image
-    const avatar_full = avatar+hat;
-    let avatar_image = require("../../HomeComponents/AvatarBar/Images/sampleAvatars/" + avatar_full + ".png")
+    let avatar_image = require("../../HomeComponents/AvatarBar/Images/sampleAvatars/" + avatar + ".png")
 
     return (
         <div className = "friendbar">
