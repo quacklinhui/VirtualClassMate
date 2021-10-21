@@ -15,12 +15,16 @@ class Friend extends React.Component {
     render() {
         if (this.state.friendExists === 'true') {
             return (
-                <Button variant="contained" style = {{backgroundColor: 'rgb(159, 136, 180)', color: 'white', marginBottom: '10px', height: '45px', fontSize: '15px', width: '100%'}} className="friend">{this.state.friendName}</Button>
+                <>
+                    <Button variant="contained" style = {{backgroundColor: 'rgb(159, 136, 180)', color: 'white', marginBottom: '10px', height: '45px', fontSize: '15px', width: '100%'}} className="friend">{this.state.friendName}</Button>
+                </>    
             )
         }
         else {
             return (
-                <h4 style = {{textAlign: 'center', color: 'lavenderblush'}}>You have no friends</h4>
+                <>
+                    <h4 style = {{textAlign: 'center', color: 'lavenderblush'}}>You have no friends</h4>
+                </>
             )
         }
     }

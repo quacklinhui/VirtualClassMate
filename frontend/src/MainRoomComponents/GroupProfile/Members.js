@@ -26,7 +26,7 @@ function Members(props) {
     function checkLoaded() {
         if (memberList.length != 0) {
             setLoading(true)
-        } else if (member_List.length == 0) {
+        } else if (member_List.length == 0 && memberList.length == 0) {
             setLoading(true)
         }
     }
@@ -41,9 +41,10 @@ function Members(props) {
             }
             if (member_List.length > 0) {
                 setMemberList(memberList => member_List)
+                console.log(memberList)
             }
         }
-        setTimeout(checkLoaded, 20000)
+        setTimeout(checkLoaded, 5000)
     }, [memberIdList, memberList])
 
     return (
