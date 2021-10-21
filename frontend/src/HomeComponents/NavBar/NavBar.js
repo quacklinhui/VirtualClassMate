@@ -9,14 +9,14 @@ import HomePage from '../HomePage';
 
 
 
-function NavBar({id, username, avatar, hat, name}) {
+function NavBar({id, username, avatar, name}) {
     let history = useHistory();
 
     return (
             <nav className="navbar" >
             <Button disableRipple disableFocusRipple style={{padding:0}}  onClick={() => {history.push({
               pathname: "/home",
-              state: { id: id, username: username, avatar: avatar, hat: hat, name: name}})}}>
+              state: { id: id, username: username, avatar: avatar, name: name}})}}>
                 <img className="navbar-logo" src={logo} alt = ''></img>
             </Button>
             

@@ -5,20 +5,17 @@ import HomePage from '..//HomePage';
 import {Button} from '@material-ui/core';
 
 // cannot display user avatar
-function AvatarBar({id, username, avatar, hat, name}) {
+function AvatarBar({id, username, avatar, name}) {
     
     let history = useHistory();
     function customizeAvatar() {
         history.push({
             pathname: '/newcust',
-            state: {id: id, username: username , avatar: avatar, hat: hat, name: name}
+            state: {id: id, username: username , avatar: avatar, name: name}
         });
     };
 
-    const avatar_full = avatar;
-    console.log(avatar_full)
-    let avatar_image = require("./Images/sampleAvatars/" + avatar_full + ".png")
-
+    let avatar_image = require("./Images/sampleAvatars/" + avatar + ".png")
     
     return (
         <div className = "avatarbar">

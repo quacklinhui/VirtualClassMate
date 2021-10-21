@@ -12,14 +12,14 @@ class FriendRequest extends React.Component {
             userId: props.userId,
             requestId: props.requestId,
             requestName: props.requestName,
-            haveAcceptedMargin: '60%',
+            haveAcceptedMargin: '2%',
             haveAccepted: '#c8f902',
             haveAcceptedText: 'Accept',
         }
     }
 
     async acceptFriendRequest() {
-        this.setState({haveAccepted: '#aaaaaa', haveAcceptedText: 'Accepted!', haveAcceptedMargin: '58%'})
+        this.setState({haveAccepted: '#aaaaaa', haveAcceptedText: 'Accepted!', haveAcceptedMargin: '2%'})
         await axios.patch(`http://localhost:5000/user/addFriend/${this.state.userId}`, {
             newFriendId: this.state.requestId
         })
@@ -30,7 +30,7 @@ class FriendRequest extends React.Component {
             return (
                 <div className = 'friendRequestDiv'> 
                     <div style = {{marginLeft: '4%', marginTop: 0, fontWeight: 'bold', fontSize: '20px'}}>{this.state.requestName}</div>
-                    <Button className = 'friendRequestText' style = {{marginLeft: this.state.haveAcceptedMargin, fontSize: '11px', fontWeight: 'bold', backgroundColor: this.state.haveAccepted}} onClick = {() => {this.acceptFriendRequest();}}>{this.state.haveAcceptedText}</Button>
+                    <Button className = 'friendRequestText' style = {{marginRight: this.state.haveAcceptedMargin, fontSize: '11px', fontWeight: 'bold', backgroundColor: this.state.haveAccepted}} onClick = {() => {this.acceptFriendRequest();}}>{this.state.haveAcceptedText}</Button>
                 </div>
             )
         }

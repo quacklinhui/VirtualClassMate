@@ -51,7 +51,7 @@ function CreateRoomPopUp(props) {
                 <TextField className = {classes.root} id="roomName" label="Enter Room Name" variant="outlined" style={{ width: '100%', height:80, color: 'white'}} value = {room.name} onChange={(e) => setRoom(room => ({...room, name: e.target.value, admin: props.userId}))}/>
                 <TextField className = {classes.root} id="roomDesc" label="Enter Room Description" variant="outlined" style={{ width: '100%', height:80}} value = {room.description} onChange = {(e) => setRoom(room => ({...room, description: e.target.value}))}/>
                 </div>
-                {!submit ? <Button style={{backgroundColor:'#482FAF', padding: 10, color: 'white'}} onClick={() => {setSubmit(true);}}>Create Room</Button> : <CircularProgress style = {{'color': 'lavender', 'marginLeft': '45%', 'marginTop': '3%'}}/>}
+                {!submit ? <Button style={{backgroundColor:'#482FAF', padding: 10, color: 'white'}} onClick={() => {setSubmit(true);}}>Create Room</Button> : <CircularProgress style = {{'color': 'lavender', 'marginTop': '3%'}}/>}
             </div>
         </div>
     );

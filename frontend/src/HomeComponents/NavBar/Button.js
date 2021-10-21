@@ -26,7 +26,7 @@ function Buttons(props){
                 <Button variant="contained" style = {{backgroundColor: '#555555', color: '#fff', marginRight: '20px'}}
                     onClick={() => {history.push({
                     pathname: "/login",
-                    state: { id: "", username: "", avatar: "", hat: "", name: ""}})}}>
+                    state: { id: "", username: "", avatar: "", name: ""}})}}>
                     Logout
                 </Button>
                 <Button variant="contained" style = {{backgroundColor: '#ff3632', color: '#fff'}} className = "navbar-button-red" onClick={toggleCreateRoomPopUp}>Create Room</Button>

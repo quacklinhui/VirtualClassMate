@@ -37,7 +37,6 @@ function RoomPage(props) {
   const current_user_id = location.state.user_id;
   const current_username = location.state.user_name;
   const body = location.state.user_avatar;
-  const hat = location.state.user_hat;
   const current_user_name = location.state.name;
   const roomId = location.state.roomId;
 
@@ -52,10 +51,10 @@ function RoomPage(props) {
   return (
     <div>
       <div>
-        <NavBar id={current_user_id} username={current_username} avatar={body} hat={hat} name = {current_user_name}/>
+        <NavBar id={current_user_id} username={current_username} avatar={body} name = {current_user_name}/>
       </div>
       <div>
-        <GroupProfile id={current_user_id} username={current_username} avatar={body} hat={hat} name = {current_user_name} roomId = {roomId}/>
+        <GroupProfile id={current_user_id} username={current_username} avatar={body} name = {current_user_name} roomId = {roomId}/>
       </div>
         
       <Container style={{alignItems:"center", alignContent:"center",textAlign: "center"}}>
@@ -68,7 +67,7 @@ function RoomPage(props) {
           <Button style={{position:"absolute", right: 20,alignSelf: "flex-end", backgroundColor: "orange"}} 
             onClick={() => { history.push({
               pathname: "/home",
-              state: { id: current_user_id, username: current_username, avatar: body, hat: hat, name: current_user_name}})}}>Back to HomePage</Button>
+              state: { id: current_user_id, username: current_username, avatar: body, name: current_user_name}})}}>Back to HomePage</Button>
         </div>
         <div style ={{padding:20,display: "flex",flexDirection: 'row',height: 30,paddingTop: 5, width: "100%"}}>
           <PersonalForm currentId={currentId} setCurrentId={setCurrentId} type="user" referenceID={current_user_id}/>

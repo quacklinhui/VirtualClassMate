@@ -21,7 +21,6 @@ function HomePage() {
   const current_user_id = location.state.id;
   const current_username = location.state.username;
   const body = location.state.avatar;
-  const hat = location.state.hat;
   const current_user_name = location.state.name;
 
   const [createFriendRequestPopUp, setFriendRequestPopUp] = useState(false);
@@ -34,11 +33,10 @@ function HomePage() {
   return (
       <div>
         <main>
-          <NavBar id={current_user_id} username={current_username} avatar={body} hat={hat} name = {current_user_name}/>
-          <AvatarBar id={current_user_id} username={current_username} avatar={body} hat={hat} name = {current_user_name}/>
+          <NavBar id={current_user_id} username={current_username} avatar={body} name = {current_user_name}/>
+          <AvatarBar id={current_user_id} username={current_username} avatar={body} name = {current_user_name}/>
           <div style = {{display: 'flex', alignItems: 'flex-start', marginLeft: '20px', marginTop: '50px', marginRight: '20px'}}>
-
-            <RoomList id={current_user_id} username={current_username} avatar={body} hat={hat} name = {current_user_name}/>
+            <RoomList id={current_user_id} username={current_username} avatar={body} name = {current_user_name}/>
             <FriendList id={current_user_id}/>
             <div>
               <AddFriend currentId={current_user_id}/>
