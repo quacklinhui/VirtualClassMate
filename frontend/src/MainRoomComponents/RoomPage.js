@@ -11,15 +11,14 @@ import ChatButton from './chat/chat';
 import ChatBox from "./chat/chatBox";
 import GroupProfile from './GroupProfile/GroupProfile';
 
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-//import { AiFillCaretDown, AiOutlinePlus,AiFillCaretUp } from 'react-icons/ai';
 import useWindowDimensions from "../useWindowDimensions";
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
 import PersonalForm from "./todolists/personal/personalToDoForm"
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import GroupForm from "./todolists/group/groupToDoForm";
+import axios from 'axios';
 
 //import { faCoffee } from '@fortawesome/fontawesome-free-solid';
 
@@ -39,33 +38,36 @@ function RoomPage(props) {
   const current_user_id = location.state.user_id;
   const current_username = location.state.user_name;
   const body = location.state.user_avatar;
-  const hat = location.state.user_hat;
   const current_user_name = location.state.name;
   const roomId = location.state.roomId;
 
-  //get the room name and room desc
-
+  const [roomInfo, setRoomInfo] = useState([])
+  useEffect(async () => {
+    await axios.get(`http://localhost:5000/room/${roomId}`).then((res) => {
+      setRoomInfo(roomInfo => ({...roomInfo, ...res.data}))
+    })
+  }, [roomInfo])
   // todo: need to add the avatar bar - to show members of the group
   return (
     <div>
       <div>
-        <NavBar id={current_user_id} username={current_username} avatar={body} hat={hat} name = {current_user_name}/>
+        <NavBar id={current_user_id} username={current_username} avatar={body} name = {current_user_name}/>
       </div>
       <div>
-        <GroupProfile id={current_user_id} username={current_username} avatar={body} hat={hat} name = {current_user_name} roomId = {roomId}/>
+        <GroupProfile id={current_user_id} username={current_username} avatar={body} name = {current_user_name} roomId = {roomId}/>
       </div>
         
       <Container style={{alignItems:"center", alignContent:"center",textAlign: "center"}}>
         <div style ={{display: "flex",flexDirection: 'row',height: 30,paddingTop: 20, paddingBottom:20,justifyContent:"center"}}>
           <div>
-            <Typography> You are in: {roomId}</Typography>
-            <Typography> "Insert Description"</Typography>
+            <Typography> You are in: {roomInfo.name}</Typography>
+            <Typography>{roomInfo.description}</Typography>
           </div>
 
           <Button style={{position:"absolute", right: 20,alignSelf: "flex-end", backgroundColor: "orange"}} 
             onClick={() => { history.push({
               pathname: "/home",
-              state: { id: current_user_id, username: current_username, avatar: body, hat: hat, name: current_user_name}})}}>Back to HomePage</Button>
+              state: { id: current_user_id, username: current_username, avatar: body, name: current_user_name}})}}>Back to HomePage</Button>
         </div>
         <div style ={{padding:20,display: "flex",flexDirection: 'row',height: 30,paddingTop: 5, width: "100%"}}>
           <PersonalForm currentId={currentId} setCurrentId={setCurrentId} type="user" referenceID={current_user_id}/>

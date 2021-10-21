@@ -24,7 +24,7 @@ class RoomButtons extends React.Component {
             return (
                 <Link style={{textDecoration: 'none', width: '100%'}} to = {{
                     pathname: '/room',
-                    state: {user_id: this.state.id, user_name: this.state.username, user_avatar: this.state.avatar, user_hat: this.state.hat, name: this.state.name, roomId: this.state.roomId}
+                    state: {user_id: this.state.id, user_name: this.state.username, user_avatar: this.state.avatar, name: this.state.name, roomId: this.state.roomId}
                 }}> 
                     <Button variant="contained" style = {{backgroundColor: 'rgb(159, 136, 180)', color: 'white', marginBottom: '10px', height: '45px', fontSize: '15px', width: '100%'}} className="roombutton">{this.state.room}</Button>  
                 </Link>
@@ -33,7 +33,7 @@ class RoomButtons extends React.Component {
         else {
             return (
                 <>
-                    <h4 style = {{textAlign: 'center', color: 'lavenderblush'}}>You have not joined any room!</h4>
+                    <div style = {{textAlign: 'center', color: 'lavenderblush', fontSize: '17px', fontWeight: 'bold', marginTop: '25%'}}>You have not joined any room!</div>
                 </>
             )
         }

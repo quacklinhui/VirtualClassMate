@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
-import {Button, IconButton} from '@material-ui/core';
+import React from 'react';
+import {IconButton} from '@material-ui/core';
 import './InviteFriendsPopUp.css';
 import AddCircle from '@material-ui/icons/AddCircle';
 import axios from 'axios';
-
 
 class Friends extends React.Component {
     
@@ -25,7 +24,7 @@ class Friends extends React.Component {
     }
 
     render () {  
-        if (this.state.isFriend == 'true'){
+        if (this.state.isFriend === 'true'){
             return (
                 <div className = "frienddiv">
                     <h1 style = {{marginLeft: '30px'}}>{this.state.name}</h1>                    

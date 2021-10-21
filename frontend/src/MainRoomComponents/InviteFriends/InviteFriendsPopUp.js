@@ -14,7 +14,7 @@ function InviteFriendsPopUp(props) {
         await axios.get(`http://localhost:5000/room/check?rid=${props.roomId}&uid=${props.userId}`).then((res) => {
             friendIdList.push(res.data)
         })
-        setFriendList(friendIdList)
+        setFriendList(friendList => friendIdList)
     }, [friendList])
 
     const [friendNameList, setFriendNameList] = useState([]);
@@ -39,7 +39,7 @@ function InviteFriendsPopUp(props) {
                 })
             }       
         }
-        setFriendNameList(friend_NameList)
+        setFriendNameList(friendNameList => friend_NameList)
         setTimeout(checkLoaded, 5000)
     }, [friendNameList, friendList])
     

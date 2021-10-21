@@ -5,7 +5,7 @@ import RoomButtons from './RoomButton';
 import {CircularProgress} from '@material-ui/core'
 
 
-function RoomList({id, username, avatar, hat, name}){
+function RoomList({id, username, avatar, name}){
   let history = useHistory(); 
   
   const [user, setUser] = useState({
@@ -40,7 +40,7 @@ function RoomList({id, username, avatar, hat, name}){
     } else if (rooms_list.length == 0) {
         setLoading(true)
     }
-}
+  } 
 
   useEffect( async () => {
 
@@ -50,9 +50,11 @@ function RoomList({id, username, avatar, hat, name}){
         rooms_list.push({_id, name, description, admin, members, toDoList, chat, requestList, __v})
       })
     }
-    setRoomList(rooms_list)
+    if (rooms_list.length > 0){
+      setRoomList(roomList => rooms_list)
+    }
     setTimeout(checkLoaded, 3000)
-  },[roomList])
+  },[roomList, user])
   
   return(
     <>
@@ -60,7 +62,7 @@ function RoomList({id, username, avatar, hat, name}){
         <div style = {{width: '300px', fontWeight: 'bold'}}>Your Rooms</div>
           <div style = {{backgroundColor: 'rgb(203, 184, 221)', borderRadius: '10px', width: '150%', height: '350px', position: 'relative'}}>
             <div className = "rooms">
-              {loading? (!roomList.length && setTimeout(1000)? <RoomButtons isRoom = 'false'/> : roomList.map((room) => <RoomButtons key={room._id} id = {id} username = {username} avatar = {avatar} hat = {hat} name = {name} room = {room.name} roomId = {room._id} isRoom = 'true'/>)) : 
+              {loading? (!roomList.length ? <RoomButtons isRoom = 'false'/> : roomList.map((room) => <RoomButtons key={room._id} id = {id} username = {username} avatar = {avatar} name = {name} room = {room.name} roomId = {room._id} isRoom = 'true'/>)) : 
                 <CircularProgress style = {{'color': 'lavender', 'marginLeft': '45%', 'marginTop': '5%'}}/>}
             </div>
         </div> 

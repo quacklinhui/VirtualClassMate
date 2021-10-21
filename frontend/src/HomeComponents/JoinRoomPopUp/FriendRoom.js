@@ -15,7 +15,7 @@ class FriendRoom extends React.Component {
             added: false,
             hasAdded: '#c8f902',
             hasAddedText: 'Request to Join Room',
-            hasAddedMargin: '31%',
+            hasAddedMargin: '0%',
             roomId: props.roomId,
             userId: props.userId
         }
@@ -42,9 +42,9 @@ class FriendRoom extends React.Component {
 
         if (this.state.haveRoom == 'true') {
             return (
-                <div style = {{ display: 'flex', flexDirection: 'row', width: '90%', alignContent: 'center', padding: '10px', marginBottom: '10px', borderStyle: 'solid', borderColor: 'black', marginLeft: '2.5%', borderWidth: '1px', borderRadius: '10px'}}>
+                <div style = {{ display: 'flex', flexDirection: 'row', width: '90%', justifyContent: 'space-between', padding: '10px', marginBottom: '10px', borderStyle: 'solid', borderColor: 'black', marginLeft: '2.5%', borderWidth: '1px', borderRadius: '10px'}}>
                     <div style = {{color: 'black', marginLeft: '1%', alignContent: 'center', marginTop: 0, fontWeight: 'bold', fontSize: '20px'}}>{this.state.roomName}</div>
-                    <Button className = 'room-text' style = {{marginLeft: this.state.hasAddedMargin, backgroundColor: this.state.hasAdded, fontSize: '11px', fontWeight: 'bold'}} onClick = {() => {this.requestToJoinRoom();}}>{this.state.hasAddedText}</Button>
+                    <Button className = 'room-text' style = {{alignSelf: 'flex-end', backgroundColor: this.state.hasAdded, fontSize: '11px', fontWeight: 'bold'}} onClick = {() => {this.requestToJoinRoom();}}>{this.state.hasAddedText}</Button>
                 </div>
             )
         }
