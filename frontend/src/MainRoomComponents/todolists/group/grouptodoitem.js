@@ -22,13 +22,8 @@ function GroupToDoItem({todo, setCurrentId}){
                 </IconButton>
             <div>
                 <Typography style={{color:"white", margin: 50}}> {todo.name}</Typography>
-                {/* <Typography style={{color:"white"}}> {todo.description}</Typography> */}
-                {/* <Typography style={{color:"white"}}>{todo.deadline}</Typography> */}
-                {/* <Typography style={{color:"white"}}>{todo.status}</Typography> */}
             </div>
-            {/* <IconButton disableRipple disableFocusRipple style={{backgroundColor: 'transparent', top: '50%', marginTop:-20, height:40, position:"absolute", right:30}}> */}
-                {/* <AiFillDelete/> */}
-                {/* </IconButton> */}
+
             <IconButton size= "small" style={{backgroundColor: 'transparent', top: '50%', marginTop:-20, height:40, position:"absolute", right:25}} onClick={()=>dispatch(deleteTodo(todo._id))} >
                 <DeleteIcon/>
             </IconButton>

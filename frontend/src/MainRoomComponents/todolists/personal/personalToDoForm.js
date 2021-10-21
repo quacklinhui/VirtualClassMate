@@ -45,7 +45,7 @@ const PersonalForm = ({currentId, setCurrentId, type, referenceID}) => {
                   Personal
                   { showPersonalToDoList ? <ArrowDropDownIcon style={{ color:"black", height:"80%", width:"10%", position: 'absolute', right:20}}/> : <ArrowDropDownIcon style={{ color:"white", height:"90%", width:"10%",position:"absolute", right:20}}/>  }
                 </Button>
-                { showPersonalToDoList ? <PersonalToDoLists setCurrentId={setCurrentId}/> : null }
+                <PersonalToDoLists setCurrentId={setCurrentId}/>
                 <Paper style = {{backgroundColor: 'white', display: "flex",flexDirection: 'row', height:50, padding:5}}>
                   <TextField style={{padding:5}} name = 'name'  dvariant = "outlined" fullWidth value={toDoData.name} size = 'small' onChange ={(e)=>setToDoData({...toDoData,name: e.target.value, type:type, referenceID: referenceID})} />
                   <Button type = "submit" style ={{backgroundColor:'#DCDCDC', margin:5}}>
