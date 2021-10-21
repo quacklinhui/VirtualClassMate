@@ -48,7 +48,6 @@ class FriendRooms extends React.Component {
                 this.state.friendRoomsNames = [...this.state.friendRoomsNames].map(item => JSON.parse(item));
             })
         }
-
         this.setState({loading: true});
     }
 

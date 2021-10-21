@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
 
-import toDoList from './toDos';
-
-export default combineReducers({toDoList})
+import PersonalToDoList from './personalToDos';
+import GroupToDoList from './groupToDos';
+export default combineReducers({PersonalToDoList,GroupToDoList})
