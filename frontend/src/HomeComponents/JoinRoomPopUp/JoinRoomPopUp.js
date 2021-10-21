@@ -15,7 +15,7 @@ function JoinRoomPopUp(props) {
         await axios.get(`http://localhost:5000/user/${props.userId}`).then((res) => {
             friendIdList.push(res.data.friends)
         })
-        setFriendList(friendIdList)
+        setFriendList(friendList => friendIdList)
     }, [friendList])
 
     const [friendNameList, setFriendNameList] = useState([])
@@ -40,9 +40,13 @@ function JoinRoomPopUp(props) {
                 })
             }       
         }
-        setFriendNameList(friend_NameList)
+        if (friend_NameList.length > 0){
+            setFriendNameList(friendNameList => friend_NameList)
+        }
         setTimeout(checkLoaded, 5000)
     }, [friendNameList, friendList])
+
+    
 
     return (
         <div className = "JoinRoomPopUp">

@@ -30,9 +30,6 @@ export const register = async (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
 
-  console.log(req.body)
-  console.log(username, name, email, req.body.password)
-
   const hashPassword = sha256.update(req.body.password).hex();
   // const avatarID1 = req.body.avatarID1;
   // const avatarID2 = req.body.avatarID2;
@@ -91,7 +88,6 @@ export const register = async (req, res) => {
 export const getUsers = async (req, res) => {
   try {
     const users = await User.find();
-    console.log(users);
     res.status(200).json(users);
   } catch (error) {
     res.status(404).json({ message: error.message });

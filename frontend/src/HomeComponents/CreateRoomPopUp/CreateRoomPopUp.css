@@ -14,11 +14,13 @@
     position: relative;
     padding: 32px;
     width: 100%;
-    max-width: 640px;
-    background-color: #FFF;
+    max-width: 500px;
+    background-color: rgb(187, 172, 241);
     justify-content: center;
     align-items: center;
     text-align: center;
+    border-radius: 10px;
+    color: white;
 }
 
 .createRoomPopUp-inner .closePopUp{
