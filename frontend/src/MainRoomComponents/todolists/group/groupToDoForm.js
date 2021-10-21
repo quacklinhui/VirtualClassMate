@@ -16,9 +16,7 @@ const GroupForm = ({currentGroupId, setCurrentGroupId, type, referenceID}) => {
     const todoitem = useSelector((state) => currentGroupId? state.GroupToDoList.find((p)=>p._id === currentGroupId) : null);
     const dispatch = useDispatch();
     
-    useEffect(()=>{
-        dispatch(getGroupTodo(referenceID));
-      },[referenceID,currentGroupId,dispatch])
+    
     useEffect(()=>{
         if(todoitem) setGroupToDoData(todoitem);
     },[todoitem])
@@ -36,9 +34,10 @@ const GroupForm = ({currentGroupId, setCurrentGroupId, type, referenceID}) => {
           dispatch(createGroupTodo(referenceID,groupToDoData));
         }
         clear();
-    
-
     }
+    useEffect(()=>{
+      dispatch(getGroupTodo(referenceID));
+    },[referenceID,currentGroupId,dispatch,clear])
     return(
         <Paper style={{width:"45%",marginLeft:"5%", backgroundColor: "#8A2BE290", height:50}}>
             <form autoComplete="off" noValidate  onSubmit={handleGroupSubmit}>

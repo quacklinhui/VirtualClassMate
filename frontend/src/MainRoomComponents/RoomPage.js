@@ -68,7 +68,7 @@ function RoomPage(props) {
         </div>
         <div style ={{display: "flex", flexDirection: 'row', height:30, paddingTop: 10, width: "80%", alignSelf: 'flex-start'}}>
           <PersonalForm currentId={currentId} setCurrentId={setCurrentId} type="user" referenceID={current_user_id}/>
-          <GroupForm currentId={currentId} setCurrentId={setCurrentId} type="room" referenceID={roomId}/>
+          <GroupForm currentGroupId={currentGroupId} setCurrentGroupId={setCurrentGroupId} type="room" referenceID={roomId}/>
           <ChatBox id={current_user_id} roomId={roomId}/>  
         </div>
 
