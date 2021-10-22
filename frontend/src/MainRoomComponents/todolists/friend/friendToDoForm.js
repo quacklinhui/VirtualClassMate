@@ -12,36 +12,28 @@ import { getPersonalTodo } from '../../../actions/todo';
 const FriendForm = ({currentId, setCurrentId, type, referenceID}) => {
 
     const [toDoData, setToDoData]=useState({name:'',type:'', referenceID:''});
-    const [showPersonalToDoList, setShowPersonalToDoList] = React.useState(false)
     const todoitem = useSelector((state) => currentId? state.PersonalToDoList.find((p)=>p._id === currentId) : null);
     const dispatch = useDispatch();
+    
     useEffect(()=>{
       dispatch(getPersonalTodo(referenceID));
     },[referenceID,currentId,dispatch])
+    
     useEffect(()=>{
         if(todoitem) setToDoData(todoitem);
     },[todoitem])
     const clear = () => {
         setCurrentId(null);
         setToDoData({name:''});
-      }
-    const handleSubmit=(e)=>{
-        e.preventDefault();
-
-        if(currentId){
-          dispatch(updateTodo(currentId, toDoData))
-        }
-        else{
-          dispatch(createPersonalTodo(referenceID,toDoData));
-        }
-        clear();
-    
-
     }
     return(
-        <Paper style={{width:"20vw", backgroundColor: 'grey', height:50, bottomPadding:20}} >
-                <FriendToDoLists setCurrentId={setCurrentId}/>
-          </Paper>
+        <Paper style={{width:"20vw", backgroundColor: '#DCDCDC', height:50, bottomPadding:20}} >
+            
+            <Typography style={{textAlign:"center"}}>
+            What your friend is up to:
+            </Typography>
+            <FriendToDoLists setCurrentId={setCurrentId}/>
+        </Paper>
     );
 }
 
