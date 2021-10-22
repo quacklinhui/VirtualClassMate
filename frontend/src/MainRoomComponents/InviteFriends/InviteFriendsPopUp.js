@@ -14,8 +14,10 @@ function InviteFriendsPopUp(props) {
         await axios.get(`http://localhost:5000/room/check?rid=${props.roomId}&uid=${props.userId}`).then((res) => {
             friendIdList.push(res.data)
         })
-        setFriendList(friendList => friendIdList)
-    }, [friendList])
+        if (friendIdList.length > 0) {
+            setFriendList(friendList => friendIdList)
+        }
+    }, [])
 
     const [friendNameList, setFriendNameList] = useState([]);
     var friend_NameList = []
@@ -23,9 +25,9 @@ function InviteFriendsPopUp(props) {
     
     function checkLoaded() {
         if (friendNameList.length != 0) {
-            setLoading(true)
+            setLoading(loading => true)
         } else if (friend_NameList.length == 0) {
-            setLoading(true)
+            setLoading(loading => true)
         }
     }
 
@@ -37,11 +39,13 @@ function InviteFriendsPopUp(props) {
                     const {_id, name, username, password, email, toDoList, rooms, avatarID1, avatarID2, friends, __v} = res.data;
                     friend_NameList.push({_id, name, username, password, email, toDoList, rooms, avatarID1, avatarID2, friends, __v})
                 })
+            }
+            if (friend_NameList.length > 0) {
+                setFriendNameList(friendNameList => friend_NameList)
             }       
         }
-        setFriendNameList(friendNameList => friend_NameList)
         setTimeout(checkLoaded, 5000)
-    }, [friendNameList, friendList])
+    }, [])
     
     return (
         <div className = "InviteFriendPopUp">

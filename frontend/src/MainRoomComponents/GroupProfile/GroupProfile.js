@@ -33,7 +33,7 @@ function GroupProfile({id, username, avatar, name, roomId}){
                 <div>@{username}</div>
             </div>
             <div>
-                <Members roomId = {roomId}/>
+                <Members roomId = {roomId} userId={id}/>
             </div>
             <div style = {{marginLeft: '2.5%', display: 'flex', flexDirection: 'column'}}>
                 <Button variant="contained" className = "invite-button" onClick={toggleInviteFriendPopUp} style={{backgroundColor: 'paleturquoise', marginBottom: '20px'}}>Invite Friends</Button>

@@ -37,7 +37,7 @@ function RoomList({id, username, avatar, name}){
   function checkLoaded() {
     if (roomList.length != 0) {
         setLoading(true)
-    } else if (rooms_list.length == 0) {
+    } else if (rooms_list.length == 0 && roomList.length == 0) {
         setLoading(true)
     }
   } 
@@ -53,8 +53,9 @@ function RoomList({id, username, avatar, name}){
     if (rooms_list.length > 0){
       setRoomList(roomList => rooms_list)
     }
-    setTimeout(checkLoaded, 3000)
-  },[roomList, user])
+    console.log(roomList)
+    setTimeout(checkLoaded, 5000)
+  },[user])
   
   return(
     <>

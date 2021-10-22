@@ -18,12 +18,12 @@ function FriendList(props){
 
     const [friendList, setFriendList] = useState([])
     const [loading, setLoading] = useState(false);
-
     const friends_list = []
+
     function checkLoaded(){
         if (friendList.length != 0) {
             setLoading(true)
-        } else if (friends_list == 0) {
+        } else if (friends_list == 0 && friendList.length == 0) {
             setLoading(true)
         }
     }
@@ -38,7 +38,7 @@ function FriendList(props){
         if (friends_list.length > 0) {
             setFriendList(friendList => friends_list)
         }
-        setTimeout(checkLoaded, 3000)
+        setTimeout(checkLoaded, 2000)
     }, [userFriends, friendList])
 
     return(
@@ -47,7 +47,7 @@ function FriendList(props){
                 <div style = {{width: '300px', fontWeight: 'bold'}}>Your Friends</div>
                 <div style = {{backgroundColor: 'rgb(203, 184, 221)', borderRadius: '10px', width: '150%', height: '350px', position: 'relative'}}>
                     <div className = "friends">
-                        {loading ? (!friendList.length ? <Friend friendExists = 'false'/> : friendList.map((friend) => <Friend friendExists = 'true' friendId = {friend._id} friendName = {friend.name}/>)):
+                        {loading ? (!friendList.length ? <Friend friendExists = 'false'/> : friendList.map((friend) => <Friend friendExists = 'true' key = {friend._id} friendId = {friend._id} friendName = {friend.name}/>)):
                             <CircularProgress style = {{'color': 'lavender', 'marginLeft': '45%', 'marginTop': '5%'}}/>
                         }
                     </div> 
