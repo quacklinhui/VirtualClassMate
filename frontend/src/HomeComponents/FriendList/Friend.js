@@ -4,7 +4,7 @@ import './FriendList.css';
 import PersonalForm from '../../MainRoomComponents/todolists/personal/personalToDoForm';
 import {useState} from 'react';
 import {BrowserRouter as Router,  useHistory, useLocation} from "react-router-dom";
-
+import FriendForm from '../../MainRoomComponents/todolists/friend/friendToDoForm';
 const HoverableDiv = React.memo(({ handleMouseOver, handleMouseOut, friendName }) => {
     return (
       <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} >
@@ -17,7 +17,7 @@ const HoverText = React.memo(({ friendId }) => { //change this to display the po
     const [currentId, setCurrentId] = useState(null); 
     return (
       <div style={{position:"fixed", right: "15vw", zIndex: 300, backgroundColour: "white"}}>
-        <PersonalForm currentId={currentId} setCurrentId={setCurrentId} type="user" referenceID={friendId}/>
+        <FriendForm currentId={currentId} setCurrentId={setCurrentId} type="user" referenceID={friendId}/>
       </div>
     );
   });
