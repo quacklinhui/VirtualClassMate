@@ -44,6 +44,8 @@ function JoinRoomPopUp(props) {
             setFriendNameList(friendNameList => friend_NameList)
         }
         setTimeout(checkLoaded, 5000)
+
+        return () => console.log('cleanup');
     }, [friendNameList, friendList])
 
     

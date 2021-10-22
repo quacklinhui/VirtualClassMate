@@ -8,11 +8,13 @@ function Members(props) {
 
     const [memberIdList, setMemberIdList] = useState([])
     const member_IdList = []
+    const [admin, setAdmin] = useState({})
 
     // get members of room
     useEffect( async () => {
         await axios.get(`http://localhost:5000/room/${props.roomId}`).then((res) => {
             member_IdList.push(res.data.members)
+            setAdmin(admin => res.data.admin)
         })
         setMemberIdList(memberIdList => member_IdList)
     }, [memberIdList])
@@ -65,7 +67,7 @@ function Members(props) {
                 setMemberList(memberList => member_List)
             }
         }
-        setTimeout(checkLoaded, 5000)
+        setTimeout(checkLoaded, 3000)
     }, [memberIdList, memberList])
 
     return (
