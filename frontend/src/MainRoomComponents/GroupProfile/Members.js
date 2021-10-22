@@ -33,7 +33,7 @@ function Members(props) {
 
     function checkIfMemberIsOnline(memberId) {
         var online = false;
-        if (memberId === props.id){
+        if (memberId === props.currentUserId){
             return true;
         }
         for (const index in props.onlineMembers){
@@ -50,12 +50,19 @@ function Members(props) {
             for (let i=0; i < memberIdList[0].length; i++) {
                 await axios.get(`http://localhost:5000/user/${memberIdList[0][i]}`).then((res) => {
                     const {_id, name, username, password, email, toDoList, rooms, avatarID1, avatarID2, friends, __v} = res.data;
+                    if (res.data._id != props.currentUserId){
+                        member_List.push({_id, name, username, password, email, toDoList, rooms, avatarID1, avatarID2, friends, __v})
+                    }
+                })
+            }
+            if (admin != props.currentUserId) {
+                await axios.get(`http://localhost:5000/user/${admin}`).then((res) => {
+                    const {_id, name, username, password, email, toDoList, rooms, avatarID1, avatarID2, friends, __v} = res.data;
                     member_List.push({_id, name, username, password, email, toDoList, rooms, avatarID1, avatarID2, friends, __v})
                 })
             }
             if (member_List.length > 0) {
                 setMemberList(memberList => member_List)
-                console.log(memberList)
             }
         }
         setTimeout(checkLoaded, 5000)
