@@ -17,17 +17,17 @@ function GroupToDoItem({todo, setCurrentId}){
     return(
         <Box style={{height:100, justifyContent:"center",alignItems:"center",marginLeft: "5%",width:"90%",justifySelf:"center", alignSelf:"center", backgroundColor: 'rgb(159, 136, 180)', borderRadius: '10px',display: "flex",flexDirection: 'row',}}>            
         {checkBox?<Box style={{width:'90%',height:100, position:"absolute", backgroundColor:"#00000080",borderRadius:10}}></Box>   :null}
-            <IconButton onClick={()=>{checkBox?setCheckBox(false): setCheckBox(true)}} disableRipple disableFocusRipple style={{backgroundColor: 'transparent', position:"absolute", left:20, top: '50%', marginTop:-20, height:40}}>
+            <IconButton onClick={()=>{checkBox?setCheckBox(false): setCheckBox(true)}} disableRipple disableFocusRipple style={{backgroundColor: 'transparent', position:"absolute",left: '2vw'}}>
                 { checkBox ? <CheckBoxIcon/>: <CheckBoxOutlineBlankIcon/> } 
                 </IconButton>
             <div>
                 <Typography style={{color:"white", margin: 50}}> {todo.name}</Typography>
             </div>
 
-            <IconButton size= "small" style={{backgroundColor: 'transparent', top: '50%', marginTop:-20, height:40, position:"absolute", right:25}} onClick={()=>dispatch(deleteTodo(todo._id))} >
+            <IconButton size= "small" style={{backgroundColor: 'transparent', position:"absolute",right: '2vw'}} onClick={()=>dispatch(deleteTodo(todo._id))} >
                 <DeleteIcon/>
             </IconButton>
-            <IconButton size= "small" onClick={()=>setCurrentId(todo._id)} style={{backgroundColor: 'transparent', top: '50%', marginTop:-20, height:40, position:"absolute", right:50}}>
+            <IconButton size= "small" onClick={()=>setCurrentId(todo._id)} style={{backgroundColor: 'transparent', position:"absolute",right: '4vw'}}>
                 <EditIcon/>
             </IconButton>
         </Box>

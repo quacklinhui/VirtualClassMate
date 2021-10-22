@@ -8,7 +8,7 @@ import './AddFriend/FriendRequestPopUp.css';
 
 import React, { useState } from 'react';
 import {BrowserRouter as Router, useLocation} from "react-router-dom";
-import {Button} from '@material-ui/core';
+import {Button,Paper} from '@material-ui/core';
 
 
 
@@ -24,6 +24,7 @@ function HomePage() {
   const current_user_name = location.state.name;
 
   const [createFriendRequestPopUp, setFriendRequestPopUp] = useState(false);
+
 
     // function to open Friend Request Pop Up
     const toggleFriendRequestPopUp = () => {
