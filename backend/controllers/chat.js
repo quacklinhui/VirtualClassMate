@@ -27,3 +27,12 @@ export const sendMessage = async (req, res) => {
         res.status(400).json({message: error.message});
     }
 }
+
+export const deleteMessages = async (req, res) => {
+    try {
+        await Chat.deleteMany();
+        res.status(200).json({message: "Chat deleted"});
+    } catch (error) {
+        res.status(400).json({message: error.message});
+    }
+}

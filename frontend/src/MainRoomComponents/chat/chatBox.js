@@ -19,14 +19,15 @@ const ChatBox = (props) => {
     // Socket
     // const [socket, setSocket] = useState(null);
     // const socket = useRef(io("ws://localhost:8900"));
-    const socket = useRef();
+    // const socket = useRef();
+    const socket = props.socketId;
     const [arrivalMessage, setArrivalMessage] = useState(null);
     // useEffect(() => {
     //     setSocket(io("ws://localhost:8900"))
     // }, []);
 
     useEffect(() => {
-        socket.current = io("ws://localhost:8900");
+        // socket.current = io("ws://localhost:8900");
         socket.current.on("getMessage", async (data) => {
             try{
                 const res = await axios.get(`http://localhost:5000/user/${data.user}`);
@@ -49,10 +50,10 @@ const ChatBox = (props) => {
             setMessages((prev) => [...prev, arrivalMessage]);
     }, [arrivalMessage, props.roomId]);
 
-    useEffect(() => {
-        socket.current.emit("joinRoom", { userId: props.id, roomId: props.roomId });
+    // useEffect(() => {
+    //     socket.current.emit("joinRoom", { userId: props.id, roomId: props.roomId });
         
-      }, [props.id, props.roomId]);
+    //   }, [props.id, props.roomId]);
 
     useEffect(() => {
         const getMessages = async () => {

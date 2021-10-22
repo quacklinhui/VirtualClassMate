@@ -11,7 +11,7 @@ import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 
 
-function GroupToDoItem({todo, setCurrentId}){
+function GroupToDoItem({todo, setCurrentGroupId}){
     const [checkBox, setCheckBox] = React.useState(false)
     const dispatch = useDispatch();
     return(
@@ -32,7 +32,7 @@ function GroupToDoItem({todo, setCurrentId}){
             <IconButton size= "small" style={{backgroundColor: 'transparent', top: '50%', marginTop:-20, height:40, position:"absolute", right:25}} onClick={()=>dispatch(deleteTodo(todo._id))} >
                 <DeleteIcon/>
             </IconButton>
-            <IconButton size= "small" onClick={()=>setCurrentId(todo._id)} style={{backgroundColor: 'transparent', top: '50%', marginTop:-20, height:40, position:"absolute", right:50}}>
+            <IconButton size= "small" onClick={()=>setCurrentGroupId(todo._id)} style={{backgroundColor: 'transparent', top: '50%', marginTop:-20, height:40, position:"absolute", right:50}}>
                 <EditIcon/>
             </IconButton>
         </Box>

@@ -7,7 +7,7 @@ import GroupToDoItem from "../group/grouptodoitem";
 
 
 
-const GroupToDoLists = ({setCurrentId}) => {
+const GroupToDoLists = ({setCurrentGroupId}) => {
     const Grouptodolists = useSelector((state) => state.GroupToDoList);
     //const classes = useStyles();
     //console.log(todolists);
@@ -17,7 +17,7 @@ const GroupToDoLists = ({setCurrentId}) => {
             <Grid container alightItems="stretch" style={{maxHeight: 500, backgroundColor: "#E3CDF9", overflow: 'auto'}}>
                 {Grouptodolists.map((todo)=>(
                     <List key={todo._id} style={{width:"100%", borderRadius:0}}>
-                        <GroupToDoItem todo={todo} setCurrentId={setCurrentId}/>
+                        <GroupToDoItem todo={todo} setCurrentGroupId={setCurrentGroupId}/>
                     </List>
                 ))}
             </Grid>

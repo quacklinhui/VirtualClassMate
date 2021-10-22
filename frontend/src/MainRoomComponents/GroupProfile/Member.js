@@ -9,7 +9,8 @@ class Member extends React.Component {
         this.state = {
             hasMember: props.hasMember,
             memberAvatar: props.memberAvatar,
-            memberName: props.memberName
+            memberName: props.memberName,
+            onlineStatus: props.onlineStatus
         };
     }
 
@@ -20,7 +21,7 @@ class Member extends React.Component {
                 <div className = 'member'>
                     <img className = 'member_avatar' src = {avatar.default} alt = "avatar"></img>
                     <div>{this.state.memberName}</div>
-                    <div>Online status</div>
+                    <div style={this.state.onlineStatus ? {color: "lightgreen"} : {color: "grey"}}>{(this.state.onlineStatus) ? 'Online' : 'Offline' }</div>
                 </div>
                 
             )
