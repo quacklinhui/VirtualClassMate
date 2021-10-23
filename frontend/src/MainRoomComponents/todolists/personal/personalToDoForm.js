@@ -8,6 +8,7 @@ import PersonalToDoLists from "./personaltodolist";
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
 import { getPersonalTodo } from '../../../actions/todo';
+import {GroupForm} from "../group/groupToDoForm"
 
 const PersonalForm = ({currentId, setCurrentId, type, referenceID}) => {
 
@@ -35,9 +36,10 @@ const PersonalForm = ({currentId, setCurrentId, type, referenceID}) => {
           dispatch(createPersonalTodo(referenceID,toDoData));
         }
         clear();
-    
-
     }
+    useEffect(()=>{
+      dispatch(getPersonalTodo(referenceID));
+    },[referenceID,currentId,dispatch,clear])
     return(
         <Paper style={{width:"45%", backgroundColor: '#8A2BE290', height:50, bottomPadding:20}} >
              <form autoComplete="off" noValidate  onSubmit={handleSubmit}>

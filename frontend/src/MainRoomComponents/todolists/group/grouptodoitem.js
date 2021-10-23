@@ -6,18 +6,18 @@ import {useState} from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import {useDispatch} from 'react-redux';
-import {deleteTodo} from '../../../actions/todo'
+import {deleteTodo, completeTodo} from '../../../actions/todo'
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 
 
-function GroupToDoItem({todo, setCurrentId}){
+function GroupToDoItem({todo, setCurrentGroupId}){
     const [checkBox, setCheckBox] = React.useState(false)
     const dispatch = useDispatch();
     return(
         <Box style={{height:100, justifyContent:"center",alignItems:"center",marginLeft: "5%",width:"90%",justifySelf:"center", alignSelf:"center", backgroundColor: 'rgb(159, 136, 180)', borderRadius: '10px',display: "flex",flexDirection: 'row',}}>            
         {checkBox?<Box style={{width:'90%',height:100, position:"absolute", backgroundColor:"#00000080",borderRadius:10}}></Box>   :null}
-            <IconButton onClick={()=>{checkBox?setCheckBox(false): setCheckBox(true)}} disableRipple disableFocusRipple style={{backgroundColor: 'transparent', position:"absolute",left: '2vw'}}>
+            <IconButton onClick={()=>dispatch(completeTodo(todo._id))} disableRipple disableFocusRipple style={{backgroundColor: 'transparent', position:"absolute", left:20, top: '50%', marginTop:-20, height:40}}>
                 { checkBox ? <CheckBoxIcon/>: <CheckBoxOutlineBlankIcon/> } 
                 </IconButton>
             <div>
@@ -27,7 +27,7 @@ function GroupToDoItem({todo, setCurrentId}){
             <IconButton size= "small" style={{backgroundColor: 'transparent', position:"absolute",right: '2vw'}} onClick={()=>dispatch(deleteTodo(todo._id))} >
                 <DeleteIcon/>
             </IconButton>
-            <IconButton size= "small" onClick={()=>setCurrentId(todo._id)} style={{backgroundColor: 'transparent', position:"absolute",right: '4vw'}}>
+            <IconButton size= "small" onClick={()=>setCurrentGroupId(todo._id)} style={{backgroundColor: 'transparent', top: '50%', marginTop:-20, height:40, position:"absolute", right:50}}>
                 <EditIcon/>
             </IconButton>
         </Box>

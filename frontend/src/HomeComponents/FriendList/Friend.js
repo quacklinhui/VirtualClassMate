@@ -64,9 +64,11 @@ class Friend extends React.Component {
                  </div>
             )
         }
-        else {
+        else if (this.state.friendExists == 'false'){
             return (
-                <div style = {{textAlign: 'center', color: 'lavenderblush', fontSize: '17px', fontWeight: 'bold', marginTop: '25%'}}>Add your friends!</div>
+                <>
+                    <h4 style = {{textAlign: 'center', color: 'lavenderblush', fontSize: '17px', fontWeight: 'bold', marginTop: '25%'}}>Add your friends!</h4>
+                </>    
             )
         }
     }

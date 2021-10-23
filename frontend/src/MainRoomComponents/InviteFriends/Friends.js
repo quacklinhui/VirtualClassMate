@@ -16,6 +16,7 @@ class Friends extends React.Component {
             userId: props.userId
         };
     }
+    
     addUserToRoom () {
         axios.patch(`http://localhost:5000/room/add/${this.state.roomId}`, {
             newMemberID: this.state.friendId,

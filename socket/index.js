@@ -36,6 +36,8 @@ io.on("connection", (socket) => {
 
     // User joined a room chat
     socket.on('joinRoom', ({ userId, roomId }) => {
+        console.log(userId + " has joined the room " + roomId);
+
         const user = joinRoom(socket.id, userId, roomId);
 
         socket.join(user.roomId);
@@ -63,6 +65,7 @@ io.on("connection", (socket) => {
     
         if (user) {
           io.to(user.roomId).emit('leaveMessage', user.userId);
+          console.log(user.userId + " has left the room " + user.roomId);
     
           // Send users and room info
           io.to(user.roomId).emit('roomUsers', {

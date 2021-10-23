@@ -5,7 +5,7 @@
     import InviteFriendsPopUp from '../InviteFriends/InviteFriendsPopUp';
     import RoomJoinRequestPopUp from '../RoomJoinRequest/RoomJoinRequestPopUp';
 
-function GroupProfile({id, username, avatar, name, roomId}){
+function GroupProfile({id, username, avatar, name, roomId, onlineMembers}){
 
     const [CreateInviteFriendPopUp, setInviteFriendPopUp] = useState(false); 
     const [CreateAddFriendPopUp, setAddFriendPopUp] = useState(false); 
@@ -33,7 +33,7 @@ function GroupProfile({id, username, avatar, name, roomId}){
                 <div>@{username}</div>
             </div>
             <div>
-                <Members roomId = {roomId}/>
+                <Members roomId = {roomId} onlineMembers = {onlineMembers} currentUserId = {id} />
             </div>
             <div style = {{marginLeft: '2.5%', display: 'flex', flexDirection: 'column'}}>
                 <Button variant="contained" className = "invite-button" onClick={toggleInviteFriendPopUp} style={{backgroundColor: 'paleturquoise', marginBottom: '20px'}}>Invite Friends</Button>
