@@ -15,7 +15,7 @@
   .logo{
     height: 80px;
     width: 80px; 
-    transform: translate(310%, 80%);
+    transform: translate(3%, 80%);
 }
   
   .app {
@@ -32,7 +32,7 @@
   }
   
   .virtualClassMate{
-  padding-top: 60px;
+  padding-top: 58px;
   text-align: center;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-style: normal;
@@ -148,6 +148,7 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: #3E197A;
     }
+
   
   .pw{
   padding-left: 92px;
@@ -157,6 +158,11 @@
   font-weight: bold;
   font-size: 20px;
   line-height: 20px;
+  }
+
+  .showbutton{
+    padding-left: 445px;
+    font-size: 14px;
   }
   
   .linktolog {
