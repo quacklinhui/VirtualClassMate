@@ -9,5 +9,6 @@ export const createPersonalTodo = (referenceID,newTodo) => axios.post(`${url}/us
 export const createGroupTodo = (referenceID,newTodo) => axios.post(`${url}/room/${referenceID}`,newTodo);
 export const updateTodo = (id,updatedTodo) => axios.patch(`${url}/${id}`, updatedTodo);
 export const deleteTodo = (id) => axios.delete(`${url}/${id}`);
+export const completeTodo = (id) => axios.delete(`${url}/${id}`);
 
 export const addFriendRequest = (id, addFriendRequest) => axios.patch(`${url_user}/addFriendRequest/${id}`, addFriendRequest);

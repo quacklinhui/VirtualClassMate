@@ -76,3 +76,13 @@ export const deleteGroupTodo = (id) => async(dispatch) => {
         console.log(error.message);
     }
 }
+
+export const completeTodo = (id) => async(dispatch) => {
+    try {
+        api.completeTodo(id);
+        
+        dispatch({type: 'DELETE', payload:id});
+    } catch (error) {
+        console.log(error.message);
+    }
+}
