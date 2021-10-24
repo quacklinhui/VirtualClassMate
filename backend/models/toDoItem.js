@@ -24,11 +24,6 @@ const toDoItemSchema = mongoose.Schema({
         type: Date,
         default: new Date()
     },
-    status: {
-        type: String,
-        enum: ['inProgress', 'completed', 'overdue'],
-        default: 'inProgress'
-    },
     type: {
         type: String,
         enum: ['user', 'room']
