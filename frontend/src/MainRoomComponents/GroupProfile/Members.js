@@ -17,7 +17,7 @@ function Members(props) {
             setAdmin(admin => res.data.admin)
         })
         setMemberIdList(memberIdList => member_IdList)
-    }, [memberIdList])
+    }, [])
 
 
     // get members' information
