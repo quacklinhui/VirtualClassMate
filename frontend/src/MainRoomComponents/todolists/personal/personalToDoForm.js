@@ -41,11 +41,14 @@ const PersonalForm = ({currentId, setCurrentId, type, referenceID}) => {
       dispatch(getPersonalTodo(referenceID));
     },[referenceID,currentId,dispatch,clear])
     return(
-        <Paper style={{width:"45%", backgroundColor: '#8A2BE290', height:50, bottomPadding:20}} >
+        <Paper style={{width:"45%", backgroundColor: 'white', height:50, bottomPadding:20}} >
              <form autoComplete="off" noValidate  onSubmit={handleSubmit}>
-                <Button style={{width:"100%",height:50}} onClick={()=>{setShowPersonalToDoList(true)}}>
-                  Personal
-                </Button>
+             <Paper style={{width:"100%",height:50, backgroundColor: "#8A2BE290", flex:1,justifyContent:"center",textAlign:"center", textAlignVertical:"center", display:"flex", alignItems:"center"}}>
+                 {/* <Typography style={{backgroundColor:"transparent", textAlign:"center",justifyContent:"center",alignItems:"center", verticalAlign:"middle"}}> */}
+                      PERSONAL
+                 {/* </Typography> */}
+                  
+            </Paper>
                 <PersonalToDoLists setCurrentId={setCurrentId}/>
                 <Paper style = {{backgroundColor: 'white', display: "flex",flexDirection: 'row', height:50, padding:5}}>
                   <TextField style={{padding:5}} name = 'name'  dvariant = "outlined" fullWidth value={toDoData.name} size = 'small' onChange ={(e)=>setToDoData({...toDoData,name: e.target.value, type:type, referenceID: referenceID})} />
