@@ -45,7 +45,7 @@ function FriendList(props){
         <>
             <div style = {{display: 'flex', flexDirection: 'column', marginLeft: '200px'}}>
                 <div style = {{width: '300px', fontWeight: 'bold'}}>Your Friends</div>
-                <div style = {{backgroundColor: 'rgb(203, 184, 221)', borderRadius: '10px', width: '150%', height: '350px', position: 'relative'}}>
+                <div style = {{backgroundColor: 'rgb(203, 184, 221)', borderRadius: '10px', width: '150%', height: '350px', position: 'relative',overflow:"auto"}}>
                     <div className = "friends">
                         {loading ? (!friendList.length ? <Friend friendExists = 'false'/> : friendList.map((friend) => <Friend friendExists = 'true' key = {friend._id} friendId = {friend._id} friendName = {friend.name}/>)):
                             <CircularProgress style = {{'color': 'lavender', 'marginLeft': '45%', 'marginTop': '5%'}}/>
