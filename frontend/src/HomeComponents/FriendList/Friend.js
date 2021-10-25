@@ -60,7 +60,7 @@ class Friend extends React.Component {
                     >
                     </HoverableDiv>
                     
-                    {this.state.isHovering && <HoverText />}
+                    {this.state.isHovering && <HoverText friendId={this.state.friendId}/>}
                  </div>
             )
         }

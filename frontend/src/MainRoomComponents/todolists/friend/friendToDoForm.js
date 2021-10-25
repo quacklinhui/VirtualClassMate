@@ -9,7 +9,7 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
 import { getPersonalTodo } from '../../../actions/todo';
 
-const FriendForm = ({currentId, setCurrentId, type, referenceID}) => {
+const FriendForm = ({currentId, setCurrentId, referenceID}) => {
 
     const [toDoData, setToDoData]=useState({name:'',type:'', referenceID:''});
     const todoitem = useSelector((state) => currentId? state.PersonalToDoList.find((p)=>p._id === currentId) : null);
@@ -32,6 +32,7 @@ const FriendForm = ({currentId, setCurrentId, type, referenceID}) => {
             <Typography style={{textAlign:"center"}}>
             What your friend is up to:
             </Typography>
+
             <FriendToDoLists setCurrentId={setCurrentId}/>
         </Paper>
     );
