@@ -14,7 +14,7 @@ const GroupToDoLists = ({setCurrentGroupId}) => {
     
     return (
         !Grouptodolists.length ? <CircularProgress/>: (
-            <Grid container alightItems="stretch" style={{maxHeight: 500, backgroundColor: "#E3CDF9", overflow: 'auto'}}>
+            <Grid container alightItems="stretch" style={{height: '36vh', backgroundColor: "#E3CDF9", overflow: 'auto'}}>
                 {Grouptodolists.map((todo)=>(
                     <List key={todo._id} style={{width:"100%", borderRadius:0}}>
                         <GroupToDoItem todo={todo} setCurrentGroupId={setCurrentGroupId}/>

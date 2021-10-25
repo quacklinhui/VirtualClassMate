@@ -43,9 +43,8 @@ const PersonalForm = ({currentId, setCurrentId, type, referenceID}) => {
     return(
         <Paper style={{width:"45%", backgroundColor: '#8A2BE290', height:50, bottomPadding:20}} >
              <form autoComplete="off" noValidate  onSubmit={handleSubmit}>
-                <Button style={{width:"100%",height:50}} onClick={()=>{showPersonalToDoList?setShowPersonalToDoList(false): setShowPersonalToDoList(true)}}>
+                <Button style={{width:"100%",height:50}} onClick={()=>{setShowPersonalToDoList(true)}}>
                   Personal
-                  { showPersonalToDoList ? <ArrowDropDownIcon style={{ color:"black", height:"80%", width:"10%", position: 'absolute', right:20}}/> : <ArrowDropDownIcon style={{ color:"white", height:"90%", width:"10%",position:"absolute", right:20}}/>  }
                 </Button>
                 <PersonalToDoLists setCurrentId={setCurrentId}/>
                 <Paper style = {{backgroundColor: 'white', display: "flex",flexDirection: 'row', height:50, padding:5}}>
@@ -54,12 +53,7 @@ const PersonalForm = ({currentId, setCurrentId, type, referenceID}) => {
                     <ControlPointIcon/>
                   </Button>
                 </Paper>
-                
-                {/* <TextField  name = 'description' variant = "outlined" label = "Description" fullWidth value={toDoData.description} onChange ={(e)=>setToDoData({...toDoData,description: e.target.value})} /> */}
-                {/* <TextField  name = 'deadline' variant = "outlined" label = "Deadline" fullWidth value={toDoData.deadline} onChange ={(e)=>setToDoData({...toDoData,deadline: e.target.value})} /> */}
-                {/* <DatePicker selected={toDoData.deadline} onChange ={(e)=>setToDoData({...toDoData,deadline: e.target.value})} /> */}
-                {/* <button variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</button> */}
-             </form>
+                </form>
           </Paper>
     );
 }
