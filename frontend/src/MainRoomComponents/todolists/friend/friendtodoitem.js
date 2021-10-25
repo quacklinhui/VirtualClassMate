@@ -14,9 +14,9 @@ import CheckBoxIcon from '@material-ui/icons/CheckBox';
 function FriendToDoItem({todo}){
     const dispatch = useDispatch();
     return(
-        <Box style={{height:100, justifyContent:"center",alignItems:"center",marginLeft: "5%",width:"90%",justifySelf:"center", alignSelf:"center", backgroundColor: 'rgb(159, 136, 180)', borderRadius: '10px',display: "flex",flexDirection: 'row',}}>            
+        <Box style={{marginLeft: "5%",width:"90%",  borderRadius: '10px'}}>            
             <div>
-                <Typography style={{color:"white", margin: 50}}> {todo.name}</Typography>
+                <Typography style={{color:"black",  textAlign:"center"}}> {todo.name}</Typography>
             </div>
         </Box>
     )

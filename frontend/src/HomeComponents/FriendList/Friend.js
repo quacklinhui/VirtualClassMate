@@ -13,11 +13,11 @@ const HoverableDiv = React.memo(({ handleMouseOver, handleMouseOut, friendName }
     );
   });
   
-const HoverText = React.memo(({ friendId }) => { //change this to display the pop up
+const HoverText = React.memo(({ friendId,friendName }) => { //change this to display the pop up
     const [currentId, setCurrentId] = useState(null); 
     return (
       <div style={{position:"fixed", right: "15vw", zIndex: 300, backgroundColour: "white"}}>
-        <FriendForm currentId={currentId} setCurrentId={setCurrentId} type="user" referenceID={friendId}/>
+        <FriendForm currentId={currentId} setCurrentId={setCurrentId} type="user" referenceID={friendId} friendName ={friendName}/>
       </div>
     );
   });
@@ -60,7 +60,7 @@ class Friend extends React.Component {
                     >
                     </HoverableDiv>
                     
-                    {this.state.isHovering && <HoverText friendId={this.state.friendId}/>}
+                    {this.state.isHovering && <HoverText friendId={this.state.friendId} friendName ={this.state.friendName}/>}
                  </div>
             )
         }

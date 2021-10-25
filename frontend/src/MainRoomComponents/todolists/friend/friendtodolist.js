@@ -12,7 +12,7 @@ const FriendToDoLists = ({setCurrentId}) => {
     
     return (
         // !Personaltodolists.length ? <CircularProgress/>: (
-            <Grid container alightItems="stretch" style={{height: '40vh', backgroundColor: "#E3CDF9", overflow: 'auto'}}>
+            <Grid container  style={{maxHeight: '40vh', backgroundColor: "#DCDCDC", borderRadius:5, overflow: 'auto'}}>
                 {Personaltodolists.map((todo)=>(
                     <List key={todo._id} style={{width:"100%", borderRadius:0}}>
                         <FriendToDoItem todo={todo} setCurrentId={setCurrentId}/>
