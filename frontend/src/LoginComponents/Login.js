@@ -58,6 +58,7 @@ function Login() {
           <h2 className="pw">Password</h2>
           <PasswordMask useVendorStyles={false} inputClassName = "pwinput" buttonClassName="showbutton" type="text"
             placeholder="Password"
+            value={user.password}
             onChange={(e) => setUser({ ...user, password: e.target.value })}>
           </PasswordMask>
           <h5 className="loginblock">
