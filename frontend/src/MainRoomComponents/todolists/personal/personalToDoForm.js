@@ -41,25 +41,22 @@ const PersonalForm = ({currentId, setCurrentId, type, referenceID}) => {
       dispatch(getPersonalTodo(referenceID));
     },[referenceID,currentId,dispatch,clear])
     return(
-        <Paper style={{width:"45%", backgroundColor: '#8A2BE290', height:50, bottomPadding:20}} >
+        <Paper style={{width:"45%", backgroundColor: 'white', height:50, bottomPadding:20}} >
              <form autoComplete="off" noValidate  onSubmit={handleSubmit}>
-                <Button style={{width:"100%",height:50}} onClick={()=>{showPersonalToDoList?setShowPersonalToDoList(false): setShowPersonalToDoList(true)}}>
-                  Personal
-                  { showPersonalToDoList ? <ArrowDropDownIcon style={{ color:"black", height:"80%", width:"10%", position: 'absolute', right:20}}/> : <ArrowDropDownIcon style={{ color:"white", height:"90%", width:"10%",position:"absolute", right:20}}/>  }
-                </Button>
-                { showPersonalToDoList ? <PersonalToDoLists setCurrentId={setCurrentId}/> : null }
+             <Paper style={{width:"100%",height:50, backgroundColor: "#8A2BE290", flex:1,justifyContent:"center",textAlign:"center", textAlignVertical:"center", display:"flex", alignItems:"center"}}>
+                 {/* <Typography style={{backgroundColor:"transparent", textAlign:"center",justifyContent:"center",alignItems:"center", verticalAlign:"middle"}}> */}
+                      PERSONAL
+                 {/* </Typography> */}
+                  
+            </Paper>
+                <PersonalToDoLists setCurrentId={setCurrentId}/>
                 <Paper style = {{backgroundColor: 'white', display: "flex",flexDirection: 'row', height:50, padding:5}}>
                   <TextField style={{padding:5}} name = 'name'  dvariant = "outlined" fullWidth value={toDoData.name} size = 'small' onChange ={(e)=>setToDoData({...toDoData,name: e.target.value, type:type, referenceID: referenceID})} />
                   <Button type = "submit" style ={{backgroundColor:'#DCDCDC', margin:5}}>
                     <ControlPointIcon/>
                   </Button>
                 </Paper>
-                
-                {/* <TextField  name = 'description' variant = "outlined" label = "Description" fullWidth value={toDoData.description} onChange ={(e)=>setToDoData({...toDoData,description: e.target.value})} /> */}
-                {/* <TextField  name = 'deadline' variant = "outlined" label = "Deadline" fullWidth value={toDoData.deadline} onChange ={(e)=>setToDoData({...toDoData,deadline: e.target.value})} /> */}
-                {/* <DatePicker selected={toDoData.deadline} onChange ={(e)=>setToDoData({...toDoData,deadline: e.target.value})} /> */}
-                {/* <button variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</button> */}
-             </form>
+                </form>
           </Paper>
     );
 }
