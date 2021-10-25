@@ -12,6 +12,7 @@ import Register from "../LoginComponents/Register";
 import logo from "../images/logoWithoutWords.png";
 // import {Button, Typography, Paper, Box, Container} from '@material-ui/core'
 import "./Login.css";
+import PasswordMask from 'react-password-mask';
 
 function Login() {
   const dispatch = useDispatch();
@@ -55,12 +56,10 @@ function Login() {
             onChange={(e) => setUser({ ...user, email: e.target.value })}
           ></input>
           <h2 className="pw">Password</h2>
-          <input
-            className="pwinput"
-            type="text"
+          <PasswordMask useVendorStyles={false} inputClassName = "pwinput" buttonClassName="showbutton" type="text"
             placeholder="Password"
-            onChange={(e) => setUser({ ...user, password: e.target.value })}
-          ></input>
+            onChange={(e) => setUser({ ...user, password: e.target.value })}>
+          </PasswordMask>
           <h5 className="loginblock">
             <button className="loginbutton" type="submit">
               Login

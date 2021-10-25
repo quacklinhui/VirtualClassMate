@@ -8,6 +8,7 @@ import './Register.css';
 
 import { useDispatch } from "react-redux";
 import { ResponsiveEmbed } from "react-bootstrap";
+import PasswordMask from 'react-password-mask';
 
 
 function Register() {
@@ -40,28 +41,6 @@ function Register() {
   }
 
 
-
-    // put below fetch function into try catch
-    // try{
-    // }
-    // catch{
-    // }
-
-
-  //   let response = await fetch('http://localhost:5000/user', {
-  //     method: 'POST',
-  //     body: userdata
-  //   })
-  //   // let content = response.json()
-
-  //   if (response.data.status != 200){
-  //     console.log(`There is already an existing account ${response.data.source}`)
-  //   }
-  //   else{
-  //     console.log(e)
-  //   }
-
-  // }
   return (
     <div>
       <div className="app">
@@ -103,12 +82,12 @@ function Register() {
           <h2 className="pw">
             Password
           </h2>
-          <input className="pwinput"
+          <PasswordMask  useVendorStyles={false} inputClassName ="pwinput" buttonClassName = "showbutton"   
             type="text"
             placeholder="Password"
             value={user.password}
             onChange={(e) => setUser({ ...user, password: e.target.value })}>
-          </input>
+          </PasswordMask>
           <button className="registerbutton" variant="contained" color="primary" type="submit">
             Register
           </button>

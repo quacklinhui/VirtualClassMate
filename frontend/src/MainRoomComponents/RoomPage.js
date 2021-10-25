@@ -53,6 +53,8 @@ function RoomPage(props) {
   // const socket = useRef();
   const socket = useRef(io("ws://localhost:8900"));
 
+  console.log(socket)
+
   useEffect(() => {
     // socket.current = io("ws://localhost:8900");
 

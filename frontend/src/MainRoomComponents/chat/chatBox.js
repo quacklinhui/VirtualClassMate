@@ -26,8 +26,9 @@ const ChatBox = (props) => {
     //     setSocket(io("ws://localhost:8900"))
     // }, []);
 
+    console.log(socket)
+
     useEffect(() => {
-        // socket.current = io("ws://localhost:8900");
         socket.current.on("getMessage", async (data) => {
             try{
                 const res = await axios.get(`http://localhost:5000/user/${data.user}`);
@@ -61,7 +62,9 @@ const ChatBox = (props) => {
                 // Get all the chat messages for this room
                 const res = await axios.get(`http://localhost:5000/chat/${props.roomId}`);
 
+
                 var messagesData = res.data;
+                // console.log(messagesData)
 
                 // Find the username of each chat message
                 for (const index in messagesData) {

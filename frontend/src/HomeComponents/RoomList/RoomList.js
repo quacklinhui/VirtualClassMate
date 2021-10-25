@@ -26,7 +26,7 @@ function RoomList({id, username, avatar, name}){
     await axios.get(`http://localhost:5000/user/${id}`).then((res) => {
       setUser(user => ({...user, ...res.data}))
     })
-  }, [user])
+  }, [])
 
   const [roomList, setRoomList] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -56,7 +56,8 @@ function RoomList({id, username, avatar, name}){
     console.log(roomList)
     setTimeout(checkLoaded, 5000)
   },[user])
-  
+
+  console.log(roomList)
   return(
     <>
       <div style = {{display: 'flex', flexDirection: 'column', marginLeft: '50px'}}>
