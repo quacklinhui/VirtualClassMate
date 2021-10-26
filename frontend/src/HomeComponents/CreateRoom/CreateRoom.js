@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, Button, View } from 'react-native';
-import logo from './../../images/VirtualClassMate_FullLogo.png';
 
 function CreateRoomPopUp() {
     return (

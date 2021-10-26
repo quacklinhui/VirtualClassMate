@@ -8,6 +8,7 @@ function FriendRequestPopUp(props) {
 
     const [requestList, setRequestList] = useState([]);
     const requestIdList = [];
+    const [rerenderRequest, setRerenderRequest] = useState(true)
 
     // get friend requests of user
     useEffect(async () => {
@@ -15,7 +16,7 @@ function FriendRequestPopUp(props) {
             requestIdList.push(res.data.friendsToAdd)
         })
         setRequestList(requestList => requestIdList)
-    }, [requestList])
+    }, [rerenderRequest])
 
 
     // get name of requester
@@ -26,12 +27,20 @@ function FriendRequestPopUp(props) {
     function checkLoaded() {
         if (requestNameList.length != 0) {
             setLoading(true)
+            setRerenderRequest(false)
         } else if (request_NameList.length == 0) {
             setLoading(true)
+            setRerenderRequest(false)
         }
     }
 
+    const rerenderFriendList = () => {
+        props.handleClose();
+        props.rerender();
+    }
+
     useEffect(async () => {
+        console.log('request rendering')
         if (requestList.length == 1) {
             for (let i = 0; i < requestList[0].length; i++) {
                 await axios.get(`http://localhost:5000/user/${requestList[0][i]}`).then((res) => {
@@ -42,14 +51,16 @@ function FriendRequestPopUp(props) {
         }  
         if (request_NameList.length > 0) {
             setRequestNameList(requestNameList => request_NameList);
-            }
+            
+        }
         setTimeout(checkLoaded, 5000)
-    }, [requestList, requestNameList]) 
+    }, [requestList]) 
+
     
     return (
         <div className = "FriendRequestPopUp">
             <div className = "FriendRequestPopUp-inner">   
-                <IconButton className = "closePopUp" onClick={props.handleClose}>
+                <IconButton className = "closePopUp" onClick={rerenderFriendList} >
                     <CloseIcon/>
                 </IconButton>
                 <h1>FriendRequests</h1>

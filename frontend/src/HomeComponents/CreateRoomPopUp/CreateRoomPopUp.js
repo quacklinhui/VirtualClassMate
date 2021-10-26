@@ -37,6 +37,7 @@ function CreateRoomPopUp(props) {
             await axios.post(`http://localhost:5000/room/`, room);
             setSubmit(false);
             props.handleClose();
+            props.rerender();
         }
     }, [room, submit])
 

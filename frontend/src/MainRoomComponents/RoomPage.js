@@ -2,13 +2,11 @@ import React, { useEffect, useRef } from "react";
 import {IconButton,Button, Typography, Paper, Box, Container, TextField} from '@material-ui/core'
 import {useState} from 'react';
 import {BrowserRouter as Router,  useHistory, useLocation} from "react-router-dom";
-import {useDispatch} from 'react-redux';
 import { io } from "socket.io-client";
 
 // import { getTodo } from '../actions/todo';
 import ToDoLists from "./todolists/personal/personaltodolist";
 import NavBar from '../HomeComponents/NavBar/NavBar';
-import ChatButton from './chat/chat';
 import ChatBox from "./chat/chatBox";
 import GroupProfile from './GroupProfile/GroupProfile';
 
@@ -18,19 +16,11 @@ import PersonalForm from "./todolists/personal/personalToDoForm"
 import GroupForm from "./todolists/group/groupToDoForm";
 import axios from 'axios';
 
-//import { faCoffee } from '@fortawesome/fontawesome-free-solid';
-
-
 function RoomPage(props) {
-  const { windowHeight, windowWidth } = useWindowDimensions();
   const [currentId, setCurrentId] = useState(null); 
   const [currentGroupId, setCurrentGroupId] = useState(null); 
   let history = useHistory();
-  const [createPopUp, setCreatePopUp] = useState(false); //set the default state to false
-
-  const [showChatBox, setShowChatBox] = React.useState(false)
   
-  const dispatch = useDispatch();
   let location = useLocation();
 
   // used to get logged in user id
@@ -40,25 +30,43 @@ function RoomPage(props) {
   const current_user_name = location.state.name;
   const roomId = location.state.roomId;
 
+  const [rerenderRoom, setRerenderRoom] = useState(true);
+
+  //rerender when rerender == true
   const [roomInfo, setRoomInfo] = useState([])
+  console.log(rerenderRoom)
+
   useEffect(async () => {
     await axios.get(`http://localhost:5000/room/${roomId}`).then((res) => {
       setRoomInfo(roomInfo => ({...roomInfo, ...res.data}))
     })
-  }, [roomInfo])
+    setRerenderRoom(false)
+    console.log(rerenderRoom)
+
+  }, [rerenderRoom])
+
+  // to rerender whole room 
+  const rerenderEntireRoom = () => {
+    console.log('in roompage')
+    setRerenderRoom(true)
+  }
+
+  // to stop rerender of room 
+  const stopRerenderRoom = () => {
+    setRerenderRoom(false)
+  }
 
   // Socket.io
   // const socket = useRef();
   const socket = useRef(io("ws://localhost:8900"));
 
-  console.log(socket)
+  const [onlineMembers, setOnlineMembers] = useState([]);
 
   useEffect(() => {
     // socket.current = io("ws://localhost:8900");
 
     socket.current.on('roomUsers', ( { room, users} ) => {
       setOnlineMembers(users);
-      console.log(onlineMembers);
     })
   }, []);
 
@@ -66,15 +74,13 @@ function RoomPage(props) {
     socket.current.emit("joinRoom", { userId: current_user_id, roomId: roomId });
   }, [current_user_id, roomId]);
 
-  const [onlineMembers, setOnlineMembers] = useState([]);
-
   return (
     <>
       <div>
         <NavBar id={current_user_id} username={current_username} avatar={body} name = {current_user_name}/>
       </div>
       <div>
-        <GroupProfile id={current_user_id} username={current_username} avatar={body} name = {current_user_name} roomId = {roomId} onlineMembers = {onlineMembers}/>
+        <GroupProfile id={current_user_id} username={current_username} avatar={body} name = {current_user_name} roomId = {roomId} onlineMembers = {onlineMembers} rerenderRoom = {rerenderEntireRoom} rerender = {rerenderRoom} stopRerenderRoom = {stopRerenderRoom}/>
       </div>
         
       <Container style = {{maxWidth: '100%'}}>

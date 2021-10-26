@@ -18,7 +18,7 @@ class FriendRooms extends React.Component {
             showFriendRooms: false,
             friendRoomsNames: [],
             userRooms: [],
-            loading: false
+            loading: false,
         };
     }
 
@@ -32,7 +32,6 @@ class FriendRooms extends React.Component {
     async getFriendRooms() {
         await this.getUserRooms();
         for (let i=this.state.friendRooms.length -1; i>=0; i--){
-            console.log(this.state.friendRooms.length)
             for (let j=0; j < this.state.userRooms.length; j++) {
                 if (this.state.userRooms[j] == this.state.friendRooms[i]) {
                     this.state.friendRooms.splice(i, 1)

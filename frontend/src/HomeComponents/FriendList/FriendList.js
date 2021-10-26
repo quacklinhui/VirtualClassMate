@@ -4,8 +4,6 @@ import axios from 'axios';
 import {CircularProgress} from '@material-ui/core';
 import Friend from './Friend';
 
-
-// for integrating backend for friends list: https://www.andreasreiterer.at/react-list-component/
 function FriendList(props){
 
     const [userFriends, setUserFriends] = useState([]);
@@ -14,7 +12,7 @@ function FriendList(props){
         await axios.get(`http://localhost:5000/user/${props.id}`).then((res) => {
             setUserFriends(userFriends => res.data.friends)
         })
-    }, [userFriends])
+    }, [props.rerender])
 
     const [friendList, setFriendList] = useState([])
     const [loading, setLoading] = useState(false);
@@ -23,8 +21,10 @@ function FriendList(props){
     function checkLoaded(){
         if (friendList.length != 0) {
             setLoading(true)
+            props.stopRerender();
         } else if (friends_list == 0 && friendList.length == 0) {
             setLoading(true)
+            props.stopRerender();
         }
     }
 
@@ -39,13 +39,13 @@ function FriendList(props){
             setFriendList(friendList => friends_list)
         }
         setTimeout(checkLoaded, 2000)
-    }, [userFriends, friendList])
+    }, [userFriends])
 
     return(
         <>
-            <div style = {{display: 'flex', flexDirection: 'column', marginLeft: '200px'}}>
+            <div style = {{display: 'flex', flexDirection: 'column', marginLeft: '5%', width: '32%'}}>
                 <div style = {{width: '300px', fontWeight: 'bold'}}>Your Friends</div>
-                <div style = {{backgroundColor: 'rgb(203, 184, 221)', borderRadius: '10px', width: '150%', height: '350px', position: 'relative'}}>
+                <div style = {{backgroundColor: 'rgb(203, 184, 221)', borderRadius: '10px', width: '100%', height: '20%', position: 'relative'}}>
                     <div className = "friends">
                         {loading ? (!friendList.length ? <Friend friendExists = 'false'/> : friendList.map((friend) => <Friend friendExists = 'true' key = {friend._id} friendId = {friend._id} friendName = {friend.name}/>)):
                             <CircularProgress style = {{'color': 'lavender', 'marginLeft': '45%', 'marginTop': '5%'}}/>

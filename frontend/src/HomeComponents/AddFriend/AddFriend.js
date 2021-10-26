@@ -32,8 +32,8 @@ function AddFriend({currentId}){
 
     return (
         <div>
-            <Container style = {{marginLeft: '100px', marginTop: '12%', display: 'flex', flexDirection: 'column', alignItems: 'center'}} >
-                <form id = "addFriend" style = {{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '500px'}} onSubmit={AddNewFriend}>
+            <Container style = {{display: 'flex', flexDirection: 'column', alignItems: 'center'}} >
+                <form id = "addFriend" style = {{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '190%'}} onSubmit={AddNewFriend}>
                     <Typography>Don't see your friends on the list?</Typography>
                     <Typography> Add them here:</Typography>
                     <TextField 
@@ -41,7 +41,7 @@ function AddFriend({currentId}){
                         label="Username" 
                         variant="outlined" 
                         size = "small" 
-                        style={{ width: '60%', backgroundColor: '#EBECF0', marginBottom: '10px', radiusBorder: '10px', marginTop: '10px'}} 
+                        style={{ width: '60%', backgroundColor: '#EBECF0', marginBottom: '3%', radiusBorder: '10px', marginTop: '2%'}} 
                         value = {friend.friend_name}
                         onChange={(e) => setFriend(friend => ({...friend, friend_name: e.target.value}))}/>
                     <Button variant = "contained" style = {{backgroundColor: '#FFD580'}} type="submit">Add Friend</Button>

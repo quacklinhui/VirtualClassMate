@@ -17,7 +17,7 @@ class FriendRoom extends React.Component {
             hasAddedText: 'Request to Join Room',
             hasAddedMargin: '0%',
             roomId: props.roomId,
-            userId: props.userId
+            userId: props.userId,
         }
     }
 
@@ -37,6 +37,8 @@ class FriendRoom extends React.Component {
             userID: this.state.userId
         })
     }
+
+    
 
     render() {
 

@@ -23,6 +23,7 @@ class FriendRequest extends React.Component {
         await axios.patch(`http://localhost:5000/user/addFriend/${this.state.userId}`, {
             newFriendId: this.state.requestId
         })
+        console.log('accepted')
     }
 
     render() {

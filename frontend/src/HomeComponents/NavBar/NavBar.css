@@ -6,12 +6,13 @@
     z-index: 999;
     align-items: center;
     justify-content: space-between;
+    height: 70%;
   }
   
   .navbar-logo {
-    margin-left: 20px;
+    margin-left: 20%;
     display: inline-block;
-    width: 200px;
+    width: 85%;
   }
 
   .navbar-button-red a {

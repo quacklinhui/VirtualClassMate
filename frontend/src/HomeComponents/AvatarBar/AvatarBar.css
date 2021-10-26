@@ -3,17 +3,18 @@
     display: flex;
     position: relative;
     align-items: center;
-    height: 210px;
+    width: 100%
   }
 
 .flexContainer-home {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 150px;
-    margin-left: 50px;
+    width: 10%;
+    margin-left: 3%;
     position: relative;
     color: #fff;
+    max-height: 90%
 }
 
 .profile {
@@ -33,14 +34,16 @@
 }
  
 .avatar-home{
-    width: 150px;
-    height: 150px;
-    margin-left: -10px;
+    width:90%;
+    height: 30%;
+    margin-left: 10%;
+    margin-top: 10%;
 }
 
 .customizeavatar {
     color: #000;
     font-size: 0.7rem;
     font-weight: bold;
-    width: 150px;
+    width: 100%;
+
 }

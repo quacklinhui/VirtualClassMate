@@ -13,12 +13,13 @@ class Friends extends React.Component {
             roomId: props.roomId, 
             name: props.name,
             isFriend: props.isFriend,
-            userId: props.userId
+            userId: props.userId,
+            rerenderFriendList: props.rerenderList,
         };
     }
     
-    addUserToRoom () {
-        axios.patch(`http://localhost:5000/room/add/${this.state.roomId}`, {
+    async addUserToRoom() {
+        await axios.patch(`http://localhost:5000/room/add/${this.state.roomId}`, {
             newMemberID: this.state.friendId,
             adderID: this.state.userId
         })
@@ -29,7 +30,7 @@ class Friends extends React.Component {
             return (
                 <div className = "frienddiv">
                     <h1 style = {{marginLeft: '30px'}}>{this.state.name}</h1>                    
-                    <IconButton className = 'addButton' onClick = {() => {this.addUserToRoom()}}>
+                    <IconButton className = 'addButton' onClick = {() => this.addUserToRoom()}>
                         <AddCircle className = "addIcon"/>
                     </IconButton>
                 </div>
