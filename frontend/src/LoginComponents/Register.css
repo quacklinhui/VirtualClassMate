@@ -81,14 +81,14 @@
   
   .registerbutton{
     color:white;
-    top:91%;
+    top:93.5%;
     left:50%;
     transform: translate(-50%, -50%);
     position: absolute;
     display: block;
     justify-content: center;
     width: 393px;
-    height: 42px;
+    height: 35px;
     background: #5B1EBE;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-style: normal;
@@ -108,6 +108,11 @@
   line-height: 30px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   background-color: #3E197A;
+  }
+
+  .errormsg{
+    color: #3E197A;
+    text-align: center;
   }
 
   .nameinput{
@@ -166,7 +171,7 @@
   }
   
   .linktolog {
-    top:97%;
+    top:98%;
     left:50%;
     transform: translate(-50%, -50%);
     position: absolute;
@@ -177,8 +182,8 @@
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-style: normal;
   font-weight: bold;
-  font-size: 15px;
-  line-height: 25px;
+  font-size: 14px;
+  line-height: 20px;
   display: block;
   color: #1D1A1A;
   background-color: #E7DFFF;

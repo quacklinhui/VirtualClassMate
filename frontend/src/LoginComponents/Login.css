@@ -42,6 +42,11 @@
 .showbutton{
   padding-left: 445px;
 }
+
+.errormsg{
+  color: #3E197A;
+  text-align: center;
+}
   
 .virtualClassMate{
   padding-top: 50px;

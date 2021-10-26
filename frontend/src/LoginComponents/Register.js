@@ -4,6 +4,7 @@ import HomePage from '../HomeComponents/HomePage';
 import Login from '../LoginComponents/Login';
 import logo from '../images/logoWithoutWords.png';
 import axios from "axios";
+import {Typography} from '@material-ui/core'
 import './Register.css';
 
 import { useDispatch } from "react-redux";
@@ -15,6 +16,8 @@ function Register() {
   let history = useHistory();
 
   const dispatch = useDispatch();
+
+  const [errorMsg, setErrorMsg] = useState("");
 
   // TODO add name as field
   const [user, setUser] = useState({
@@ -31,6 +34,7 @@ function Register() {
     axios.post("http://localhost:5000/user/", user).then((res) => {
       if (res.data.status == false) {
         console.log(`Existing ${res.data.source}`);
+        setErrorMsg(`Existing ${res.data.source}!`)
       } else {
         history.push({
           pathname: "/login",
@@ -91,6 +95,9 @@ function Register() {
           <button className="registerbutton" variant="contained" color="primary" type="submit">
             Register
           </button>
+          <Typography className ='errormsg'>
+                {errorMsg}
+          </Typography>
           <button className="linktolog" onClick={() => { history.push("/login") }}>
             Been here before? Click here to Login!
           </button>

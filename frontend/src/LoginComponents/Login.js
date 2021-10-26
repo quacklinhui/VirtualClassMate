@@ -10,12 +10,15 @@ import { useDispatch } from "react-redux";
 import HomePage from "../HomeComponents/HomePage";
 import Register from "../LoginComponents/Register";
 import logo from "../images/logoWithoutWords.png";
+import {Typography} from '@material-ui/core'
 // import {Button, Typography, Paper, Box, Container} from '@material-ui/core'
 import "./Login.css";
 import PasswordMask from 'react-password-mask';
 
 function Login() {
   const dispatch = useDispatch();
+
+  const [errorMsg, setErrorMsg] = useState("");
 
   let history = useHistory();
   const checkUser = (e) => {
@@ -24,6 +27,7 @@ function Login() {
     axios.post("http://localhost:5000/user/login", user).then((res) => {
       if (res.data.status == false) {
         console.log(`Login failed. Wrong ${res.data.source}`);
+        setErrorMsg(`Wrong ${res.data.source}!`)
       } else {
         history.push({
           pathname: "/home",
@@ -65,6 +69,9 @@ function Login() {
             <button className="loginbutton" type="submit">
               Login
             </button>
+            <Typography className ='errormsg'>
+                {errorMsg}
+            </Typography>
           </h5>
         </form>
 
