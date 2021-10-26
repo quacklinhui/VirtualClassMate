@@ -16,9 +16,7 @@ const PersonalForm = ({currentId, setCurrentId, type, referenceID}) => {
     const [showPersonalToDoList, setShowPersonalToDoList] = React.useState(false)
     const todoitem = useSelector((state) => currentId? state.PersonalToDoList.find((p)=>p._id === currentId) : null);
     const dispatch = useDispatch();
-    useEffect(()=>{
-      dispatch(getPersonalTodo(referenceID));
-    },[referenceID,currentId,dispatch])
+
     useEffect(()=>{
         if(todoitem) setToDoData(todoitem);
     },[todoitem])
@@ -39,7 +37,7 @@ const PersonalForm = ({currentId, setCurrentId, type, referenceID}) => {
     }
     useEffect(()=>{
       dispatch(getPersonalTodo(referenceID));
-    },[referenceID,currentId,dispatch,clear])
+    },[referenceID,currentId,dispatch])
     return(
         <Paper style={{width:"45%", backgroundColor: 'white', height:50, bottomPadding:20}} >
              <form autoComplete="off" noValidate  onSubmit={handleSubmit}>
