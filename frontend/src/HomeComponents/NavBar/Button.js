@@ -18,6 +18,12 @@ function Buttons(props){
     const toggleCreateRoomPopUp = () => {
         setCreatePopUp(!createPopUp)
     }
+
+    // function to rerender room lsit
+    const rerenderRoomList = () => {
+        props.rerender();
+    }
+
     let history = useHistory();
     return (
         <>
@@ -32,8 +38,8 @@ function Buttons(props){
                 <Button variant="contained" style = {{backgroundColor: '#ff3632', color: '#fff'}} className = "navbar-button-red" onClick={toggleCreateRoomPopUp}>Create Room</Button>
                 <Button variant="contained" style = {{backgroundColor: '#689f38', color: '#fff', marginLeft: '20px'}} className = "navbar-button-green" onClick={toggleJoinRoomPopUp}>Join a Room</Button>
             </ul>
-            {createPopUp && <CreateRoomPopUp userId = {props.userId} handleClose = {toggleCreateRoomPopUp}></CreateRoomPopUp>}
-            {createJoinRoomPopUp && <JoinRoomPopUp userId = {props.userId} handleClose = {toggleJoinRoomPopUp}></JoinRoomPopUp>}
+            {createPopUp && <CreateRoomPopUp userId = {props.userId} handleClose = {toggleCreateRoomPopUp} rerender = {rerenderRoomList}></CreateRoomPopUp>}
+            {createJoinRoomPopUp && <JoinRoomPopUp userId = {props.userId} handleClose = {toggleJoinRoomPopUp} rerender = {rerenderRoomList}></JoinRoomPopUp>}
         </>
     )
 }

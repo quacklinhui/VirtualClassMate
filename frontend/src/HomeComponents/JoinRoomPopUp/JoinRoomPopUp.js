@@ -9,6 +9,7 @@ function JoinRoomPopUp(props) {
 
     const [friendList, setFriendList] = useState([]);
     const friendIdList = [];
+    const [rerender, setRerender] = useState(true)
 
     //get friends of user
     useEffect(async () => {
@@ -16,7 +17,7 @@ function JoinRoomPopUp(props) {
             friendIdList.push(res.data.friends)
         })
         setFriendList(friendList => friendIdList)
-    }, [friendList])
+    }, [rerender])
 
     const [friendNameList, setFriendNameList] = useState([])
     var friend_NameList = []
@@ -24,10 +25,13 @@ function JoinRoomPopUp(props) {
     
     function checkLoaded() {
         if (friendNameList.length != 0) {
-            setLoading(true)
-        } else if (friend_NameList.length == 0) {
-            setLoading(true)
+            setLoading(true);
+            setRerender(false);
+        } else if (friend_NameList.length == 0 && friendNameList.length == 0) {
+            setLoading(true);
+            setRerender(false);
         }
+        
     }
 
     // get friend name
@@ -44,9 +48,7 @@ function JoinRoomPopUp(props) {
             setFriendNameList(friendNameList => friend_NameList)
         }
         setTimeout(checkLoaded, 5000)
-
-        return () => console.log('cleanup');
-    }, [friendNameList, friendList])
+    }, [friendList])
 
     
 

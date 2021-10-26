@@ -47,12 +47,17 @@ function RoomJoinRequestPopUp(props) {
             setTimeout(checkLoaded(request_NameList[0]._id), 7000) 
         }
         
-    }, [requestNameList, requestList])
+    }, [requestList])
+
+    const closePopUp = () => {
+        props.handleClose();
+        props.rerenderRoom();
+    }
 
     return(
         <div className = "PopUp">
             <div className = "popup-inner">
-                <IconButton className = "closePopUp" onClick = {props.handleClose}>
+                <IconButton className = "closePopUp" onClick = {closePopUp}>
                     <CloseIcon/>
                 </IconButton>
                 <h1>Join Room Requests</h1>

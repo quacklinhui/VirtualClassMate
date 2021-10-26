@@ -9,7 +9,9 @@
     width: 90%;
     margin-left: 3.5%;
     position: relative;
-    border-color:rgb(203, 184, 221)
+    border-color:rgb(203, 184, 221);
+    overflow-y: auto;
+    height: 42vh;
 }
 
 .roombutton {
@@ -19,4 +21,17 @@
     position: relative;
     background-color: rgb(159, 136, 180);
     margin-bottom: 5px;
+}
+
+.rooms::-webkit-scrollbar-track {
+    background: rgb(203, 184, 221);
+}
+
+.rooms::-webkit-scrollbar {
+    width: 10px;
+}
+
+.rooms::-webkit-scrollbar-thumb {
+    background-color:rgb(127, 109, 145);
+    border-radius: 5px;
 }

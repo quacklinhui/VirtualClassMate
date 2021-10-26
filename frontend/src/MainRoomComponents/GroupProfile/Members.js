@@ -17,7 +17,7 @@ function Members(props) {
             setAdmin(admin => res.data.admin)
         })
         setMemberIdList(memberIdList => member_IdList)
-    }, [])
+    }, [props.rerender])
 
 
     // get members' information
@@ -28,8 +28,10 @@ function Members(props) {
     function checkLoaded() {
         if (memberList.length != 0) {
             setLoading(true)
+            props.stopRerender();
         } else if (member_List.length == 0 && memberList.length == 0) {
             setLoading(true)
+            props.stopRerender();
         }
     }
 
@@ -68,7 +70,7 @@ function Members(props) {
             }
         }
         setTimeout(checkLoaded, 3000)
-    }, [memberIdList, memberList])
+    }, [memberIdList])
 
     return (
         <div className = "members_container">

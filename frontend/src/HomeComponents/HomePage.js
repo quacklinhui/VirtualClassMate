@@ -24,6 +24,8 @@ function HomePage() {
   const current_user_name = location.state.name;
 
   const [createFriendRequestPopUp, setFriendRequestPopUp] = useState(false);
+  const [rerender, setRerender] = useState(true)
+  const [rerenderFriend, setRerenderFriend] = useState(true)
 
 
     // function to open Friend Request Pop Up
@@ -31,18 +33,38 @@ function HomePage() {
         setFriendRequestPopUp(!createFriendRequestPopUp)
     }
 
+    // to rerender room list
+    const rerenderRoomList = () => {
+      setRerender(true)
+    }
+
+    // stop rerendering rooms after rendered
+    const stopRerender = () => {
+      setRerender(false)
+    }
+
+    // to rerender friend list
+    const rerenderFriendList = () => {
+      setRerenderFriend(true)
+    }
+
+    // stop rerendering friends after rendered
+    const stopRerenderFriend = () => {
+      setRerenderFriend(false)
+    }
+
   return (
       <div>
         <main>
-          <NavBar id={current_user_id} username={current_username} avatar={body} name = {current_user_name}/>
+          <NavBar id={current_user_id} username={current_username} avatar={body} name = {current_user_name} rerender = {rerenderRoomList}/>
           <AvatarBar id={current_user_id} username={current_username} avatar={body} name = {current_user_name}/>
-          <div style = {{display: 'flex', alignItems: 'flex-start', marginLeft: '20px', marginTop: '50px', marginRight: '20px'}}>
-            <RoomList id={current_user_id} username={current_username} avatar={body} name = {current_user_name}/>
-            <FriendList id={current_user_id}/>
-            <div>
+          <div style = {{display: 'flex', alignItems: 'flex-start', marginLeft: '5%', marginTop: '3%', maxWidth: '90%'}}>
+            <RoomList id={current_user_id} username={current_username} avatar={body} name = {current_user_name} rerender = {rerender} stopRerender = {stopRerender}/>
+            <FriendList id={current_user_id} rerender = {rerenderFriend} stopRerender = {stopRerenderFriend}/>
+            <div style = {{marginLeft: '9%', maxWidth: '100%', marginTop: '6%'}}>
               <AddFriend currentId={current_user_id}/>
-              <Button variant = "contained" style = {{marginLeft: '52%' , marginTop: '2%', backgroundColor: 'lightblue'}} onClick = {toggleFriendRequestPopUp}>Friend Requests</Button>
-                    {createFriendRequestPopUp && <FriendRequestPopUp userId = {current_user_id} handleClose = {toggleFriendRequestPopUp}/>}
+              <Button variant = "contained" style = {{marginLeft: '20%' , marginTop: '3%', backgroundColor: 'lightblue'}} onClick = {toggleFriendRequestPopUp}>Friend Requests</Button>
+                    {createFriendRequestPopUp && <FriendRequestPopUp userId = {current_user_id} handleClose = {toggleFriendRequestPopUp} rerender = {rerenderFriendList}/>}
             </div>
           </div>       
         </main>
