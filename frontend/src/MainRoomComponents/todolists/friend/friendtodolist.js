@@ -1,13 +1,11 @@
 import React from "react";
 import { Grid,CircularProgress, Paper, List, Button, Typography } from "@material-ui/core";
-
+import {useEffect, useState} from 'react';
 import { useSelector } from "react-redux";
-import PersonalToDoItem from "./personaltodoitem.js";
-import {useState, useEffect} from 'react';
+import FriendToDoItem from "./friendtodoitem.js";
 
 
-
-const PersonalToDoLists = ({setCurrentId}) => {
+const FriendToDoLists = ({setCurrentId}) => {
     const Personaltodolists = useSelector((state) => state.PersonalToDoList);
     //const classes = useStyles();
     //console.log(todolists);
@@ -24,21 +22,22 @@ const PersonalToDoLists = ({setCurrentId}) => {
         }, 500);
         return () => clearInterval(interval); 
       }, [Personaltodolists]);
+
     
     return (
-        //!count ? <CircularProgress/>: (
-            <Grid container alightItems="stretch" style={{height: '36vh', backgroundColor: "#E3CDF9", overflow: 'auto'}}>
-                {Personaltodolists.length? Personaltodolists.map((todo)=>(
+        // !Personaltodolists.length ? <CircularProgress/>: (
+            <Grid container  style={{maxHeight: '40vh', backgroundColor: "#DCDCDC", borderRadius:5, overflow: 'auto'}}>
+                {Personaltodolists.length? Personaltodolists.slice(0, count).map((todo)=>(
                     <List key={todo._id} style={{width:"100%", borderRadius:0}}>
-                        <PersonalToDoItem todo={todo} setCurrentId={setCurrentId}/>
+                        <FriendToDoItem todo={todo} setCurrentId={setCurrentId}/>
                     </List>
-                )): 
-                <Typography style={{textAlign:"center",width:"100%", margin: 20}}>
-                    Nothing here, add an item to your to do list!
+                )):
+                <Typography style ={{textAlign:"center",width:"100%"}}>
+                Taking a break!
                 </Typography>}
             </Grid>
-         //)
+        // )
     );
 }
 
-export default PersonalToDoLists;
+export default FriendToDoLists;

@@ -34,8 +34,6 @@ function RoomPage(props) {
 
   //rerender when rerender == true
   const [roomInfo, setRoomInfo] = useState([])
-  console.log(rerenderRoom)
-
   useEffect(async () => {
     await axios.get(`http://localhost:5000/room/${roomId}`).then((res) => {
       setRoomInfo(roomInfo => ({...roomInfo, ...res.data}))
@@ -76,6 +74,7 @@ function RoomPage(props) {
 
   return (
     <>
+
       <div>
         <NavBar id={current_user_id} username={current_username} avatar={body} name = {current_user_name}/>
       </div>

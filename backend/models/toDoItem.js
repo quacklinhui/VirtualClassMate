@@ -18,12 +18,6 @@ import mongoose from 'mongoose';
 
 const toDoItemSchema = mongoose.Schema({
     name: String,
-    deadline: Date,
-    description: String,
-    createdAt: {
-        type: Date,
-        default: new Date()
-    },
     type: {
         type: String,
         enum: ['user', 'room']

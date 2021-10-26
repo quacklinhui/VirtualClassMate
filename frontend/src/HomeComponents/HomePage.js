@@ -8,7 +8,7 @@ import './AddFriend/FriendRequestPopUp.css';
 
 import React, { useState } from 'react';
 import {BrowserRouter as Router, useLocation} from "react-router-dom";
-import {Button} from '@material-ui/core';
+import {Button,Paper} from '@material-ui/core';
 
 
 
@@ -26,6 +26,7 @@ function HomePage() {
   const [createFriendRequestPopUp, setFriendRequestPopUp] = useState(false);
   const [rerender, setRerender] = useState(true)
   const [rerenderFriend, setRerenderFriend] = useState(true)
+
 
     // function to open Friend Request Pop Up
     const toggleFriendRequestPopUp = () => {

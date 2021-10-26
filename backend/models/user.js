@@ -6,8 +6,6 @@ const userSchema = mongoose.Schema({
   password: String,
   email: String,
   // toDoList: [{ type: mongoose.Schema.Types.ObjectId, ref: "ToDoItem" }],
-  level: Number,
-  experience: Number,
   rooms: [{ type: mongoose.Schema.Types.ObjectId, ref: "Room" }],
   avatarID1: String,
   avatarID2: String,
