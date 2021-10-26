@@ -12,12 +12,12 @@ import { getPersonalTodo } from '../../../actions/todo';
 const FriendForm = ({currentId, setCurrentId, referenceID, friendName}) => {
 
     const [toDoData, setToDoData]=useState({name:'',type:'', referenceID:''});
-    const todoitem = useSelector((state) => currentId? state.PersonalToDoList.find((p)=>p._id === currentId) : null);
+    const todoitem = useSelector((state) => referenceID? state.PersonalToDoList.find((p)=>p._id === referenceID) : null);
     const dispatch = useDispatch();
     
     useEffect(()=>{
       dispatch(getPersonalTodo(referenceID));
-    },[referenceID,currentId,dispatch])
+    },[referenceID,referenceID,dispatch])
     
     useEffect(()=>{
         if(todoitem) setToDoData(todoitem);
@@ -27,7 +27,7 @@ const FriendForm = ({currentId, setCurrentId, referenceID, friendName}) => {
         setToDoData({name:''});
     }
     return(
-        <Paper style={{width:"20vw", backgroundColor: '#DCDCDC', height:50, bottomPadding:20}} >
+        <Paper style={{position: "relative",width:"20vw", left: "-20vw",backgroundColor: '#DCDCDC', height:50, bottomPadding:20}} >
             
             <Typography style={{textAlign:"center"}}>
             {friendName}'s to do list:

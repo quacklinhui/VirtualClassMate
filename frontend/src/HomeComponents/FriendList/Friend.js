@@ -13,7 +13,7 @@ const HoverableDiv = React.memo(({ handleMouseOver, handleMouseOut, friendName }
     );
   });
   
-const HoverText = React.memo(({ friendId,friendName }) => { //change this to display the pop up
+const HoverText = React.memo(({ friendId,friendName }) => { 
     const [currentId, setCurrentId] = useState(null); 
     return (
       <div style={{position:"fixed", right: "15vw", zIndex: 300, backgroundColour: "white"}}>
