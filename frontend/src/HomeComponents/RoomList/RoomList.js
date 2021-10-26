@@ -61,7 +61,7 @@ function RoomList({id, username, avatar, name, rerender, stopRerender}){
     <>
       <div style = {{display: 'flex', flexDirection: 'column', width: '32%'}}>
         <div style = {{width: '300px', fontWeight: 'bold'}}>Your Rooms</div>
-          <div style = {{backgroundColor: 'rgb(203, 184, 221)', borderRadius: '10px', width: '150%', height: '350px', position: 'relative',overflow:"auto"}}>
+          <div style = {{backgroundColor: 'rgb(203, 184, 221)', borderRadius: '10px', width: '100%', height: '100%', position: 'relative'}}>
             <div className = "rooms">
               {loading? (!roomList.length ? <RoomButtons isRoom = 'false'/> : roomList.map((room) => <RoomButtons key={room._id} id = {id} username = {username} avatar = {avatar} name = {name} room = {room.name} roomId = {room._id} isRoom = 'true'/>)) : 
                 <CircularProgress style = {{'color': 'lavender', 'marginLeft': '45%', 'marginTop': '5%'}}/>}
