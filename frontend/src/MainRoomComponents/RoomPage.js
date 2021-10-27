@@ -59,6 +59,7 @@ function RoomPage(props) {
     socket.current.on('roomUsers', ( { room, users} ) => {
       setOnlineMembers(users);
     })
+    rerenderEntireRoom();
   }, []);
 
   useEffect(() => {

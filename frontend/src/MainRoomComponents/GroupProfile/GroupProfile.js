@@ -23,7 +23,6 @@ function GroupProfile({id, username, avatar, name, roomId, onlineMembers, rerend
     // to rerender room 
     const rerenderEntireRoom = () => {
         rerenderRoom();
-        console.log('rerendered')
     }
 
     // to stop rerender of room

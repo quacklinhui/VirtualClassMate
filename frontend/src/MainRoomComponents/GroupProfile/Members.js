@@ -5,7 +5,6 @@ import Member from './Member';
 import axios from 'axios';
 
 function Members(props) {
-
     const [memberIdList, setMemberIdList] = useState([])
     const member_IdList = []
     const [admin, setAdmin] = useState({})
@@ -50,6 +49,7 @@ function Members(props) {
     }
 
     useEffect( async () => {
+        setLoading(false)
         if (memberIdList.length == 1){
             for (let i=0; i < memberIdList[0].length; i++) {
                 await axios.get(`http://localhost:5000/user/${memberIdList[0][i]}`).then((res) => {
@@ -70,11 +70,11 @@ function Members(props) {
             }
         }
         setTimeout(checkLoaded, 3000)
-    }, [memberIdList])
+    }, [memberIdList, props.onlineMembers, props.rerender])
 
     return (
         <div className = "members_container">
-            {loading? (!memberList.length ? <Member hasMember = 'false'/> : memberList.map((member) => <Member hasMember = 'true' key = {member._id} memberAvatar = {member.avatarID1} memberName = {member.name} onlineStatus = {checkIfMemberIsOnline(member._id.toString())}/>)) : 
+            {loading? (!memberList.length ? <Member hasMember = 'false'/> : memberList.map((member) => <Member hasMember = 'true' key = {member._id} memberAvatar = {member.avatarID1} memberName = {member.name} onlineStatus = {(checkIfMemberIsOnline(member._id))}/>)) : 
                 <CircularProgress style = {{'color': 'lavender', 'marginTop': '6%'}}/>            
             }
         </div>
