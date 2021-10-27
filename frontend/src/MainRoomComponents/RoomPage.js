@@ -1,20 +1,17 @@
 import React, { useEffect, useRef } from "react";
-import {IconButton,Button, Typography, Paper, Box, Container, TextField} from '@material-ui/core'
+import {Button, Typography, Paper, Box, Container, TextField} from '@material-ui/core'
 import {useState} from 'react';
 import {BrowserRouter as Router,  useHistory, useLocation} from "react-router-dom";
 import { io } from "socket.io-client";
+import axios from 'axios';
+import "react-datepicker/dist/react-datepicker.css";
 
-// import { getTodo } from '../actions/todo';
 import ToDoLists from "./todolists/personal/personaltodolist";
-import NavBar from '../HomeComponents/NavBar/NavBar';
 import ChatBox from "./chat/chatBox";
 import GroupProfile from './GroupProfile/GroupProfile';
-
-import "react-datepicker/dist/react-datepicker.css";
-import useWindowDimensions from "../useWindowDimensions";
+import RoomNavBar from "./RoomNavBar/RoomNavBar";
 import PersonalForm from "./todolists/personal/personalToDoForm"
 import GroupForm from "./todolists/group/groupToDoForm";
-import axios from 'axios';
 
 function RoomPage(props) {
   const [currentId, setCurrentId] = useState(null); 
@@ -71,7 +68,7 @@ function RoomPage(props) {
   return (
     <>
       <div>
-        <NavBar id={current_user_id} username={current_username} avatar={body} name = {current_user_name}/>
+        <RoomNavBar id={current_user_id} username={current_username} avatar={body} name = {current_user_name}/>
       </div>
       <div>
         <GroupProfile id={current_user_id} username={current_username} avatar={body} name = {current_user_name} roomId = {roomId} roomAdmin = {roomInfo.admin} onlineMembers = {onlineMembers} rerenderRoom = {rerenderEntireRoom} rerender = {rerenderRoom} stopRerenderRoom = {stopRerenderRoom}/>

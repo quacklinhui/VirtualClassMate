@@ -1,0 +1,16 @@
+.roomnavbar {
+    background: #482FAF;
+    display: flex;
+    font-size: 1.4rem;
+    position: relative;
+    z-index: 999;
+    align-items: center;
+    justify-content: space-between;
+    height: 70%;
+  }
+
+  .roomnavbar-logo {
+    margin-left: 20%;
+    display: inline-block;
+    width: 85%;
+  }

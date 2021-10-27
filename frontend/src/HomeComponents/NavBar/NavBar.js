@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import './NavBar.css';
 import Buttons from './Button.js';
 import logo from './../../images/VirtualClassMate_FullLogo.png';
