@@ -66,6 +66,13 @@ function RoomPage(props) {
     socket.current.emit("joinRoom", { userId: current_user_id, roomId: roomId });
   }, [current_user_id, roomId]);
 
+  const backToHomePage = () => {
+    history.push({
+      pathname: "/home",
+      state: { id: current_user_id, username: current_username, avatar: body, name: current_user_name}})
+    socket.current.disconnect();
+  }
+
   return (
     <>
       <div>
@@ -82,9 +89,7 @@ function RoomPage(props) {
             <Typography>{roomInfo.description}</Typography>
           </div>
           <Button style={{position:"absolute", right: 20,alignSelf: "flex-end", backgroundColor: "orange"}} 
-            onClick={() => { history.push({
-              pathname: "/home",
-              state: { id: current_user_id, username: current_username, avatar: body, name: current_user_name}})}}>Back to HomePage</Button>
+            onClick={backToHomePage}>Back to HomePage</Button>
         </div>
 
         <div style ={{display: "flex", flexDirection: 'row', height:30, paddingTop: 10, width: "80%", alignSelf: 'flex-start'}}>
