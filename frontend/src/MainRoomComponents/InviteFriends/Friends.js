@@ -16,7 +16,7 @@ class Friends extends React.Component {
             rerenderFriendList: props.rerenderList,
             hasAdded: '#c8f902',
             hasAddedText: 'Invite',
-            roomAdmin: props.roomAdmin,
+            isAdmin: props.isAdmin
         };
     }
     
@@ -30,7 +30,7 @@ class Friends extends React.Component {
     }
 
     render () {  
-        if (this.state.roomAdmin !== this.state.userId){
+        if (this.state.isAdmin === 'false'){
             return (
                 <div>
                     <h4 style = {{color: 'black', lineHeight: '50px', verticalAlign: 'middle'}}>Only admins are allowed to invite friends!</h4>

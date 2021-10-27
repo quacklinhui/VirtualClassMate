@@ -15,7 +15,7 @@ class RoomJoinRequest extends React.Component {
             roomId: props.roomId,
             hasAccepted: '#c8f902',
             hasAcceptedText: 'Accept',
-            roomAdmin: props.roomAdmin,
+            isAdmin: props.isAdmin,
         }
     }
 
@@ -28,14 +28,14 @@ class RoomJoinRequest extends React.Component {
     }
 
     render() {
-        if (this.state.roomAdmin !== this.state.userId) {
+        if (this.state.isAdmin == 'false') {
             return (
                 <div>
                     <h4 style = {{color: 'black', lineHeight: '50px', verticalAlign: 'middle'}}>Only admins are allowed to accept requests!</h4>
                 </div>
             )
         }
-        if (this.state.hasRequest == 'true') {
+        else if (this.state.hasRequest == 'true') {
             return (
                 <div className = 'requestDiv'>
                     <div style = {{marginLeft: '4%', marginTop: 0, fontWeight: 'bold', fontSize: '20px'}}>{this.state.newMemberName}</div>

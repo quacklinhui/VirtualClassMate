@@ -71,7 +71,7 @@ function InviteFriendsPopUp(props) {
                 </IconButton>
                 <h1>Invite Friends</h1>
                 <div className = "friendsToAdd">
-                    {loading ? ((props.roomAdmin != props.userId) ? <Friends roomAdmin = {props.roomAdmin} userId = {props.userId}/> : (!friendNameList.length ? <Friends isFriend = 'false'/> : friendNameList.map((friend) => <Friends key = {friend._id} friendId = {friend._id} name = {friend.name} userId = {props.userId} roomId = {props.roomId} isFriend='true' rerenderList = {rerenderFriendList}/>))): (
+                    {loading ? ((props.roomAdmin !== props.userId) ? <Friends userId = {props.userId} isAdmin = 'false'/> : (!friendNameList.length ? <Friends isFriend = 'false' isAdmin = 'true'/> : friendNameList.map((friend) => <Friends key = {friend._id} friendId = {friend._id} name = {friend.name} userId = {props.userId} roomId = {props.roomId} isFriend='true' rerenderList = {rerenderFriendList} isAdmin = 'true'/>))): (
                         <CircularProgress style = {{'color': 'lavender', 'marginLeft': '45%', 'marginTop': '5%'}}/>
                     )}
                 </div>
