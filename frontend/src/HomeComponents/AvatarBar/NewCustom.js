@@ -26,6 +26,8 @@ function NewCustom() {
   const hat = location.state.hat;
   const name = location.state.name;
   console.log(location)
+  var avatar = location.state.avatar;
+  console.log("current ava", avatar)
   
   let avatars = [animal1hat1, animal1hat2, animal2hat1, animal2hat2, animal3hat1, animal3hat2]
   const [avatarNum, setavatarNum] = useState(0);
@@ -57,12 +59,14 @@ function NewCustom() {
 
   // to push user variables back to home
   let history = useHistory();
-
+ 
   function backHome() {
     history.push({
       pathname: '/home',
-      state: {id: id, username: username , avatar: avatars[avatarNum].substr(14, 11), hat: hat, name: name}
+      state: {id: id, username: username , avatar: avatar, hat: hat, name: name}
   });
+    
+
   }
 
   const [currentAva, setNewAva] = useState({
@@ -78,6 +82,8 @@ function NewCustom() {
       avatarID1: newAvatar,
       avatarID2: "",
     })
+    avatar = newAvatar
+    console.log(avatar)
   }
 
   return (
