@@ -74,7 +74,7 @@ function RoomPage(props) {
         <NavBar id={current_user_id} username={current_username} avatar={body} name = {current_user_name}/>
       </div>
       <div>
-        <GroupProfile id={current_user_id} username={current_username} avatar={body} name = {current_user_name} roomId = {roomId} onlineMembers = {onlineMembers} rerenderRoom = {rerenderEntireRoom} rerender = {rerenderRoom} stopRerenderRoom = {stopRerenderRoom}/>
+        <GroupProfile id={current_user_id} username={current_username} avatar={body} name = {current_user_name} roomId = {roomId} roomAdmin = {roomInfo.admin} onlineMembers = {onlineMembers} rerenderRoom = {rerenderEntireRoom} rerender = {rerenderRoom} stopRerenderRoom = {stopRerenderRoom}/>
       </div>
         
       <Container style = {{maxWidth: '100%'}}>

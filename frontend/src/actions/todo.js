@@ -51,7 +51,7 @@ export const updateGroupTodo = (id,post) => async(dispatch) => {
     try {
         const {data} = await api.updateTodo(id,post);
 
-        dispatch({type: 'UPDATE_GROUP', payload:data});
+        dispatch({type: 'UPDATE', payload:data});
     } catch (error) {
         console.log(error.message);
     }
@@ -71,7 +71,7 @@ export const deleteGroupTodo = (id) => async(dispatch) => {
     try {
         api.deleteTodo(id);
         
-        dispatch({type: 'DELETE_GROUP', payload:id});
+        dispatch({type: 'DELETE', payload:id});
     } catch (error) {
         console.log(error.message);
     }

@@ -62,7 +62,7 @@ function RoomJoinRequestPopUp(props) {
                 </IconButton>
                 <h1>Join Room Requests</h1>
                 <div className = "requestsToAccept">
-                    {loading ? (!requestNameList.length ? <RoomJoinRequest hasRequest = 'false'/> : requestNameList.map((request) => <RoomJoinRequest key = {request._id} hasRequest = 'true' userId = {props.userId} newMemberId = {request._id} newMemberName = {request.name} roomId = {props.roomId}/>)) :
+                    {loading ? ((props.roomAdmin != props.userId) ? <RoomJoinRequest roomAdmin = {props.roomAdmin} userId = {props.userId}/> : (!requestNameList.length ? <RoomJoinRequest hasRequest = 'false'/> : requestNameList.map((request) => <RoomJoinRequest key = {request._id} hasRequest = 'true' userId = {props.userId} newMemberId = {request._id} newMemberName = {request.name} roomId = {props.roomId}/>))) :
                         <CircularProgress style = {{'color': 'lavender', 'marginLeft': '45%', 'marginTop': '5%'}}/>
                     }
                 </div>

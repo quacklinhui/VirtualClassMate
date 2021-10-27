@@ -15,6 +15,7 @@ class RoomJoinRequest extends React.Component {
             roomId: props.roomId,
             hasAccepted: '#c8f902',
             hasAcceptedText: 'Accept',
+            roomAdmin: props.roomAdmin,
         }
     }
 
@@ -27,6 +28,13 @@ class RoomJoinRequest extends React.Component {
     }
 
     render() {
+        if (this.state.roomAdmin !== this.state.userId) {
+            return (
+                <div>
+                    <h4 style = {{color: 'black', lineHeight: '50px', verticalAlign: 'middle'}}>Only admins are allowed to accept requests!</h4>
+                </div>
+            )
+        }
         if (this.state.hasRequest == 'true') {
             return (
                 <div className = 'requestDiv'>
@@ -37,8 +45,8 @@ class RoomJoinRequest extends React.Component {
         }
         else {
             return (
-                <div style = {{color: 'black', fontSize: '15px', fontWeight: 'bold', marginBottom: '10px'}}>
-                    There are no room requests!
+                <div>
+                    <h4 style = {{color: 'black', lineHeight: '50px', verticalAlign: 'middle'}}>There are no more room requests!</h4>
                 </div>
             )
         }

@@ -5,7 +5,7 @@
     import InviteFriendsPopUp from '../InviteFriends/InviteFriendsPopUp';
     import RoomJoinRequestPopUp from '../RoomJoinRequest/RoomJoinRequestPopUp';
 
-function GroupProfile({id, username, avatar, name, roomId, onlineMembers, rerenderRoom, rerender, stopRerenderRoom}){
+function GroupProfile({id, username, avatar, name, roomId, onlineMembers, rerenderRoom, rerender, stopRerenderRoom, roomAdmin}){
 
     const [CreateInviteFriendPopUp, setInviteFriendPopUp] = useState(false); 
     const [CreateAddFriendPopUp, setAddFriendPopUp] = useState(false); 
@@ -48,9 +48,9 @@ function GroupProfile({id, username, avatar, name, roomId, onlineMembers, rerend
             </div>
             <div style = {{marginLeft: '2.5%', display: 'flex', flexDirection: 'column'}}>
                 <Button variant="contained" className = "invite-button" onClick={toggleInviteFriendPopUp} style={{backgroundColor: 'paleturquoise', marginBottom: '20px'}}>Invite Friends</Button>
-                {CreateInviteFriendPopUp && <InviteFriendsPopUp roomId = {roomId} userId = {id} handleClose = {toggleInviteFriendPopUp} rerenderRoom = {rerenderEntireRoom}></InviteFriendsPopUp>}
+                {CreateInviteFriendPopUp && <InviteFriendsPopUp roomId = {roomId} userId = {id} roomAdmin = {roomAdmin} handleClose = {toggleInviteFriendPopUp} rerenderRoom = {rerenderEntireRoom}></InviteFriendsPopUp>}
                 <Button variant="contained" className = "joinRoomRequest" onClick={toggleAddFriendPopUp} style={{backgroundColor: 'white'}}>Requests To Join Room</Button>
-                {CreateAddFriendPopUp && <RoomJoinRequestPopUp roomId = {roomId} userId = {id} handleClose = {toggleAddFriendPopUp} rerenderRoom = {rerenderEntireRoom}/>}
+                {CreateAddFriendPopUp && <RoomJoinRequestPopUp roomId = {roomId} userId = {id} roomAdmin = {roomAdmin} handleClose = {toggleAddFriendPopUp} rerenderRoom = {rerenderEntireRoom}/>}
             </div>
             
         </div>
