@@ -13,7 +13,6 @@ class RoomJoinRequest extends React.Component {
             newMemberId: props.newMemberId,
             newMemberName: props.newMemberName,
             roomId: props.roomId,
-            hasAcceptedMargin: '60%',
             hasAccepted: '#c8f902',
             hasAcceptedText: 'Accept',
         }
@@ -32,7 +31,7 @@ class RoomJoinRequest extends React.Component {
             return (
                 <div className = 'requestDiv'>
                     <div style = {{marginLeft: '4%', marginTop: 0, fontWeight: 'bold', fontSize: '20px'}}>{this.state.newMemberName}</div>
-                    <Button className = 'requestText' style = {{marginLeft: this.state.hasAcceptedMargin, fontSize: '11px', fontWeight: 'bold', backgroundColor: this.state.hasAccepted}} onClick = {() => {this.acceptRequest();}}>{this.state.hasAcceptedText}</Button> 
+                    <Button className = 'requestText' style = {{right: '5px', fontSize: '11px', fontWeight: 'bold', backgroundColor: this.state.hasAccepted}} onClick = {() => {this.acceptRequest();}}>{this.state.hasAcceptedText}</Button> 
                 </div>
             )
         }

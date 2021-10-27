@@ -1,7 +1,6 @@
 import React from 'react';
-import {IconButton} from '@material-ui/core';
+import {Button} from '@material-ui/core';
 import './InviteFriendsPopUp.css';
-import AddCircle from '@material-ui/icons/AddCircle';
 import axios from 'axios';
 
 class Friends extends React.Component {
@@ -15,14 +14,18 @@ class Friends extends React.Component {
             isFriend: props.isFriend,
             userId: props.userId,
             rerenderFriendList: props.rerenderList,
+            hasAdded: '#c8f902',
+            hasAddedText: 'Invite',
         };
     }
     
     async addUserToRoom() {
+        this.setState({hasAdded: '#aaaaaa', hasAddedText: 'Invited'})
         await axios.patch(`http://localhost:5000/room/add/${this.state.roomId}`, {
             newMemberID: this.state.friendId,
             adderID: this.state.userId
         })
+        
     }
 
     render () {  
@@ -30,9 +33,7 @@ class Friends extends React.Component {
             return (
                 <div className = "frienddiv">
                     <h1 style = {{marginLeft: '30px'}}>{this.state.name}</h1>                    
-                    <IconButton className = 'addButton' onClick = {() => this.addUserToRoom()}>
-                        <AddCircle className = "addIcon"/>
-                    </IconButton>
+                    <Button className = "addButton" style = {{fontSize: '12px', fontWeight: 'bold', backgroundColor: this.state.hasAdded, height: '65%', right: '5px'}} onClick = {() => this.addUserToRoom()}>{this.state.hasAddedText}</Button>
                 </div>
             )
         }

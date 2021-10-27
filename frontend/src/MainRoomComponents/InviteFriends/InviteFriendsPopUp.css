@@ -59,24 +59,9 @@
     margin-bottom: 10px;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 }
 
-.addButton {
-    position: relative;
-    top: 15%;
-    right: 10px;
+.addButton .MuiButton-label {
+    margin: 0;
 }
-
-.addButton :hover {
-    background-color: rgb(159, 136, 180);
-}
-
-.addButton.MuiButtonBase-root {
-    width: 10px;
-    height: 10px;
-}
-
-.addIcon.MuiSvgIcon-root{
-    margin: 0px;
-}
-

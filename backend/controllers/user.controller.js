@@ -111,6 +111,9 @@ export const getUserByUsername = async (req, res) => {
     if (user != null) {
       res.status(200).json(user);
     }
+    else {
+      res.status(404).json("User does not exist!");
+    }
   } catch (error) {
     res.status(404).json({ message: error.message });
   }

@@ -39,13 +39,10 @@ function RoomPage(props) {
       setRoomInfo(roomInfo => ({...roomInfo, ...res.data}))
     })
     setRerenderRoom(false)
-    console.log(rerenderRoom)
-
   }, [rerenderRoom])
 
   // to rerender whole room 
   const rerenderEntireRoom = () => {
-    console.log('in roompage')
     setRerenderRoom(true)
   }
 
@@ -57,12 +54,11 @@ function RoomPage(props) {
   // Socket.io
   // const socket = useRef();
   const socket = useRef(io("ws://localhost:8900"));
-
   const [onlineMembers, setOnlineMembers] = useState([]);
 
+  // get online status of members
   useEffect(() => {
     // socket.current = io("ws://localhost:8900");
-
     socket.current.on('roomUsers', ( { room, users} ) => {
       setOnlineMembers(users);
     })
@@ -74,7 +70,6 @@ function RoomPage(props) {
 
   return (
     <>
-
       <div>
         <NavBar id={current_user_id} username={current_username} avatar={body} name = {current_user_name}/>
       </div>
@@ -88,12 +83,12 @@ function RoomPage(props) {
             <Typography> You are in: {roomInfo.name}</Typography>
             <Typography>{roomInfo.description}</Typography>
           </div>
-
           <Button style={{position:"absolute", right: 20,alignSelf: "flex-end", backgroundColor: "orange"}} 
             onClick={() => { history.push({
               pathname: "/home",
               state: { id: current_user_id, username: current_username, avatar: body, name: current_user_name}})}}>Back to HomePage</Button>
         </div>
+
         <div style ={{display: "flex", flexDirection: 'row', height:30, paddingTop: 10, width: "80%", alignSelf: 'flex-start'}}>
           <PersonalForm currentId={currentId} setCurrentId={setCurrentId} type="user" referenceID={current_user_id}/>
           <GroupForm currentGroupId={currentGroupId} setCurrentGroupId={setCurrentGroupId} type="room" referenceID={roomId}/>

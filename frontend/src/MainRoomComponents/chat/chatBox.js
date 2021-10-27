@@ -113,7 +113,7 @@ const ChatBox = (props) => {
             </Paper>
 
             <Paper>
-                <Paper style = {{backgroundColor: 'white', display: "flex",flexDirection: 'column', height:"18vw", padding:5, overflowY:"scroll", zIndex: '500', position: 'relative'}}>
+                <Paper style = {{backgroundColor: 'white', display: "flex",flexDirection: 'column', height:"18vw", padding:5, overflowY:"scroll",  position: 'relative'}}>
 
                     {messages.map((m) => (
                         <div ref={scrollRef}>

@@ -1,5 +1,3 @@
-import { bindActionCreators } from "redux"
-
 export default (PersonalToDoList = [], action) =>{
     switch(action.type){
         case 'DELETE':
@@ -9,7 +7,7 @@ export default (PersonalToDoList = [], action) =>{
         case 'FETCH_USER':
             return action.payload;  
         case 'CREATE':
-            return [...PersonalToDoList,action.payload];
+            return [...PersonalToDoList, action.payload];
         default:
             return PersonalToDoList;
     }

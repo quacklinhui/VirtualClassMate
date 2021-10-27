@@ -5,12 +5,9 @@ import { useSelector } from "react-redux";
 import PersonalToDoItem from "./personaltodoitem.js";
 import {useState, useEffect} from 'react';
 
-
-
 const PersonalToDoLists = ({setCurrentId}) => {
     const Personaltodolists = useSelector((state) => state.PersonalToDoList);
-    //const classes = useStyles();
-    //console.log(todolists);
+
     const [count, setCount] = useState(0);
     useEffect(() => {
         let counter = count;
@@ -26,18 +23,16 @@ const PersonalToDoLists = ({setCurrentId}) => {
       }, [Personaltodolists]);
     
     return (
-        //!count ? <CircularProgress/>: (
-            <Grid container alightItems="stretch" style={{height: '36vh', backgroundColor: "#E3CDF9", overflow: 'auto'}}>
-                {Personaltodolists.length? Personaltodolists.map((todo)=>(
-                    <List key={todo._id} style={{width:"100%", borderRadius:0}}>
-                        <PersonalToDoItem todo={todo} setCurrentId={setCurrentId}/>
-                    </List>
-                )): 
-                <Typography style={{textAlign:"center",width:"100%", margin: 20}}>
-                    Nothing here, add an item to your to do list!
-                </Typography>}
-            </Grid>
-         //)
+      <Grid container alightItems="stretch" style={{height: '36vh', backgroundColor: "#E3CDF9", overflow: 'auto'}}>
+        {Personaltodolists.length? Personaltodolists.map((todo)=>(
+          <List key={todo._id} style={{width:"100%", borderRadius:0}}>
+            <PersonalToDoItem todo={todo} setCurrentId={setCurrentId}/>
+          </List>
+        )): 
+        <Typography style={{textAlign:"center",width:"100%", margin: 20}}>
+          Nothing here, add an item to your to do list!
+        </Typography>}
+      </Grid>
     );
 }
 
