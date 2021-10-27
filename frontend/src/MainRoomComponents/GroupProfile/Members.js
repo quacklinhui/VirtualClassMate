@@ -72,11 +72,15 @@ function Members(props) {
         setTimeout(checkLoaded, 3000)
     }, [memberIdList])
 
+    var membersProfile = memberList.map((member) => <Member hasMember = {'true'} key = {member._id} memberAvatar = {member.avatarID1} memberName = {member.name} onlineStatus = {checkIfMemberIsOnline(member._id.toString())}/>);
+    console.log(membersProfile);
+
     return (
         <div className = "members_container">
-            {loading? (!memberList.length ? <Member hasMember = 'false'/> : memberList.map((member) => <Member hasMember = 'true' key = {member._id} memberAvatar = {member.avatarID1} memberName = {member.name} onlineStatus = {checkIfMemberIsOnline(member._id.toString())}/>)) : 
+            {loading ? (memberList.length ? membersProfile : <Member hasMember = 'false'/>) : 
                 <CircularProgress style = {{'color': 'lavender', 'marginTop': '6%'}}/>            
             }
+           
         </div>
     )
 }

@@ -58,6 +58,7 @@ function RoomPage(props) {
     // socket.current = io("ws://localhost:8900");
     socket.current.on('roomUsers', ( { room, users} ) => {
       setOnlineMembers(users);
+      console.log(users);
     })
   }, []);
 

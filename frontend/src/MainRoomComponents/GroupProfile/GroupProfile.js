@@ -9,6 +9,8 @@ function GroupProfile({id, username, avatar, name, roomId, onlineMembers, rerend
 
     const [CreateInviteFriendPopUp, setInviteFriendPopUp] = useState(false); 
     const [CreateAddFriendPopUp, setAddFriendPopUp] = useState(false); 
+
+    console.log(onlineMembers);
     
     // function to open Invite Friend PopUp
     const toggleInviteFriendPopUp = () => {
