@@ -31,6 +31,19 @@ function Register() {
     e.preventDefault();
     // let userdata = JSON.stringify(user)
     console.log(user)
+    if (user.username == "") {
+      setErrorMsg("Username field is empty!")
+    }
+    else if (user.name == "") {
+      setErrorMsg("Name field is empty!")
+    }
+    else if (user.email == "") {
+      setErrorMsg("Email field is empty!")
+    }
+    else if (user.password == "") {
+      setErrorMsg("Password field is empty!")
+    }
+    else{
     axios.post("http://localhost:5000/user/", user).then((res) => {
       if (res.data.status == false) {
         console.log(`Existing ${res.data.source}`);
@@ -41,7 +54,7 @@ function Register() {
           // state: { id: res.data._id, username: res.data.username , avatar: res.data.avatarID1, hat: res.data.avatarID2, name: res.data.name},
         });
       }
-    });
+    });}
   }
 
 
